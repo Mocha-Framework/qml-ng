@@ -1,0 +1,37 @@
+{
+  "name": "@mocha/qml-ng",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MochaDS QML → Angular 1:1 API bridge. Auto-generated from MochaDS QML components.",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "types": "./src/index.ts",
+  "scripts": {
+    "generate": "tsx scripts/generate.ts && node scripts/generate-partial-decls.mjs",
+    "build": "node scripts/generate-partial-decls.mjs && esbuild src/index.ts --bundle --format=esm --outfile=dist/index.mjs --target=es2022 --platform=browser --external:@angular/core --external:@angular/common --external:@angular/forms --external:@angular/router --external:@angular/platform-browser --external:@angular/platform-browser-dynamic --external:@angular/platform-server --external:@angular/compiler --external:@angular/compiler-cli",
+    "build:min": "node scripts/generate-partial-decls.mjs && esbuild src/index.ts --bundle --format=esm --outfile=dist/index.mjs --target=es2022 --platform=browser --minify --external:@angular/core --external:@angular/common --external:@angular/forms --external:@angular/router --external:@angular/platform-browser --external:@angular/platform-browser-dynamic --external:@angular/platform-server --external:@angular/compiler --external:@angular/compiler-cli",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@angular/core": "^20.0.0",
+    "@angular/common": "^20.0.0",
+    "@angular/forms": "^20.0.0",
+    "@angular/router": "^20.0.0",
+    "@angular/platform-browser": "^20.0.0",
+    "@angular/compiler": "^20.0.0"
+  },
+  "dependencies": {
+    "@mocha-ds/angular": "workspace:*"
+  },
+  "devDependencies": {
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}
