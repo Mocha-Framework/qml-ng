@@ -28,7 +28,7 @@
     "@angular/compiler": "^20.0.0"
   },
   "dependencies": {
-    "@mocha-ds/angular": "workspace:*"
+    "@mocha-ds/angular": "^0.1.0"
   },
   "devDependencies": {
     "tsx": "^4.0.0",
