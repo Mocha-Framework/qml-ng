@@ -121,7 +121,7 @@ for (const c of components) {
   const inputsObj = c.inputs.length === 0
     ? '{}'
     : `{\n      ${c.inputs
-        .map((i) => `${i.field}: { publicName: '${i.publicName}', isSignal: true }`)
+        .map((i) => `${i.field}: { classPropertyName: '${i.field}', publicName: '${i.publicName}', isSignal: true, isRequired: false, transformFunction: null }`)
         .join(',\n      ')},\n    }`;
   const outputsObj = c.outputs.length === 0
     ? '{}'
@@ -131,15 +131,19 @@ for (const c of components) {
 
   const tmplJs = JSON.stringify(c.template);
   const stylesJs = JSON.stringify(c.styles);
-  const hostJs = c.host ? `(${c.host})` : 'undefined';
-  // For components with host bindings, the @Component decorator's lazy getter
-  // already produces a def with correctly-compiled hostBindings (via AOT-style
-  // internal compilation). Overriding ɵcmp with the partial declaration's
-  // def in those cases loses those compiled bindings. So we only override for
-  // components without host bindings.
+  // NOTE on host bindings: the @Component decorator's `host` field uses the
+  // shorthand shape `{ '[attr.x]': 'val', '(event)': 'handler()' }`, but the
+  // ɵɵngDeclareComponent facade expects the post-compilation shape
+  // `{ attributes, listeners, properties, classAttribute, styleAttribute }`.
+  // The two shapes are incompatible, so we never forward the @Component host
+  // object to the partial decl — it's `undefined` for all components.
+  // For components that DO have host bindings, we also skip the ɵNG_COMP_DEF
+  // override entirely (the @Component-built def already includes those
+  // bindings); the partial decl call is computed but discarded. This is the
+  // same trade-off the original codegen made, just now type-safe.
   const overrideCode = c.host
     ? '// host bindings present: skip ɵcmp override to preserve @Component-built hostBindings'
-    : `${c.className}[ɵNG_COMP_DEF] = _def;`;
+    : `(${c.className} as any)[ɵNG_COMP_DEF] = _def;`;
 
   // ɵɵngDeclareComponent returns the def; we override ɵcmp with it so the
   // JIT compiler uses our signal-input-aware definition instead of the
@@ -148,11 +152,11 @@ for (const c of components) {
   lines.push(`  const _def = ɵɵngDeclareComponent({`);
   lines.push(`    type: ${c.className},`);
   lines.push(`    selector: '${c.selector}',`);
-  lines.push(`    standalone: true,`);
+  lines.push(`    isStandalone: true,`);
   lines.push(`    version: '20.0.0',`);
   lines.push(`    isSignal: true,`);
   lines.push(`    template: ${tmplJs},`);
-  lines.push(`    host: ${hostJs},`);
+  lines.push(`    host: undefined,`);
   lines.push(`    styles: ${stylesJs},`);
   lines.push(`    inputs: ${inputsObj},`);
   lines.push(`    outputs: ${outputsObj},`);

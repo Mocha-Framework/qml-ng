@@ -1,22 +1,5 @@
+// Refined manually. Do not overwrite.
 
-// Auto-generated from design-system/MochaDS/AnimatedPresence.qml
-// Do not edit manually. Run `pnpm generate` to regenerate.
-
-import { Component, input, output, computed } from '@angular/core';
-
-@Component({
-  selector: 'AnimatedPresence',
-  standalone: true,
-  template: `<ng-content></ng-content>`,
-})
-export class AnimatedPresence {
-  shown = input<boolean>(false);
-  enterDuration = input<number>(300);
-  exitDuration = input<number>(250);
-  enterOffset = input<number>(20);
-  exitOffset = input<number>(20);
-  enterFromScale = input<number>(0.92);
-  exitToScale = input<number>(0.92);
-  enterAnimation = input<string>("fade");
-  exitAnimation = input<string>("fade");
-}
+import { Component, computed, input } from '@angular/core';
+@Component({selector:'AnimatedPresence',standalone:true,template:`<div class="presence" [class.shown]="shown()" [class]="classes()" [style.--enter-duration.ms]="enterDuration()" [style.--exit-duration.ms]="exitDuration()" [style.--enter-offset.px]="enterOffset()" [style.--exit-offset.px]="exitOffset()" [style.--enter-scale]="enterFromScale()" [style.--exit-scale]="exitToScale()"><ng-content /></div>`,styles:[`:host{display:inline-block;overflow:hidden}.presence{opacity:0;transition:opacity var(--exit-duration) ease-in,transform var(--exit-duration) ease-in;transform-origin:center}.presence.shown{opacity:1;transition-duration:var(--enter-duration);transition-timing-function:cubic-bezier(.215,.61,.355,1)}.enter-slide{transform:translateY(var(--enter-offset))}.enter-slide.shown{transform:translateY(0)}.exit-slide:not(.shown){transform:translateY(var(--exit-offset))}.enter-zoom,.enter-bounce{transform:scale(var(--enter-scale))}.enter-zoom.shown,.enter-bounce.shown{transform:scale(1)}.exit-zoom:not(.shown),.exit-bounce:not(.shown){transform:scale(var(--exit-scale))}.enter-spin{transform:rotate(-90deg)}.enter-spin.shown{transform:rotate(0)}.enter-flip{transform:rotateX(-90deg)}.enter-flip.shown{transform:rotateX(0)}.exit-flip:not(.shown){transform:rotateX(-90deg)}`]})
+export class AnimatedPresence {shown=input(false);enterDuration=input(300);exitDuration=input(250);enterOffset=input(20);exitOffset=input(20);enterFromScale=input(.92);exitToScale=input(.92);enterAnimation=input('fade');exitAnimation=input('fade');classes=computed(()=>`enter-${this.enterAnimation()} exit-${this.exitAnimation()}`)}

@@ -1,62 +1,14 @@
+// Refined manually. Do not overwrite.
 
-// Auto-generated from design-system/MochaDS/Div.qml
-// Do not edit manually. Run `pnpm generate` to regenerate.
-
-import { Component, input, output, computed } from '@angular/core';
-
+import { Component, computed, input, output } from '@angular/core';
+type Spacing=string|number|undefined;
 @Component({
-  selector: 'Div',
-  standalone: true,
-  template: `<ng-content></ng-content>`,
+  selector:'Div', standalone:true,
+  template:`@if (show() || animate()) { <div class="qml-div" [class]="classes()" [style]="styleText()" (click)="activate()"><ng-content></ng-content></div> }`,
+  styles:[`.qml-div { box-sizing:border-box; transition-property:opacity,transform; } .surface{background:var(--ctp-surface0,#313244)}.elevated{background:var(--ctp-mantle,#181825)}.outline{border:1px solid var(--ctp-surface1,#45475a)}.clickable{cursor:pointer}.shadow-sm{box-shadow:0 2px 4px rgb(0 0 0/.1)}.shadow-md{box-shadow:0 4px 10px rgb(0 0 0/.15)}.shadow-lg{box-shadow:0 8px 20px rgb(0 0 0/.22)}.hidden{pointer-events:none}`],
 })
 export class Div {
-  show = input<boolean>(true);
-  animate = input<boolean>(false);
-  animateIn = input<string>("fade");
-  animateOut = input<string>("fade");
-  durationIn = input<number>(300);
-  durationOut = input<number>(250);
-  easingInEasing = input<number>(0);
-  easingOutEasing = input<number>(0);
-  enterOffset = input<number>(24);
-  exitOffset = input<number>(24);
-  enterScale = input<number>(0.95);
-  exitScale = input<number>(0.95);
-  p = input<unknown>(undefined);
-  px = input<unknown>(undefined);
-  py = input<unknown>(undefined);
-  pt = input<unknown>(undefined);
-  pr = input<unknown>(undefined);
-  pb = input<unknown>(undefined);
-  pl = input<unknown>(undefined);
-  m = input<unknown>(undefined);
-  mx = input<unknown>(undefined);
-  my = input<unknown>(undefined);
-  mt = input<unknown>(undefined);
-  mr = input<unknown>(undefined);
-  mb = input<unknown>(undefined);
-  ml = input<unknown>(undefined);
-  variant = input<string>("default");
-  colorName = input<string>("");
-  radius = input<unknown>(undefined);
-  customRadius = input<number>(-1);
-  shadow = input<string>("none");
-  fill = input<boolean>(false);
-  fillX = input<boolean>(false);
-  fillY = input<boolean>(false);
-  alignSelf = input<string>("");
-  flexGrow = input<number>(0);
-  flexShrink = input<number>(1);
-  width_ = input<number>(-1);
-  height_ = input<number>(-1);
-  minWidth = input<number>(0);
-  maxWidth = input<number>(0);
-  minHeight = input<number>(0);
-  maxHeight = input<number>(0);
-  alignItems = input<string>("");
-  zIndex = input<number>(-1);
-  overflow = input<string>("visible");
-  clickable = input<boolean>(false);
-
-  clicked = output<void>();
+  show=input(true);animate=input(false);animateIn=input('fade');animateOut=input('fade');durationIn=input(300);durationOut=input(250);easingInEasing=input(0);easingOutEasing=input(0);enterOffset=input(24);exitOffset=input(24);enterScale=input(.95);exitScale=input(.95);p=input<Spacing>();px=input<Spacing>();py=input<Spacing>();pt=input<Spacing>();pr=input<Spacing>();pb=input<Spacing>();pl=input<Spacing>();m=input<Spacing>();mx=input<Spacing>();my=input<Spacing>();mt=input<Spacing>();mr=input<Spacing>();mb=input<Spacing>();ml=input<Spacing>();variant=input('default');colorName=input('');radius=input<string|number>();customRadius=input(-1);shadow=input('none');fill=input(false);fillX=input(false);fillY=input(false);alignSelf=input('');flexGrow=input(0);flexShrink=input(1);width_=input(-1);height_=input(-1);minWidth=input(0);maxWidth=input(0);minHeight=input(0);maxHeight=input(0);alignItems=input('');zIndex=input(-1);overflow=input('visible');clickable=input(false);clicked=output<void>();
+  protected classes=computed(()=>`qml-div ${this.variant()} shadow-${this.shadow()}${this.clickable()?' clickable':''}${!this.show()?' hidden':''}`); protected styleText=computed(()=>{const radius=this.radiusValue(),transform=this.show()?'none':this.exitTransform();return `padding:${this.edges(this.p(),this.px(),this.py(),this.pt(),this.pr(),this.pb(),this.pl())};margin:${this.edges(this.m(),this.mx(),this.my(),this.mt(),this.mr(),this.mb(),this.ml())};border-radius:${radius}px;background:${this.colorName()?`var(--ctp-${this.colorName()})`:''};opacity:${this.show()?1:0};transform:${transform};transition-duration:${this.show()?this.durationIn():this.durationOut()}ms;overflow:${this.overflow()};z-index:${Math.max(0,this.zIndex())};flex-grow:${this.flexGrow()};flex-shrink:${this.flexShrink()};align-self:${this.alignSelf()||'auto'};${this.fill()||this.fillX()?'width:100%;':''}${this.fill()||this.fillY()?'height:100%;':''}${this.width_()>=0?`width:${this.width_()}px;`:''}${this.height_()>=0?`height:${this.height_()}px;`:''}${this.minWidth()>0?`min-width:${this.minWidth()}px;`:''}${this.maxWidth()>0?`max-width:${this.maxWidth()}px;`:''}${this.minHeight()>0?`min-height:${this.minHeight()}px;`:''}${this.maxHeight()>0?`max-height:${this.maxHeight()}px;`:''}`});
+  protected activate():void{if(this.clickable())this.clicked.emit();} private space(v:Spacing):number{if(typeof v==='number')return v;return({none:0,xs:4,sm:8,md:16,lg:24,xl:32,xxl:48}as Record<string,number>)[v??'']??0;} private edges(a:Spacing,x:Spacing,y:Spacing,t:Spacing,r:Spacing,b:Spacing,l:Spacing):string{return`${this.space(t??y??a)}px ${this.space(r??x??a)}px ${this.space(b??y??a)}px ${this.space(l??x??a)}px`;} private radiusValue():number{const r=this.radius();if(typeof r==='number')return r;if(r)return({none:0,sm:4,md:8,lg:12,pill:9999}as Record<string,number>)[r]??8;return this.customRadius()>=0?this.customRadius():8;} private exitTransform():string{const type=this.animateOut();if(type==='slide-up')return`translateY(${this.exitOffset()}px)`;if(type==='slide-down')return`translateY(-${this.exitOffset()}px)`;if(type==='slide-left')return`translateX(${this.exitOffset()}px)`;if(type==='slide-right')return`translateX(-${this.exitOffset()}px)`;if(['zoom','bounce','all'].includes(type))return`scale(${this.exitScale()})`;return'none';}
 }

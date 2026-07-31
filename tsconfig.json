@@ -11,9 +11,10 @@
     "outDir": "./dist",
     "rootDir": "./",
     "baseUrl": ".",
-    "paths": {
-      "@mocha-ds/angular": ["../angular"]
-    }
+    "paths": {},
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "useDefineForClassFields": false
   },
   "include": ["src/**/*.ts"],
   "exclude": ["scripts", "dist", "node_modules"]

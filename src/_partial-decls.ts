@@ -39,6 +39,7 @@ import { CozyGrid } from './components/CozyGrid';
 import { CozyGridCol } from './components/CozyGridCol';
 import { CozyList } from './components/CozyList';
 import { CozySkeleton } from './components/CozySkeleton';
+import { CozySpinner } from './components/CozySpinner';
 import { DataGrid } from './components/DataGrid';
 import { DatePicker } from './components/DatePicker';
 import { Div } from './components/Div';
@@ -52,7 +53,7 @@ import { FadeIn } from './components/FadeIn';
 import { FadeOut } from './components/FadeOut';
 import { Flip } from './components/Flip';
 import { Form } from './components/Form';
-import { FormController } from './components/FormController';
+import { FormControllerComponent } from './components/FormController';
 import { FormField } from './components/FormField';
 import { GaugeChart } from './components/GaugeChart';
 import { GlowPulse } from './components/GlowPulse';
@@ -87,6 +88,7 @@ import { RangeSelector } from './components/RangeSelector';
 import { Route } from './components/Route';
 import { Router } from './components/Router';
 import { RouterLink } from './components/RouterLink';
+import { ScrollBar } from './components/ScrollBar';
 import { Select } from './components/Select';
 import { SelectTree } from './components/SelectTree';
 import { Separator } from './components/Separator';
@@ -132,434 +134,343 @@ import { ZoomIn } from './components/ZoomIn';
   const _def = ɵɵngDeclareComponent({
     type: Accordion,
     selector: 'Accordion',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
-    host: ({
-    '[attr.data-qml-component]': '"accordion"',
-  }),
+    template: "\n    <div class=\"qml-accordion\" [class]=\"rootClass()\" [attr.data-variant]=\"variant()\" [attr.data-state]=\"open() ? 'open' : 'closed'\"\n      [style.--qml-accordion-bg]=\"finalBackground()\" [style.--qml-accordion-border-color]=\"finalBorderColor()\"\n      [style.--qml-accordion-radius.px]=\"finalRadius()\" [style.--qml-accordion-accent]=\"accentColorResolved()\"\n      [style.--qml-accordion-text]=\"finalTextColor()\" (click)=\"toggle()\" (keydown.enter)=\"toggle()\"\n      (keydown.space)=\"$event.preventDefault(); toggle()\" tabindex=\"0\">\n      <div class=\"qml-accordion-header\" [class.no-radius-bottom]=\"open()\">\n        @if (icon()) {\n          <span class=\"qml-accordion-icon\" [innerHTML]=\"iconSvg(icon(), 20)\"></span>\n        }\n        <span class=\"qml-accordion-title\">{{ title() }}</span>\n        <span class=\"qml-accordion-chevron\" [innerHTML]=\"iconSvg('chevron-down', 18)\" [class.rotated]=\"open()\"></span>\n      </div>\n      <div class=\"qml-accordion-collapse\" [class.open]=\"open()\">\n        <div class=\"qml-accordion-content\">\n          <div class=\"qml-accordion-body\">\n            <ng-content></ng-content>\n          </div>\n        </div>\n      </div>\n    </div>\n  ",
+    host: undefined,
     styles: [],
     inputs: {
-      title: { publicName: 'title', isSignal: true },
-      icon: { publicName: 'icon', isSignal: true },
-      expanded: { publicName: 'expanded', isSignal: true },
-      variant: { publicName: 'variant', isSignal: true },
-      interactive: { publicName: 'interactive', isSignal: true },
-      accentColor: { publicName: 'accentColor', isSignal: true },
-      backgroundColor: { publicName: 'backgroundColor', isSignal: true },
-      customRadius: { publicName: 'customRadius', isSignal: true },
-      customColor: { publicName: 'customColor', isSignal: true },
-      customAccentColor: { publicName: 'customAccentColor', isSignal: true },
-      customTextColor: { publicName: 'customTextColor', isSignal: true },
+      title: { classPropertyName: 'title', publicName: 'title', isSignal: true, isRequired: false, transformFunction: null },
+      variant: { classPropertyName: 'variant', publicName: 'variant', isSignal: true, isRequired: false, transformFunction: null },
+      interactive: { classPropertyName: 'interactive', publicName: 'interactive', isSignal: true, isRequired: false, transformFunction: null },
+      accentColor: { classPropertyName: 'accentColor', publicName: 'accentColor', isSignal: true, isRequired: false, transformFunction: null },
+      backgroundColor: { classPropertyName: 'backgroundColor', publicName: 'backgroundColor', isSignal: true, isRequired: false, transformFunction: null },
+      customRadius: { classPropertyName: 'customRadius', publicName: 'customRadius', isSignal: true, isRequired: false, transformFunction: null },
+      customColor: { classPropertyName: 'customColor', publicName: 'customColor', isSignal: true, isRequired: false, transformFunction: null },
+      customAccentColor: { classPropertyName: 'customAccentColor', publicName: 'customAccentColor', isSignal: true, isRequired: false, transformFunction: null },
+      customTextColor: { classPropertyName: 'customTextColor', publicName: 'customTextColor', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       toggled: 'toggled',
     },
   });
-  // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
+  (Accordion as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: AdaptiveStack,
     selector: 'AdaptiveStack',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "<div class=\"qml-adaptive-stack\" [class.vertical]=\"direction() === 'vertical'\" [style.justify-content]=\"justify()\" [style.align-items]=\"align()\"><ng-content></ng-content></div>",
     host: undefined,
     styles: [],
     inputs: {
-      direction: { publicName: 'direction', isSignal: true },
-      spacing: { publicName: 'spacing', isSignal: true },
-      justifyContent: { publicName: 'justifyContent', isSignal: true },
-      alignItems: { publicName: 'alignItems', isSignal: true },
-      horizontalBreakpoint: { publicName: 'horizontalBreakpoint', isSignal: true },
+      direction: { classPropertyName: 'direction', publicName: 'direction', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  AdaptiveStack[ɵNG_COMP_DEF] = _def;
+  // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: AdvancedSelect,
     selector: 'AdvancedSelect',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-adv-select\" [class.is-open]=\"open()\" [class.disabled]=\"disabled()\">\n      @if (label(); as lbl) { <label class=\"qml-adv-select-label\">{{ lbl }}</label> }\n      <button type=\"button\" class=\"qml-adv-select-trigger\" [disabled]=\"disabled()\" (click)=\"toggle()\">\n        <div class=\"qml-adv-select-badges\">\n          @if (selectedOptions().length === 0) {\n            <span class=\"qml-adv-select-placeholder\">{{ placeholder() }}</span>\n          } @else if (multiple()) {\n            @for (opt of selectedOptions().slice(0, 3); track opt.value) {\n              <span class=\"qml-adv-select-badge\">{{ opt.label }}\n                <button type=\"button\" class=\"qml-adv-select-badge-x\" (click)=\"remove(opt.value, $event)\" aria-label=\"Remove\">\n                  <svg width=\"10\" height=\"10\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg>\n                </button>\n              </span>\n            }\n            @if (selectedOptions().length > 3) { <span class=\"qml-adv-select-more\">+{{ selectedOptions().length - 3 }}</span> }\n          } @else {\n            <span class=\"qml-adv-select-value\">{{ selectedOptions()[0].label }}</span>\n          }\n        </div>\n        <svg class=\"qml-adv-select-chevron\" [class.up]=\"open()\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"6 9 12 15 18 9\"></polyline></svg>\n      </button>\n      @if (open()) {\n        <div class=\"qml-adv-select-popover\" (click)=\"$event.stopPropagation()\">\n          <div class=\"qml-adv-select-search\">\n            <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><line x1=\"21\" y1=\"21\" x2=\"16.65\" y2=\"16.65\"/></svg>\n            <input type=\"text\" [value]=\"search()\" (input)=\"onSearch($event)\" placeholder=\"Buscar...\" />\n          </div>\n          <div class=\"qml-adv-select-list\">\n            @for (opt of filteredOptions(); track opt.value; let i = $index) {\n              <button type=\"button\" class=\"qml-adv-select-item\" [class.selected]=\"isSelected(opt.value)\"\n                [class.highlighted]=\"i === highlightIndex()\" (click)=\"select(opt.value)\" (mouseenter)=\"highlightIndex.set(i)\">\n                @if (multiple()) { <span class=\"qml-adv-select-check\">{{ isSelected(opt.value) ? '✓' : '' }}</span> }\n                <span class=\"qml-adv-select-item-label\">{{ opt.label }}</span>\n                @if (!multiple() && isSelected(opt.value)) { <svg class=\"qml-adv-select-item-check\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"></polyline></svg> }\n              </button>\n            }\n            @if (filteredOptions().length === 0) { <div class=\"qml-adv-select-empty\">Nenhum resultado</div> }\n          </div>\n        </div>\n      }\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      options: { publicName: 'options', isSignal: true },
-      selectedValues: { publicName: 'selectedValues', isSignal: true },
-      placeholder: { publicName: 'placeholder', isSignal: true },
-      disabled: { publicName: 'disabled', isSignal: true },
-      searchable: { publicName: 'searchable', isSignal: true },
-      multiple: { publicName: 'multiple', isSignal: true },
-      size: { publicName: 'size', isSignal: true },
-      status: { publicName: 'status', isSignal: true },
-      expanded: { publicName: 'expanded', isSignal: true },
-      openUpward: { publicName: 'openUpward', isSignal: true },
-      customRadius: { publicName: 'customRadius', isSignal: true },
-      customBorderColor: { publicName: 'customBorderColor', isSignal: true },
-      customBackgroundColor: { publicName: 'customBackgroundColor', isSignal: true },
-      searchQuery: { publicName: 'searchQuery', isSignal: true },
+      options: { classPropertyName: 'options', publicName: 'options', isSignal: true, isRequired: false, transformFunction: null },
+      multiple: { classPropertyName: 'multiple', publicName: 'multiple', isSignal: true, isRequired: false, transformFunction: null },
+      label: { classPropertyName: 'label', publicName: 'label', isSignal: true, isRequired: false, transformFunction: null },
+      placeholder: { classPropertyName: 'placeholder', publicName: 'placeholder', isSignal: true, isRequired: false, transformFunction: null },
+      disabled: { classPropertyName: 'disabled', publicName: 'disabled', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
-      selectionChanged: 'selectionChanged',
+      selected: 'selected',
     },
   });
-  AdvancedSelect[ɵNG_COMP_DEF] = _def;
+  // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: AdvancedTextEditor,
     selector: 'AdvancedTextEditor',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-adv-editor\" [attr.data-color]=\"color()\">\n      @if (label(); as lbl) { <label class=\"qml-adv-editor-label\">{{ lbl }}</label> }\n      <div class=\"editor\">\n        <div class=\"editor-toolbar\">\n          <button type=\"button\" class=\"editor-toolbar-btn\" (click)=\"format('**','**')\" title=\"Negrito\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z\"/><path d=\"M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z\"/></svg></button>\n          <button type=\"button\" class=\"editor-toolbar-btn\" (click)=\"format('_','_')\" title=\"Itálico\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"19\" y1=\"4\" x2=\"10\" y2=\"4\"/><line x1=\"14\" y1=\"20\" x2=\"5\" y2=\"20\"/><line x1=\"15\" y1=\"4\" x2=\"9\" y2=\"20\"/></svg></button>\n          <button type=\"button\" class=\"editor-toolbar-btn\" (click)=\"format('~~','~~')\" title=\"Tachado\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M16 4H9a3 3 0 0 0-2.83 4\"/><path d=\"M14 12a4 4 0 0 1 0 8H6\"/><line x1=\"4\" y1=\"12\" x2=\"20\" y2=\"12\"/></svg></button>\n          <span class=\"editor-toolbar-separator\"></span>\n          <button type=\"button\" class=\"editor-toolbar-btn\" (click)=\"format('# ','')\" title=\"Título\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 4v16\"/><path d=\"M18 4v16\"/><path d=\"M6 12h12\"/></svg></button>\n          <button type=\"button\" class=\"editor-toolbar-btn\" (click)=\"format('- ','')\" title=\"Lista\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"8\" y1=\"6\" x2=\"21\" y2=\"6\"/><line x1=\"8\" y1=\"12\" x2=\"21\" y2=\"12\"/><line x1=\"8\" y1=\"18\" x2=\"21\" y2=\"18\"/><line x1=\"3\" y1=\"6\" x2=\"3.01\" y2=\"6\"/><line x1=\"3\" y1=\"12\" x2=\"3.01\" y2=\"12\"/><line x1=\"3\" y1=\"18\" x2=\"3.01\" y2=\"18\"/></svg></button>\n          <button type=\"button\" class=\"editor-toolbar-btn\" (click)=\"format('[',']()')\" title=\"Link\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"/><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"/></svg></button>\n          <button type=\"button\" class=\"editor-toolbar-btn\" (click)=\"format('\\`','\\`')\" title=\"Código\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"16 18 22 12 16 6\"/><polyline points=\"8 6 2 12 8 18\"/></svg></button>\n          <button type=\"button\" class=\"editor-toolbar-btn\" (click)=\"format('> ','')\" title=\"Citação\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z\"/><path d=\"M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z\"/></svg></button>\n          <span class=\"editor-toolbar-separator\"></span>\n          <select class=\"editor-toolbar-select\" (change)=\"onModeChange($event)\" [value]=\"mode()\">\n            <option value=\"visual\">Visual</option>\n            <option value=\"markdown\">Markdown</option>\n          </select>\n        </div>\n        <div class=\"editor-content\">\n          @if (mode() === 'visual') {\n            <div class=\"editor-prosemirror-wrapper\">\n              <div #content class=\"ProseMirror\" contenteditable=\"true\" (input)=\"onContentInput($event)\" (blur)=\"onBlur()\" [attr.data-placeholder]=\"placeholder()\"></div>\n            </div>\n          } @else {\n            <textarea class=\"editor-markdown\" [value]=\"markdownValue()\" (input)=\"onMarkdownInput($event)\" [placeholder]=\"placeholder()\"></textarea>\n          }\n        </div>\n        <div class=\"editor-statusbar\">\n          <div class=\"editor-statusbar-left\">\n            <span class=\"editor-statusbar-badge\">{{ wordCount() }} palavras</span>\n            <span class=\"editor-statusbar-badge\">{{ charCount() }} caracteres</span>\n          </div>\n          <div class=\"editor-statusbar-right\">\n            <span class=\"editor-statusbar-badge\">Markdown</span>\n          </div>\n        </div>\n      </div>\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      text: { publicName: 'text', isSignal: true },
-      placeholder: { publicName: 'placeholder', isSignal: true },
-      disabled: { publicName: 'disabled', isSignal: true },
-      readOnly: { publicName: 'readOnly', isSignal: true },
-      visualMode: { publicName: 'visualMode', isSignal: true },
-      showToolbar: { publicName: 'showToolbar', isSignal: true },
-      showStatusbar: { publicName: 'showStatusbar', isSignal: true },
-      customRadius: { publicName: 'customRadius', isSignal: true },
-      customBorderColor: { publicName: 'customBorderColor', isSignal: true },
-      customBackgroundColor: { publicName: 'customBackgroundColor', isSignal: true },
-      icon: { publicName: 'icon', isSignal: true },
-      tooltip: { publicName: 'tooltip', isSignal: true },
-      active: { publicName: 'active', isSignal: true },
+      label: { classPropertyName: 'label', publicName: 'label', isSignal: true, isRequired: false, transformFunction: null },
+      placeholder: { classPropertyName: 'placeholder', publicName: 'placeholder', isSignal: true, isRequired: false, transformFunction: null },
+      color: { classPropertyName: 'color', publicName: 'color', isSignal: true, isRequired: false, transformFunction: null },
+      height: { classPropertyName: 'height', publicName: 'height', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
-      textEdited: 'textEdited',
-      clicked: 'clicked',
+      changed: 'changed',
     },
   });
-  AdvancedTextEditor[ɵNG_COMP_DEF] = _def;
+  (AdvancedTextEditor as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: AlertDialog,
     selector: 'AlertDialog',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    @if (open()) {\n      <div class=\"qml-alert-overlay\" (click)=\"onBackdropClick()\">\n        <div class=\"qml-alert-panel\" [style.width.px]=\"width()\" (click)=\"$event.stopPropagation()\">\n          @if (showCloseButton()) {\n            <button class=\"qml-alert-close\" type=\"button\" (click)=\"onClose()\" aria-label=\"Fechar\">\n              <span [innerHTML]=\"iconSvg('x', 18)\"></span>\n            </button>\n          }\n          <div class=\"qml-alert-body\">\n            <span class=\"qml-alert-icon\" [style.color]=\"accentColor()\" [innerHTML]=\"iconSvg(typeIcon(), 28)\"></span>\n            <div class=\"qml-alert-text\">\n              @if (dialogTitle()) { <h2 class=\"qml-alert-title\">{{ dialogTitle() }}</h2> }\n              @if (dialogMessage()) { <p class=\"qml-alert-message\">{{ dialogMessage() }}</p> }\n            </div>\n          </div>\n          <div class=\"qml-alert-divider\"></div>\n          <div class=\"qml-alert-footer\">\n            @if (showCancel()) {\n              <button type=\"button\" class=\"qml-alert-btn qml-alert-btn-ghost\" (click)=\"onCancel()\">{{ cancelLabel() }}</button>\n            }\n            <button type=\"button\" class=\"qml-alert-btn\" [class.qml-alert-btn-danger]=\"dialogType() === 'error'\" [class.qml-alert-btn-primary]=\"dialogType() !== 'error'\"\n              (click)=\"onConfirm()\">{{ confirmLabel() }}</button>\n          </div>\n        </div>\n      </div>\n    }\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      dialogType: { publicName: 'dialogType', isSignal: true },
-      dialogTitle: { publicName: 'dialogTitle', isSignal: true },
-      dialogMessage: { publicName: 'dialogMessage', isSignal: true },
-      confirmLabel: { publicName: 'confirmLabel', isSignal: true },
-      cancelLabel: { publicName: 'cancelLabel', isSignal: true },
-      showCancel: { publicName: 'showCancel', isSignal: true },
+      dialogType: { classPropertyName: 'dialogType', publicName: 'dialogType', isSignal: true, isRequired: false, transformFunction: null },
+      dialogTitle: { classPropertyName: 'dialogTitle', publicName: 'dialogTitle', isSignal: true, isRequired: false, transformFunction: null },
+      dialogMessage: { classPropertyName: 'dialogMessage', publicName: 'dialogMessage', isSignal: true, isRequired: false, transformFunction: null },
+      confirmLabel: { classPropertyName: 'confirmLabel', publicName: 'confirmLabel', isSignal: true, isRequired: false, transformFunction: null },
+      cancelLabel: { classPropertyName: 'cancelLabel', publicName: 'cancelLabel', isSignal: true, isRequired: false, transformFunction: null },
+      showCancel: { classPropertyName: 'showCancel', publicName: 'showCancel', isSignal: true, isRequired: false, transformFunction: null },
+      showCloseButton: { classPropertyName: 'showCloseButton', publicName: 'showCloseButton', isSignal: true, isRequired: false, transformFunction: null },
+      closeOnBackdropClick: { classPropertyName: 'closeOnBackdropClick', publicName: 'closeOnBackdropClick', isSignal: true, isRequired: false, transformFunction: null },
+      width: { classPropertyName: 'width', publicName: 'width', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       confirmed: 'confirmed',
       cancelled: 'cancelled',
+      closed: 'closed',
     },
   });
-  AlertDialog[ɵNG_COMP_DEF] = _def;
+  (AlertDialog as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: AnimateList,
     selector: 'AnimateList',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "<div class=\"list\" [class.is-visible]=\"trigger()\">@for (item of items(); track $index) {<div class=\"item\" [style.--index]=\"$index\" [style.--duration.ms]=\"duration()\" [style.--delay.ms]=\"perItemDelay()\" [style.--offset.px]=\"offset()\" [style.--scale]=\"fromScale()\"><ng-content /></div>}</div>",
     host: undefined,
     styles: [],
-    inputs: {
-      model: { publicName: 'model', isSignal: true },
-      delegate: { publicName: 'delegate', isSignal: true },
-      animation: { publicName: 'animation', isSignal: true },
-      duration: { publicName: 'duration', isSignal: true },
-      perItemDelay: { publicName: 'perItemDelay', isSignal: true },
-      trigger: { publicName: 'trigger', isSignal: true },
-      offset: { publicName: 'offset', isSignal: true },
-      fromScale: { publicName: 'fromScale', isSignal: true },
-      itemIndex: { publicName: 'itemIndex', isSignal: true },
-    },
+    inputs: {},
     outputs: {},
   });
-  AnimateList[ɵNG_COMP_DEF] = _def;
+  (AnimateList as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: AnimatedNumber,
     selector: 'AnimatedNumber',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "<span>{{ formatted() }}</span>",
     host: undefined,
     styles: [],
-    inputs: {
-      value: { publicName: 'value', isSignal: true },
-      from: { publicName: 'from', isSignal: true },
-      animated: { publicName: 'animated', isSignal: true },
-      duration: { publicName: 'duration', isSignal: true },
-      easing: { publicName: 'easing', isSignal: true },
-      prefix: { publicName: 'prefix', isSignal: true },
-      suffix: { publicName: 'suffix', isSignal: true },
-      decimalPlaces: { publicName: 'decimalPlaces', isSignal: true },
-      separator: { publicName: 'separator', isSignal: true },
-    },
+    inputs: {},
     outputs: {},
   });
-  AnimatedNumber[ɵNG_COMP_DEF] = _def;
+  (AnimatedNumber as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: AnimatedPresence,
     selector: 'AnimatedPresence',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "<div class=\"presence\" [class.shown]=\"shown()\" [class]=\"classes()\" [style.--enter-duration.ms]=\"enterDuration()\" [style.--exit-duration.ms]=\"exitDuration()\" [style.--enter-offset.px]=\"enterOffset()\" [style.--exit-offset.px]=\"exitOffset()\" [style.--enter-scale]=\"enterFromScale()\" [style.--exit-scale]=\"exitToScale()\"><ng-content /></div>",
     host: undefined,
     styles: [],
-    inputs: {
-      shown: { publicName: 'shown', isSignal: true },
-      enterDuration: { publicName: 'enterDuration', isSignal: true },
-      exitDuration: { publicName: 'exitDuration', isSignal: true },
-      enterOffset: { publicName: 'enterOffset', isSignal: true },
-      exitOffset: { publicName: 'exitOffset', isSignal: true },
-      enterFromScale: { publicName: 'enterFromScale', isSignal: true },
-      exitToScale: { publicName: 'exitToScale', isSignal: true },
-      enterAnimation: { publicName: 'enterAnimation', isSignal: true },
-      exitAnimation: { publicName: 'exitAnimation', isSignal: true },
-    },
+    inputs: {},
     outputs: {},
   });
-  AnimatedPresence[ɵNG_COMP_DEF] = _def;
+  (AnimatedPresence as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: ApplicationWindow,
     selector: 'ApplicationWindow',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
     template: "<ng-content></ng-content>",
     host: undefined,
     styles: [],
     inputs: {
-      themeMode: { publicName: 'themeMode', isSignal: true },
-      flavor: { publicName: 'flavor', isSignal: true },
-      darkTitleBar: { publicName: 'darkTitleBar', isSignal: true },
+      themeMode: { classPropertyName: 'themeMode', publicName: 'themeMode', isSignal: true, isRequired: false, transformFunction: null },
+      flavor: { classPropertyName: 'flavor', publicName: 'flavor', isSignal: true, isRequired: false, transformFunction: null },
+      darkTitleBar: { classPropertyName: 'darkTitleBar', publicName: 'darkTitleBar', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  ApplicationWindow[ɵNG_COMP_DEF] = _def;
+  (ApplicationWindow as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Avatar,
     selector: 'Avatar',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
-    host: ({
-    '[attr.data-qml-component]': '"avatar"',
-  }),
+    template: "\n    <div class=\"qml-avatar\" [attr.data-size]=\"size()\" [attr.data-variant]=\"variant()\" [attr.data-status]=\"status() || 'none'\" [style.backgroundColor]=\"bgColor() || null\">\n      @if (src(); as s) { <img [src]=\"s\" [alt]=\"name()\" (error)=\"onImgError($event)\" /> }\n      @else { <span class=\"qml-avatar-fallback\">{{ initials() }}</span> }\n      @if (status()) {\n        <span class=\"qml-avatar-status\" [attr.data-status]=\"status()\"></span>\n      }\n    </div>\n  ",
+    host: undefined,
     styles: [],
     inputs: {
-      src: { publicName: 'src', isSignal: true },
-      name: { publicName: 'name', isSignal: true },
-      size: { publicName: 'size', isSignal: true },
-      shape: { publicName: 'shape', isSignal: true },
-      variant: { publicName: 'variant', isSignal: true },
-      showStatus: { publicName: 'showStatus', isSignal: true },
-      isOnline: { publicName: 'isOnline', isSignal: true },
-      statusColor: { publicName: 'statusColor', isSignal: true },
+      name: { classPropertyName: 'name', publicName: 'name', isSignal: true, isRequired: false, transformFunction: null },
+      src: { classPropertyName: 'src', publicName: 'src', isSignal: true, isRequired: false, transformFunction: null },
+      size: { classPropertyName: 'size', publicName: 'size', isSignal: true, isRequired: false, transformFunction: null },
+      variant: { classPropertyName: 'variant', publicName: 'variant', isSignal: true, isRequired: false, transformFunction: null },
+      status: { classPropertyName: 'status', publicName: 'status', isSignal: true, isRequired: false, transformFunction: null },
+      bgColor: { classPropertyName: 'bgColor', publicName: 'bgColor', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
+  (Avatar as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Badge,
     selector: 'Badge',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
-    host: ({
-    '[attr.data-qml-component]': '"badge"',
-  }),
+    template: "\n    <span class=\"qml-badge\" [attr.data-size]=\"size()\" [attr.data-variant]=\"variant()\" [attr.data-color]=\"color()\" [attr.data-shape]=\"shape()\">\n      @if (showDot()) { <span class=\"qml-badge-dot\"></span> }\n      @if (leftIcon(); as icon) {\n        <span class=\"qml-badge-icon\"><svg width=\"1em\" height=\"1em\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><line x1=\"21\" y1=\"21\" x2=\"16.65\" y2=\"16.65\"/></svg></span>\n      }\n      <ng-content></ng-content>\n      @if (closable()) {\n        <button class=\"qml-badge-close\" type=\"button\" (click)=\"onClose($event)\" aria-label=\"Remove\">\n          <svg width=\"0.8em\" height=\"0.8em\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg>\n        </button>\n      }\n    </span>\n  ",
+    host: undefined,
     styles: [],
     inputs: {
-      text: { publicName: 'text', isSignal: true },
-      variant: { publicName: 'variant', isSignal: true },
-      color: { publicName: 'color', isSignal: true },
-      size: { publicName: 'size', isSignal: true },
-      shape: { publicName: 'shape', isSignal: true },
-      icon: { publicName: 'icon', isSignal: true },
-      isDismissible: { publicName: 'isDismissible', isSignal: true },
-      showDot: { publicName: 'showDot', isSignal: true },
-      customRadius: { publicName: 'customRadius', isSignal: true },
-      customColor: { publicName: 'customColor', isSignal: true },
-      customTextColor: { publicName: 'customTextColor', isSignal: true },
-      customBgColor: { publicName: 'customBgColor', isSignal: true },
+      variant: { classPropertyName: 'variant', publicName: 'variant', isSignal: true, isRequired: false, transformFunction: null },
+      size: { classPropertyName: 'size', publicName: 'size', isSignal: true, isRequired: false, transformFunction: null },
+      shape: { classPropertyName: 'shape', publicName: 'shape', isSignal: true, isRequired: false, transformFunction: null },
+      color: { classPropertyName: 'color', publicName: 'color', isSignal: true, isRequired: false, transformFunction: null },
+      showDot: { classPropertyName: 'showDot', publicName: 'showDot', isSignal: true, isRequired: false, transformFunction: null },
+      leftIcon: { classPropertyName: 'leftIcon', publicName: 'leftIcon', isSignal: true, isRequired: false, transformFunction: null },
+      closable: { classPropertyName: 'closable', publicName: 'closable', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
-      dismissed: 'dismissed',
+      closed: 'closed',
     },
   });
-  // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
+  (Badge as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: BarChart,
     selector: 'BarChart',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-bar-chart\">\n      @if (title(); as t) { <div class=\"chart-title\">{{ t }}</div> }\n      <svg [attr.viewBox]=\"'0 0 ' + width() + ' ' + height()\" preserveAspectRatio=\"none\" class=\"qml-bar-svg\">\n        <defs>\n          <linearGradient id=\"bar-grad\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n            <stop offset=\"0%\" stop-color=\"var(--ctp-mauve, #cba6f7)\" stop-opacity=\"0.95\"/>\n            <stop offset=\"100%\" stop-color=\"var(--ctp-mauve, #cba6f7)\" stop-opacity=\"0.55\"/>\n          </linearGradient>\n        </defs>\n        @for (g of gridLines(); track $index) {\n          <line [attr.x1]=\"padding().left\" [attr.x2]=\"width() - padding().right\"\n            [attr.y1]=\"g.y\" [attr.y2]=\"g.y\" stroke=\"var(--ctp-surface1, #45475a)\" stroke-width=\"1\" stroke-dasharray=\"2 4\"/>\n          <text [attr.x]=\"padding().left - 8\" [attr.y]=\"g.y + 4\" fill=\"var(--ctp-overlay0, #6e738d)\" font-size=\"10\" text-anchor=\"end\">{{ g.label }}</text>\n        }\n        @for (bar of bars(); track $index) {\n          <g>\n            <rect [attr.x]=\"bar.x\" [attr.y]=\"bar.y\" [attr.width]=\"bar.w\" [attr.height]=\"bar.h\" rx=\"6\"\n              [attr.fill]=\"bar.color || 'url(#bar-grad)'\"/>\n            <text [attr.x]=\"bar.x + bar.w / 2\" [attr.y]=\"height() - 8\" fill=\"var(--ctp-subtext0, #a6adc8)\" font-size=\"11\" text-anchor=\"middle\">{{ bar.label }}</text>\n            <text [attr.x]=\"bar.x + bar.w / 2\" [attr.y]=\"bar.y - 6\" fill=\"var(--ctp-text, #cdd6f4)\" font-size=\"11\" font-weight=\"700\" text-anchor=\"middle\">{{ bar.value }}</text>\n          </g>\n        }\n      </svg>\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      chartData: { publicName: 'chartData', isSignal: true },
-      colors: { publicName: 'colors', isSignal: true },
-      maxValue: { publicName: 'maxValue', isSignal: true },
-      gridLines: { publicName: 'gridLines', isSignal: true },
-      animated: { publicName: 'animated', isSignal: true },
-      animatedHeight: { publicName: 'animatedHeight', isSignal: true },
+      data: { classPropertyName: 'data', publicName: 'data', isSignal: true, isRequired: false, transformFunction: null },
+      title: { classPropertyName: 'title', publicName: 'title', isSignal: true, isRequired: false, transformFunction: null },
+      width: { classPropertyName: 'width', publicName: 'width', isSignal: true, isRequired: false, transformFunction: null },
+      height: { classPropertyName: 'height', publicName: 'height', isSignal: true, isRequired: false, transformFunction: null },
+      padding: { classPropertyName: 'padding', publicName: 'padding', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  BarChart[ɵNG_COMP_DEF] = _def;
+  (BarChart as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Bounce,
     selector: 'Bounce',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "<div class=\"motion\" [class.is-visible]=\"trigger()\" [style.--duration.ms]=\"duration()\" [style.--delay.ms]=\"delay()\" [style.--from-scale]=\"fromScale()\"><ng-content /></div>",
     host: undefined,
     styles: [],
-    inputs: {
-      duration: { publicName: 'duration', isSignal: true },
-      delay: { publicName: 'delay', isSignal: true },
-      fromScale: { publicName: 'fromScale', isSignal: true },
-      trigger: { publicName: 'trigger', isSignal: true },
-    },
+    inputs: {},
     outputs: {},
   });
-  Bounce[ɵNG_COMP_DEF] = _def;
+  (Bounce as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Box,
     selector: 'Box',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "\n    <div [style.padding.px]=\"resolvedPadding()\" [style.margin.px]=\"resolvedMargin()\">\n      <ng-content></ng-content>\n    </div>",
-    host: ({
-    '[attr.data-qml-component]': '"box"',
-  }),
+    template: "<div class=\"qml-box\" [class]=\"'qml-box ' + variant()\" [style.background]=\"background()\" [style.padding]=\"padding()\" [style.margin]=\"margin()\"><ng-content></ng-content></div>",
+    host: undefined,
     styles: [],
     inputs: {
-      p: { publicName: 'p', isSignal: true },
-      px: { publicName: 'px', isSignal: true },
-      py: { publicName: 'py', isSignal: true },
-      pt: { publicName: 'pt', isSignal: true },
-      pr: { publicName: 'pr', isSignal: true },
-      pb: { publicName: 'pb', isSignal: true },
-      pl: { publicName: 'pl', isSignal: true },
-      m: { publicName: 'm', isSignal: true },
-      mx: { publicName: 'mx', isSignal: true },
-      my: { publicName: 'my', isSignal: true },
-      mt: { publicName: 'mt', isSignal: true },
-      mr: { publicName: 'mr', isSignal: true },
-      mb: { publicName: 'mb', isSignal: true },
-      ml: { publicName: 'ml', isSignal: true },
-      variant: { publicName: 'variant', isSignal: true },
-      colorName: { publicName: 'colorName', isSignal: true },
+      p: { classPropertyName: 'p', publicName: 'p', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
+  (Box as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Breadcrumb,
     selector: 'Breadcrumb',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
-    host: ({
-    '[attr.data-qml-component]': '"breadcrumb"',
-  }),
+    template: "\n    <nav class=\"qml-breadcrumb\" [class.qml-breadcrumb-md]=\"size() === 'md'\" aria-label=\"Breadcrumb\">\n      @for (item of items(); track $index; let last = $last) {\n        <button type=\"button\" class=\"qml-breadcrumb-item\" [class.current]=\"last\" [disabled]=\"last || !item.onClicked\" (click)=\"activate(item)\">{{ item.label }}</button>\n        @if (!last) { <qml-icon class=\"qml-breadcrumb-separator\" [name]=\"separator()\" [size]=\"size() === 'sm' ? 12 : 14\" /> }\n      }\n    </nav>\n  ",
+    host: undefined,
     styles: [],
     inputs: {
-      items: { publicName: 'items', isSignal: true },
-      separator: { publicName: 'separator', isSignal: true },
-      size: { publicName: 'size', isSignal: true },
+      items: { classPropertyName: 'items', publicName: 'items', isSignal: true, isRequired: false, transformFunction: null },
+      separator: { classPropertyName: 'separator', publicName: 'separator', isSignal: true, isRequired: false, transformFunction: null },
+      size: { classPropertyName: 'size', publicName: 'size', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
+  (Breadcrumb as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Button,
     selector: 'qml-button',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "\n    <button\n      [attr.data-variant]=\"resolvedVariant()\"\n      [attr.data-color]=\"resolvedColor()\"\n      [attr.data-size]=\"size()\"\n      [attr.data-shape]=\"shape()\"\n      [disabled]=\"disabled() || isLoading()\"\n      (click)=\"handleClick()\"\n    >\n      @if (leftIcon(); as icon) {\n        <qml-icon [name]=\"icon\"></qml-icon>\n      }\n      {{ text() }}\n      @if (rightIcon(); as icon) {\n        <qml-icon [name]=\"icon\"></qml-icon>\n      }\n      <ng-content></ng-content>\n    </button>",
-    host: ({
-    '[attr.data-qml-component]': '"button"',
-  }),
+    template: "\n    <button\n      class=\"btn\"\n      [attr.data-variant]=\"resolvedVariant()\"\n      [attr.data-color]=\"resolvedColor()\"\n      [attr.data-size]=\"size()\"\n      [attr.data-shape]=\"shape()\"\n      [attr.data-state]=\"isLoading() ? 'loading' : ''\"\n      [disabled]=\"disabled() || isLoading()\"\n      [style.--btn-radius]=\"customRadius() > 0 ? customRadius() + 'px' : null\"\n      [style.backgroundColor]=\"customColor() !== 'transparent' ? customColor() : null\"\n      [style.color]=\"customTextColor() !== 'transparent' ? customTextColor() : null\"\n      (click)=\"handleClick($event)\"\n    >\n      @if (isLoading()) { <span class=\"btn-spinner\"></span> }\n      @if (!isLoading() && leftIcon(); as icon) {\n        <span class=\"qml-btn-icon\">\n          <svg width=\"1em\" height=\"1em\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" [attr.data-icon]=\"icon\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><line x1=\"21\" y1=\"21\" x2=\"16.65\" y2=\"16.65\"/></svg>\n        </span>\n      }\n      <span class=\"btn-content\">\n        @if (text()) { <span>{{ text() }}</span> }\n        <ng-content></ng-content>\n      </span>\n      @if (!isLoading() && rightIcon(); as icon) {\n        <span class=\"qml-btn-icon\">\n          <svg width=\"1em\" height=\"1em\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" [attr.data-icon]=\"icon\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><line x1=\"21\" y1=\"21\" x2=\"16.65\" y2=\"16.65\"/></svg>\n        </span>\n      }\n    </button>\n  ",
+    host: undefined,
     styles: [],
     inputs: {
-      text: { publicName: 'text', isSignal: true },
-      variant: { publicName: 'variant', isSignal: true },
-      color: { publicName: 'color', isSignal: true },
-      size: { publicName: 'size', isSignal: true },
-      shape: { publicName: 'shape', isSignal: true },
-      disabled: { publicName: 'disabled', isSignal: true },
-      isLoading: { publicName: 'isLoading', isSignal: true },
-      leftIcon: { publicName: 'leftIcon', isSignal: true },
-      rightIcon: { publicName: 'rightIcon', isSignal: true },
-      icon: { publicName: 'icon', isSignal: true },
-      iconRight: { publicName: 'iconRight', isSignal: true },
-      customRadius: { publicName: 'customRadius', isSignal: true },
-      customColor: { publicName: 'customColor', isSignal: true },
-      customTextColor: { publicName: 'customTextColor', isSignal: true },
+      text: { classPropertyName: 'text', publicName: 'text', isSignal: true, isRequired: false, transformFunction: null },
+      variant: { classPropertyName: 'variant', publicName: 'variant', isSignal: true, isRequired: false, transformFunction: null },
+      color: { classPropertyName: 'color', publicName: 'color', isSignal: true, isRequired: false, transformFunction: null },
+      size: { classPropertyName: 'size', publicName: 'size', isSignal: true, isRequired: false, transformFunction: null },
+      shape: { classPropertyName: 'shape', publicName: 'shape', isSignal: true, isRequired: false, transformFunction: null },
+      disabled: { classPropertyName: 'disabled', publicName: 'disabled', isSignal: true, isRequired: false, transformFunction: null },
+      isLoading: { classPropertyName: 'isLoading', publicName: 'isLoading', isSignal: true, isRequired: false, transformFunction: null },
+      leftIcon: { classPropertyName: 'leftIcon', publicName: 'leftIcon', isSignal: true, isRequired: false, transformFunction: null },
+      rightIcon: { classPropertyName: 'rightIcon', publicName: 'rightIcon', isSignal: true, isRequired: false, transformFunction: null },
+      icon: { classPropertyName: 'icon', publicName: 'icon', isSignal: true, isRequired: false, transformFunction: null },
+      iconRight: { classPropertyName: 'iconRight', publicName: 'iconRight', isSignal: true, isRequired: false, transformFunction: null },
+      customRadius: { classPropertyName: 'customRadius', publicName: 'customRadius', isSignal: true, isRequired: false, transformFunction: null },
+      customColor: { classPropertyName: 'customColor', publicName: 'customColor', isSignal: true, isRequired: false, transformFunction: null },
+      customTextColor: { classPropertyName: 'customTextColor', publicName: 'customTextColor', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       clicked: 'clicked',
@@ -572,359 +483,318 @@ import { ZoomIn } from './components/ZoomIn';
   const _def = ɵɵngDeclareComponent({
     type: ButtonGroup,
     selector: 'ButtonGroup',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
     template: "<ng-content></ng-content>",
     host: undefined,
     styles: [],
     inputs: {
-      currentIndex: { publicName: 'currentIndex', isSignal: true },
-      variant: { publicName: 'variant', isSignal: true },
-      expand: { publicName: 'expand', isSignal: true },
-      itemsList: { publicName: 'itemsList', isSignal: true },
+      currentIndex: { classPropertyName: 'currentIndex', publicName: 'currentIndex', isSignal: true, isRequired: false, transformFunction: null },
+      variant: { classPropertyName: 'variant', publicName: 'variant', isSignal: true, isRequired: false, transformFunction: null },
+      expand: { classPropertyName: 'expand', publicName: 'expand', isSignal: true, isRequired: false, transformFunction: null },
+      itemsList: { classPropertyName: 'itemsList', publicName: 'itemsList', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  ButtonGroup[ɵNG_COMP_DEF] = _def;
+  (ButtonGroup as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: ButtonGroupItem,
     selector: 'ButtonGroupItem',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
     template: "<ng-content></ng-content>",
     host: undefined,
     styles: [],
     inputs: {
-      text: { publicName: 'text', isSignal: true },
-      iconName: { publicName: 'iconName', isSignal: true },
-      badgeText: { publicName: 'badgeText', isSignal: true },
+      text: { classPropertyName: 'text', publicName: 'text', isSignal: true, isRequired: false, transformFunction: null },
+      iconName: { classPropertyName: 'iconName', publicName: 'iconName', isSignal: true, isRequired: false, transformFunction: null },
+      badgeText: { classPropertyName: 'badgeText', publicName: 'badgeText', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       clicked: 'clicked',
     },
   });
-  ButtonGroupItem[ɵNG_COMP_DEF] = _def;
+  (ButtonGroupItem as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Card,
     selector: 'Card',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "\n    <div class=\"qml-card\" [class]=\"'qml-card-' + variant() + (clickable() ? ' qml-card-clickable' : '')\"\n      [style.--qml-card-accent]=\"accentColorResolved()\" [style.padding.px]=\"padding()\"\n      (click)=\"handleClick()\">\n      @if (accentPosition() !== 'none') {\n        <div class=\"qml-card-accent\" [class]=\"'qml-card-accent-' + accentPosition()\"></div>\n      }\n      @if (icon() || title() || subtitle()) {\n        <div class=\"qml-card-header\" [class.qml-card-header-no-sep]=\"!headerSeparator()\">\n          @if (icon(); as i) { <qml-icon [name]=\"i\" size=\"20\" /> }\n          <div>\n            @if (title(); as t) { <h3 class=\"qml-card-title\">{{ t }}</h3> }\n            @if (subtitle(); as s) { <p class=\"qml-card-subtitle\">{{ s }}</p> }\n          </div>\n        </div>\n      }\n      <div class=\"qml-card-body\"><ng-content></ng-content></div>\n      <div class=\"qml-card-footer\"><ng-content select=\"[footer]\"></ng-content></div>\n    </div>\n  ",
+    template: "\n    <div class=\"qml-card\" [class]=\"rootClass()\" [style.--qml-card-radius.px]=\"finalRadius()\"\n      [style.--qml-card-bg]=\"finalBackground()\" [style.--qml-card-accent]=\"accentColorResolved()\"\n      [style.--qml-card-text]=\"finalTextColor()\" (click)=\"handleClick()\">\n      @if (showAccentLine()) {\n        <div class=\"qml-card-accent\" [class]=\"'qml-card-accent-' + accentPosition()\"></div>\n      }\n      <div class=\"qml-card-body\" [style.padding.px]=\"padding()\">\n        @if (hasHeader()) {\n          <div class=\"qml-card-header\" [class.no-sep]=\"!headerSeparator()\">\n            @if (icon()) {\n              <span class=\"qml-card-icon\" [innerHTML]=\"iconSvg(icon(), 24)\"></span>\n            }\n            <div class=\"qml-card-head-text\">\n              @if (title()) { <h3 class=\"qml-card-title\">{{ title() }}</h3> }\n              @if (subtitle()) { <p class=\"qml-card-subtitle\">{{ subtitle() }}</p> }\n            </div>\n          </div>\n        }\n        <ng-content></ng-content>\n        <div class=\"qml-card-footer\" [class.no-sep]=\"!footerSeparator()\" [class.hidden]=\"!hasFooter()\">\n          <ng-content select=\"[footer]\"></ng-content>\n        </div>\n      </div>\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      title: { publicName: 'title', isSignal: true },
-      variant: { publicName: 'variant', isSignal: true },
-      accentPosition: { publicName: 'accentPosition', isSignal: true },
-      clickable: { publicName: 'clickable', isSignal: true },
-      backgroundColor: { publicName: 'backgroundColor', isSignal: true },
-      customColor: { publicName: 'customColor', isSignal: true },
-      customTextColor: { publicName: 'customTextColor', isSignal: true },
-      footerSeparator: { publicName: 'footerSeparator', isSignal: true },
+      title: { classPropertyName: 'title', publicName: 'title', isSignal: true, isRequired: false, transformFunction: null },
+      variant: { classPropertyName: 'variant', publicName: 'variant', isSignal: true, isRequired: false, transformFunction: null },
+      accentPosition: { classPropertyName: 'accentPosition', publicName: 'accentPosition', isSignal: true, isRequired: false, transformFunction: null },
+      clickable: { classPropertyName: 'clickable', publicName: 'clickable', isSignal: true, isRequired: false, transformFunction: null },
+      padding: { classPropertyName: 'padding', publicName: 'padding', isSignal: true, isRequired: false, transformFunction: null },
+      backgroundColor: { classPropertyName: 'backgroundColor', publicName: 'backgroundColor', isSignal: true, isRequired: false, transformFunction: null },
+      customRadius: { classPropertyName: 'customRadius', publicName: 'customRadius', isSignal: true, isRequired: false, transformFunction: null },
+      customColor: { classPropertyName: 'customColor', publicName: 'customColor', isSignal: true, isRequired: false, transformFunction: null },
+      customAccentColor: { classPropertyName: 'customAccentColor', publicName: 'customAccentColor', isSignal: true, isRequired: false, transformFunction: null },
+      customTextColor: { classPropertyName: 'customTextColor', publicName: 'customTextColor', isSignal: true, isRequired: false, transformFunction: null },
+      headerSeparator: { classPropertyName: 'headerSeparator', publicName: 'headerSeparator', isSignal: true, isRequired: false, transformFunction: null },
+      footerSeparator: { classPropertyName: 'footerSeparator', publicName: 'footerSeparator', isSignal: true, isRequired: false, transformFunction: null },
+      hasFooter: { classPropertyName: 'hasFooter', publicName: 'hasFooter', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       clicked: 'clicked',
     },
   });
-  Card[ɵNG_COMP_DEF] = _def;
+  (Card as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: ChartTooltip,
     selector: 'ChartTooltip',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-chart-tooltip\" [class.is-visible]=\"visible()\" [style.top.px]=\"y()\" [style.left.px]=\"x()\">\n      @if (title(); as t) { <div class=\"qml-chart-tooltip-title\">{{ t }}</div> }\n      <div class=\"qml-chart-tooltip-items\">\n        @for (item of items(); track $index) {\n          <div class=\"qml-chart-tooltip-item\">\n            <span class=\"qml-chart-tooltip-dot\" [style.background]=\"item.color || 'var(--ctp-mauve)'\"></span>\n            <span class=\"qml-chart-tooltip-label\">{{ item.label }}</span>\n            <span class=\"qml-chart-tooltip-value\">{{ item.value }}</span>\n          </div>\n        }\n      </div>\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      title: { publicName: 'title', isSignal: true },
-      items: { publicName: 'items', isSignal: true },
-      placement: { publicName: 'placement', isSignal: true },
-      showTooltip: { publicName: 'showTooltip', isSignal: true },
+      visible: { classPropertyName: 'visible', publicName: 'visible', isSignal: true, isRequired: false, transformFunction: null },
+      title: { classPropertyName: 'title', publicName: 'title', isSignal: true, isRequired: false, transformFunction: null },
+      items: { classPropertyName: 'items', publicName: 'items', isSignal: true, isRequired: false, transformFunction: null },
+      x: { classPropertyName: 'x', publicName: 'x', isSignal: true, isRequired: false, transformFunction: null },
+      y: { classPropertyName: 'y', publicName: 'y', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  ChartTooltip[ɵNG_COMP_DEF] = _def;
+  (ChartTooltip as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Checkbox,
     selector: 'Checkbox',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "\n    <label class=\"qml-checkbox\" [class.disabled]=\"disabled()\">\n      <input type=\"checkbox\" [checked]=\"checked()\" [disabled]=\"disabled()\" (change)=\"onToggle()\" />\n      <span class=\"qml-checkbox-checkmark\">{{ checked() ? '✓' : '' }}</span>\n      @if (label(); as lbl) { <span>{{ lbl }}</span> }\n    </label>\n  ",
+    template: "\n    <label class=\"qml-checkbox\" [class.disabled]=\"disabled()\" [class.checked]=\"checked()\">\n      <span class=\"qml-checkbox-box\">\n        <input type=\"checkbox\" [checked]=\"checked()\" [disabled]=\"disabled()\" (change)=\"onToggle($event)\" (keydown.enter)=\"onToggle($event)\" (keydown.space)=\"$event.preventDefault(); onToggle($event)\" />\n        <svg class=\"qml-checkbox-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"></polyline></svg>\n      </span>\n      @if (label(); as lbl) { <span class=\"qml-checkbox-label\">{{ lbl }}</span> }\n    </label>\n    @if (errorText(); as err) {\n      <p class=\"qml-checkbox-error\">\n        <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"12\"/><line x1=\"12\" y1=\"16\" x2=\"12.01\" y2=\"16\"/></svg>\n        {{ err }}\n      </p>\n    }\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      disabled: { publicName: 'disabled', isSignal: true },
+      label: { classPropertyName: 'label', publicName: 'label', isSignal: true, isRequired: false, transformFunction: null },
+      disabled: { classPropertyName: 'disabled', publicName: 'disabled', isSignal: true, isRequired: false, transformFunction: null },
+      errorText: { classPropertyName: 'errorText', publicName: 'errorText', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       toggled: 'toggled',
     },
   });
-  Checkbox[ɵNG_COMP_DEF] = _def;
+  (Checkbox as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: ColorPicker,
     selector: 'ColorPicker',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-color-picker\" [class.is-open]=\"open()\" [class.disabled]=\"disabled()\">\n      <button type=\"button\" class=\"qml-color-picker-trigger\" [disabled]=\"disabled()\" (click)=\"toggle()\">\n        <span class=\"qml-color-picker-swatch\" [style.background]=\"value()\"></span>\n        <span class=\"qml-color-picker-value\">{{ value() }}</span>\n        <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"6 9 12 15 18 9\"></polyline></svg>\n      </button>\n      @if (open()) {\n        <div class=\"qml-color-picker-popover\" (click)=\"$event.stopPropagation()\">\n          <div class=\"qml-color-picker-grid\">\n            @for (c of swatches; track c) {\n              <button type=\"button\" class=\"qml-color-picker-cell\" [class.active]=\"c === value()\" [style.background]=\"c\" (click)=\"select(c)\" [attr.aria-label]=\"c\"></button>\n            }\n          </div>\n          <div class=\"qml-color-picker-hex\">\n            <label>HEX</label>\n            <input type=\"text\" [value]=\"value()\" (input)=\"onHexInput($event)\" maxlength=\"9\" />\n          </div>\n        </div>\n      }\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      selectedColor: { publicName: 'selectedColor', isSignal: true },
-      placeholder: { publicName: 'placeholder', isSignal: true },
-      disabled: { publicName: 'disabled', isSignal: true },
-      size: { publicName: 'size', isSignal: true },
-      expanded: { publicName: 'expanded', isSignal: true },
-      openUpward: { publicName: 'openUpward', isSignal: true },
+      disabled: { classPropertyName: 'disabled', publicName: 'disabled', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  ColorPicker[ɵNG_COMP_DEF] = _def;
+  // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: ContextMenu,
     selector: 'ContextMenu',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    @if (panelVisible()) {\n      <div class=\"qml-contextmenu-backdrop\" (click)=\"dismiss()\"></div>\n      <div class=\"qml-contextmenu-panel\" [style.left.px]=\"x()\" [style.top.px]=\"y()\">\n        @for (item of items(); track $index) {\n          @if (item.separator) {\n            <div class=\"qml-contextmenu-separator\"></div>\n          } @else {\n            <div class=\"qml-contextmenu-item\" [class.danger]=\"item.variant === 'danger'\" [class.disabled]=\"item.disabled\"\n              (click)=\"onItemClick(item)\">\n              @if (item.icon) { <span class=\"qml-contextmenu-icon\" [innerHTML]=\"iconSvg(item.icon, 16)\"></span> }\n              <span class=\"qml-contextmenu-label\">{{ item.label }}</span>\n              @if (item.shortcut) { <span class=\"qml-contextmenu-shortcut\">{{ item.shortcut }}</span> }\n            </div>\n          }\n        }\n      </div>\n    }\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      items: { publicName: 'items', isSignal: true },
-      open: { publicName: 'open', isSignal: true },
-      offsetX: { publicName: 'offsetX', isSignal: true },
-      offsetY: { publicName: 'offsetY', isSignal: true },
+      items: { classPropertyName: 'items', publicName: 'items', isSignal: true, isRequired: false, transformFunction: null },
+      open: { classPropertyName: 'open', publicName: 'open', isSignal: true, isRequired: false, transformFunction: null },
+      offsetX: { classPropertyName: 'offsetX', publicName: 'offsetX', isSignal: true, isRequired: false, transformFunction: null },
+      offsetY: { classPropertyName: 'offsetY', publicName: 'offsetY', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       closed: 'closed',
     },
   });
-  ContextMenu[ɵNG_COMP_DEF] = _def;
+  (ContextMenu as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: CozyColorPicker,
     selector: 'CozyColorPicker',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    @if (inline()) {\n      <div class=\"qml-ccp qml-ccp-inline\" [style.width.px]=\"280\">\n        <div class=\"qml-ccp-sv\"\n          [style.background]=\"'hsl(' + (currentHue() * 360) + ', 100%, 50%)'\"\n          (mousedown)=\"onSvMouseDown($event)\">\n          <div class=\"qml-ccp-sv-white\"></div>\n          <div class=\"qml-ccp-sv-black\"></div>\n          <div class=\"qml-ccp-sv-thumb\"\n            [style.left.%]=\"currentSaturation() * 100\"\n            [style.top.%]=\"(1 - currentValue()) * 100\"></div>\n        </div>\n        <div class=\"qml-ccp-hue\" (mousedown)=\"onHueMouseDown($event)\">\n          <div class=\"qml-ccp-hue-thumb\" [style.left.%]=\"currentHue() * 100\"></div>\n        </div>\n        <div class=\"qml-ccp-hex-row\">\n          <div class=\"qml-ccp-preview\" [style.background]=\"colorValue()\"></div>\n          <input class=\"qml-ccp-input\" type=\"text\"\n            [value]=\"hexText()\"\n            (input)=\"onHexInput($event)\"\n            (blur)=\"onHexBlur()\" />\n        </div>\n      </div>\n    } @else {\n      <div class=\"qml-ccp-wrap\">\n        <div class=\"qml-ccp-trigger\"\n          [class.is-expanded]=\"_expanded()\"\n          [class.is-disabled]=\"disabled()\"\n          [class.is-up]=\"_openUpward()\"\n          (click)=\"togglePopover()\">\n          <div class=\"qml-ccp-preview-sm\" [style.background]=\"colorValue()\"></div>\n          <input class=\"qml-ccp-input\" type=\"text\"\n            [value]=\"hexText()\"\n            [disabled]=\"disabled()\"\n            (input)=\"onHexInput($event)\"\n            (blur)=\"onHexBlur()\"\n            (click)=\"$event.stopPropagation()\" />\n          <span class=\"qml-ccp-chevron\" [class.rot]=\"_expanded()\">▾</span>\n        </div>\n        @if (_expanded()) {\n          <div class=\"qml-ccp-overlay\" (click)=\"closePopover()\"></div>\n          <div class=\"qml-ccp-popup\" [class.up]=\"_openUpward()\">\n            <div class=\"qml-ccp-sv\"\n              [style.background]=\"'hsl(' + (currentHue() * 360) + ', 100%, 50%)'\"\n              (mousedown)=\"onSvMouseDown($event)\">\n              <div class=\"qml-ccp-sv-white\"></div>\n              <div class=\"qml-ccp-sv-black\"></div>\n              <div class=\"qml-ccp-sv-thumb\"\n                [style.left.%]=\"currentSaturation() * 100\"\n                [style.top.%]=\"(1 - currentValue()) * 100\"></div>\n            </div>\n            <div class=\"qml-ccp-hue\" (mousedown)=\"onHueMouseDown($event)\">\n              <div class=\"qml-ccp-hue-thumb\" [style.left.%]=\"currentHue() * 100\"></div>\n            </div>\n          </div>\n        }\n      </div>\n    }\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      colorValue: { publicName: 'colorValue', isSignal: true },
-      inline: { publicName: 'inline', isSignal: true },
-      disabled: { publicName: 'disabled', isSignal: true },
-      expanded: { publicName: 'expanded', isSignal: true },
-      openUpward: { publicName: 'openUpward', isSignal: true },
-      currentHue: { publicName: 'currentHue', isSignal: true },
-      currentSaturation: { publicName: 'currentSaturation', isSignal: true },
-      currentValue: { publicName: 'currentValue', isSignal: true },
+      colorValue: { classPropertyName: 'colorValue', publicName: 'colorValue', isSignal: true, isRequired: false, transformFunction: null },
+      inline: { classPropertyName: 'inline', publicName: 'inline', isSignal: true, isRequired: false, transformFunction: null },
+      disabled: { classPropertyName: 'disabled', publicName: 'disabled', isSignal: true, isRequired: false, transformFunction: null },
+      expanded: { classPropertyName: 'expanded', publicName: 'expanded', isSignal: true, isRequired: false, transformFunction: null },
+      openUpward: { classPropertyName: 'openUpward', publicName: 'openUpward', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       colorChanged: 'colorChanged',
     },
   });
-  CozyColorPicker[ɵNG_COMP_DEF] = _def;
+  (CozyColorPicker as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: CozyGrid,
     selector: 'CozyGrid',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "<div class=\"qml-cozy-grid\" [class.no-wrap]=\"!multiline()\" [class.stack-mobile]=\"!mobile()\" [style.justify-content]=\"justify()\" [style.align-items]=\"alignItems()\"><ng-content></ng-content></div>",
     host: undefined,
     styles: [],
     inputs: {
-      mobile: { publicName: 'mobile', isSignal: true },
-      multiline: { publicName: 'multiline', isSignal: true },
-      gap: { publicName: 'gap', isSignal: true },
-      align: { publicName: 'align', isSignal: true },
-      valign: { publicName: 'valign', isSignal: true },
-      model: { publicName: 'model', isSignal: true },
-      delegate: { publicName: 'delegate', isSignal: true },
-      layoutHeight: { publicName: 'layoutHeight', isSignal: true },
+      mobile: { classPropertyName: 'mobile', publicName: 'mobile', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  CozyGrid[ɵNG_COMP_DEF] = _def;
+  // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: CozyGridCol,
     selector: 'CozyGridCol',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "<div class=\"qml-cozy-grid-col\"><ng-content></ng-content></div>",
     host: undefined,
     styles: [],
     inputs: {
-      span: { publicName: 'span', isSignal: true },
-      sm: { publicName: 'sm', isSignal: true },
-      md: { publicName: 'md', isSignal: true },
-      lg: { publicName: 'lg', isSignal: true },
-      offset: { publicName: 'offset', isSignal: true },
-      smOffset: { publicName: 'smOffset', isSignal: true },
-      mdOffset: { publicName: 'mdOffset', isSignal: true },
-      lgOffset: { publicName: 'lgOffset', isSignal: true },
-      alignSelf: { publicName: 'alignSelf', isSignal: true },
-      order: { publicName: 'order', isSignal: true },
+      span: { classPropertyName: 'span', publicName: 'span', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  CozyGridCol[ɵNG_COMP_DEF] = _def;
+  // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: CozyList,
     selector: 'CozyList',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-cozy-list\" [style.padding]=\"padding()\" [style.gap.px]=\"spacing()\">\n      @if (isLoading()) {\n        @for (_ of skeletons; track $index) { <div class=\"skeleton\"><i></i><span></span><b></b></div> }\n      } @else if (isEmpty()) {\n        <div class=\"empty\"><qml-icon [name]=\"emptyStateIcon()\" size=\"48\" /><strong>{{ emptyStateTitle() }}</strong>@if (emptyStateSubtitle()) { <small>{{ emptyStateSubtitle() }}</small> }</div>\n      } @else {\n        @for (item of items(); track $index; let i = $index) {\n          <button class=\"row\" [class.dragging]=\"dragIndex() === i\" [draggable]=\"sortable()\" (click)=\"itemClicked.emit({ modelData:item })\" (dragstart)=\"dragIndex.set(i)\" (dragover)=\"$event.preventDefault()\" (drop)=\"drop(i)\" (dragend)=\"dragIndex.set(-1)\">\n            <ng-container>{{ label(item) }}</ng-container>\n          </button>\n        }\n      }\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      model: { publicName: 'model', isSignal: true },
-      rowContent: { publicName: 'rowContent', isSignal: true },
-      spacing: { publicName: 'spacing', isSignal: true },
-      paddingLeft: { publicName: 'paddingLeft', isSignal: true },
-      paddingRight: { publicName: 'paddingRight', isSignal: true },
-      paddingTop: { publicName: 'paddingTop', isSignal: true },
-      paddingBottom: { publicName: 'paddingBottom', isSignal: true },
-      emptyStateIcon: { publicName: 'emptyStateIcon', isSignal: true },
-      emptyStateTitle: { publicName: 'emptyStateTitle', isSignal: true },
-      emptyStateSubtitle: { publicName: 'emptyStateSubtitle', isSignal: true },
-      isLoading: { publicName: 'isLoading', isSignal: true },
-      sortable: { publicName: 'sortable', isSignal: true },
-      listId: { publicName: 'listId', isSignal: true },
-      sortableDragKey: { publicName: 'sortableDragKey', isSignal: true },
-      dragIndex: { publicName: 'dragIndex', isSignal: true },
-      dragTargetIndex: { publicName: 'dragTargetIndex', isSignal: true },
-      isDragging: { publicName: 'isDragging', isSignal: true },
-      held: { publicName: 'held', isSignal: true },
+      model: { classPropertyName: 'model', publicName: 'model', isSignal: true, isRequired: false, transformFunction: null },
     },
-    outputs: {
-      itemsReordered: 'itemsReordered',
-      itemClicked: 'itemClicked',
-    },
+    outputs: {},
   });
-  CozyList[ɵNG_COMP_DEF] = _def;
+  (CozyList as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: CozySkeleton,
     selector: 'CozySkeleton',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <span class=\"qml-skeleton\" [attr.data-variant]=\"variant()\" [attr.data-size]=\"size()\"\n      [style.width]=\"width()\" [style.height]=\"height()\"\n      [class.full]=\"fullWidth()\"></span>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      variant: { publicName: 'variant', isSignal: true },
-      radius: { publicName: 'radius', isSignal: true },
+      variant: { classPropertyName: 'variant', publicName: 'variant', isSignal: true, isRequired: false, transformFunction: null },
+      size: { classPropertyName: 'size', publicName: 'size', isSignal: true, isRequired: false, transformFunction: null },
+      width: { classPropertyName: 'width', publicName: 'width', isSignal: true, isRequired: false, transformFunction: null },
+      height: { classPropertyName: 'height', publicName: 'height', isSignal: true, isRequired: false, transformFunction: null },
+      fullWidth: { classPropertyName: 'fullWidth', publicName: 'fullWidth', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  CozySkeleton[ɵNG_COMP_DEF] = _def;
+  (CozySkeleton as any)[ɵNG_COMP_DEF] = _def;
+}
+
+{
+  const _def = ɵɵngDeclareComponent({
+    type: CozySpinner,
+    selector: 'CozySpinner',
+    isStandalone: true,
+    version: '20.0.0',
+    isSignal: true,
+    template: "<div class=\"spinner\" [class.overlay]=\"overlay()\" [style.--size.px]=\"size()\" [style.--color]=\"color()\" [style.--overlay-color]=\"overlayColor()\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M21 12a9 9 0 1 1-6.219-8.56\"/></svg>@if(overlay() && label()){<span>{{label()}}</span>}</div>",
+    host: undefined,
+    styles: [],
+    inputs: {},
+    outputs: {},
+  });
+  (CozySpinner as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: DataGrid,
     selector: 'DataGrid',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-datagrid\" [class.loading]=\"loading()\">\n      @if (title(); as t) { <div class=\"qml-datagrid-title\">{{ t }}</div> }\n      <div class=\"qml-datagrid-table\">\n        <div class=\"qml-datagrid-header\">\n          @for (col of columns(); track col.key) {\n            <div class=\"qml-datagrid-th\" [attr.data-align]=\"col.align || 'left'\" [style.width.px]=\"col.width\"\n              [class.sortable]=\"col.sortable\" (click)=\"col.sortable && toggleSort(col.key)\">\n              {{ col.label }}\n              @if (col.sortable && sortKey() === col.key) { <span class=\"qml-datagrid-sort\">{{ sortDir() === 'asc' ? '↑' : '↓' }}</span> }\n            </div>\n          }\n        </div>\n        @if (loading()) {\n          <div class=\"qml-datagrid-skeleton\">\n            @for (r of [1,2,3,4,5]; track r) {\n              <div class=\"qml-datagrid-row-skeleton\">\n                @for (col of columns(); track col.key) {\n                  <div class=\"qml-datagrid-cell-skel\" [style.width.px]=\"col.width\"></div>\n                }\n              </div>\n            }\n          </div>\n        } @else if (paginatedRows().length === 0) {\n          <div class=\"qml-datagrid-empty\">\n            <svg width=\"48\" height=\"48\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><line x1=\"21\" y1=\"21\" x2=\"16.65\" y2=\"16.65\"/></svg>\n            <h3>Nenhum resultado</h3>\n            <p>{{ emptyMessage() }}</p>\n          </div>\n        } @else {\n          <div class=\"qml-datagrid-body\">\n            @for (row of paginatedRows(); track $index; let i = $index) {\n              <div class=\"qml-datagrid-row\" [class.alt]=\"i % 2 === 1\" (click)=\"rowClicked.emit(row)\">\n                @for (col of columns(); track col.key) {\n                  <div class=\"qml-datagrid-td\" [attr.data-align]=\"col.align || 'left'\" [style.width.px]=\"col.width\">\n                    {{ row[col.key] }}\n                  </div>\n                }\n              </div>\n            }\n          </div>\n        }\n      </div>\n      @if (rows().length > pageSize()) {\n        <div class=\"qml-datagrid-pagination\">\n          <button class=\"qml-datagrid-page-btn\" (click)=\"prevPage()\" [disabled]=\"page() === 0\">‹ Anterior</button>\n          <span class=\"qml-datagrid-page-info\">{{ page() + 1 }} / {{ totalPages() }}</span>\n          <button class=\"qml-datagrid-page-btn\" (click)=\"nextPage()\" [disabled]=\"page() >= totalPages() - 1\">Próximo ›</button>\n        </div>\n      }\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      model: { publicName: 'model', isSignal: true },
-      delegate: { publicName: 'delegate', isSignal: true },
-      sortable: { publicName: 'sortable', isSignal: true },
-      sortableDragKey: { publicName: 'sortableDragKey', isSignal: true },
-      isDragging: { publicName: 'isDragging', isSignal: true },
-      columns: { publicName: 'columns', isSignal: true },
-      columnsSm: { publicName: 'columnsSm', isSignal: true },
-      columnsMd: { publicName: 'columnsMd', isSignal: true },
-      columnsLg: { publicName: 'columnsLg', isSignal: true },
-      aspectRatio: { publicName: 'aspectRatio', isSignal: true },
-      gap: { publicName: 'gap', isSignal: true },
-      pad: { publicName: 'pad', isSignal: true },
-      isLoading: { publicName: 'isLoading', isSignal: true },
-      skeletonCount: { publicName: 'skeletonCount', isSignal: true },
-      emptyStateTitle: { publicName: 'emptyStateTitle', isSignal: true },
-      emptyStateSubtitle: { publicName: 'emptyStateSubtitle', isSignal: true },
-      held: { publicName: 'held', isSignal: true },
-      cellIndex: { publicName: 'cellIndex', isSignal: true },
-      cellData: { publicName: 'cellData', isSignal: true },
-      modelData: { publicName: 'modelData', isSignal: true },
-      modelIndex: { publicName: 'modelIndex', isSignal: true },
+      columns: { classPropertyName: 'columns', publicName: 'columns', isSignal: true, isRequired: false, transformFunction: null },
+      rows: { classPropertyName: 'rows', publicName: 'rows', isSignal: true, isRequired: false, transformFunction: null },
+      title: { classPropertyName: 'title', publicName: 'title', isSignal: true, isRequired: false, transformFunction: null },
+      loading: { classPropertyName: 'loading', publicName: 'loading', isSignal: true, isRequired: false, transformFunction: null },
+      emptyMessage: { classPropertyName: 'emptyMessage', publicName: 'emptyMessage', isSignal: true, isRequired: false, transformFunction: null },
+      pageSize: { classPropertyName: 'pageSize', publicName: 'pageSize', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
-      itemsReordered: 'itemsReordered',
-      itemClicked: 'itemClicked',
+      rowClicked: 'rowClicked',
     },
   });
-  DataGrid[ɵNG_COMP_DEF] = _def;
+  (DataGrid as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: DatePicker,
     selector: 'DatePicker',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
-    host: ({
-    '[attr.data-qml-component]': '"datepicker"',
-  }),
+    template: "\n    <div class=\"qml-date-picker\" [class.is-open]=\"open()\" [class.disabled]=\"disabled()\" [class.has-error]=\"!!errorText()\">\n      @if (label(); as lbl) { <label class=\"qml-date-picker-label\">{{ lbl }}</label> }\n      <button type=\"button\" class=\"qml-date-picker-trigger\" [disabled]=\"disabled()\" (click)=\"toggle()\">\n        <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\" ry=\"2\"/><line x1=\"16\" y1=\"2\" x2=\"16\" y2=\"6\"/><line x1=\"8\" y1=\"2\" x2=\"8\" y2=\"6\"/><line x1=\"3\" y1=\"10\" x2=\"21\" y2=\"10\"/></svg>\n        <span [class.placeholder]=\"!value()\">{{ value() ? formatDate(value()) : placeholder() }}</span>\n      </button>\n      @if (open()) {\n        <div class=\"qml-date-picker-popover\" (click)=\"$event.stopPropagation()\">\n          <div class=\"qml-date-picker-header\">\n            <button type=\"button\" class=\"qml-date-picker-nav\" (click)=\"prevMonth()\" aria-label=\"Mês anterior\">\n              <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"15 18 9 12 15 6\"></polyline></svg>\n            </button>\n            <span class=\"qml-date-picker-title\">{{ monthLabel() }}</span>\n            <button type=\"button\" class=\"qml-date-picker-nav\" (click)=\"nextMonth()\" aria-label=\"Próximo mês\">\n              <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"9 18 15 12 9 6\"></polyline></svg>\n            </button>\n          </div>\n          <div class=\"qml-date-picker-weekdays\">\n            @for (w of weekdays; track w) { <span class=\"qml-date-picker-weekday\">{{ w }}</span> }\n          </div>\n          <div class=\"qml-date-picker-grid\">\n            @for (cell of calendarGrid(); track $index) {\n              <button type=\"button\" class=\"qml-date-picker-day\"\n                [class.other-month]=\"!cell.inMonth\"\n                [class.today]=\"cell.today\"\n                [class.selected]=\"cell.selected\"\n                [disabled]=\"!cell.inMonth\"\n                (click)=\"select(cell.date)\">{{ cell.day }}</button>\n            }\n          </div>\n          <div class=\"qml-date-picker-footer\">\n            <button type=\"button\" class=\"qml-date-picker-today\" (click)=\"setToday()\">Hoje</button>\n            <button type=\"button\" class=\"qml-date-picker-clear\" (click)=\"clear()\">Limpar</button>\n          </div>\n        </div>\n      }\n      @if (errorText(); as err) { <p class=\"qml-date-picker-error\">{{ err }}</p> }\n    </div>\n  ",
+    host: undefined,
     styles: [],
     inputs: {
-      selectedDate: { publicName: 'selectedDate', isSignal: true },
-      placeholder: { publicName: 'placeholder', isSignal: true },
-      format: { publicName: 'format', isSignal: true },
-      disabled: { publicName: 'disabled', isSignal: true },
-      size: { publicName: 'size', isSignal: true },
-      expanded: { publicName: 'expanded', isSignal: true },
-      openUpward: { publicName: 'openUpward', isSignal: true },
-      viewMonth: { publicName: 'viewMonth', isSignal: true },
-      viewYear: { publicName: 'viewYear', isSignal: true },
-      calendarDays: { publicName: 'calendarDays', isSignal: true },
+      label: { classPropertyName: 'label', publicName: 'label', isSignal: true, isRequired: false, transformFunction: null },
+      placeholder: { classPropertyName: 'placeholder', publicName: 'placeholder', isSignal: true, isRequired: false, transformFunction: null },
+      disabled: { classPropertyName: 'disabled', publicName: 'disabled', isSignal: true, isRequired: false, transformFunction: null },
+      errorText: { classPropertyName: 'errorText', publicName: 'errorText', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
@@ -935,88 +805,41 @@ import { ZoomIn } from './components/ZoomIn';
   const _def = ɵɵngDeclareComponent({
     type: Div,
     selector: 'Div',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "@if (show() || animate()) { <div class=\"qml-div\" [class]=\"classes()\" [style]=\"styleText()\" (click)=\"activate()\"><ng-content></ng-content></div> }",
     host: undefined,
     styles: [],
     inputs: {
-      show: { publicName: 'show', isSignal: true },
-      animate: { publicName: 'animate', isSignal: true },
-      animateIn: { publicName: 'animateIn', isSignal: true },
-      animateOut: { publicName: 'animateOut', isSignal: true },
-      durationIn: { publicName: 'durationIn', isSignal: true },
-      durationOut: { publicName: 'durationOut', isSignal: true },
-      easingInEasing: { publicName: 'easingInEasing', isSignal: true },
-      easingOutEasing: { publicName: 'easingOutEasing', isSignal: true },
-      enterOffset: { publicName: 'enterOffset', isSignal: true },
-      exitOffset: { publicName: 'exitOffset', isSignal: true },
-      enterScale: { publicName: 'enterScale', isSignal: true },
-      exitScale: { publicName: 'exitScale', isSignal: true },
-      p: { publicName: 'p', isSignal: true },
-      px: { publicName: 'px', isSignal: true },
-      py: { publicName: 'py', isSignal: true },
-      pt: { publicName: 'pt', isSignal: true },
-      pr: { publicName: 'pr', isSignal: true },
-      pb: { publicName: 'pb', isSignal: true },
-      pl: { publicName: 'pl', isSignal: true },
-      m: { publicName: 'm', isSignal: true },
-      mx: { publicName: 'mx', isSignal: true },
-      my: { publicName: 'my', isSignal: true },
-      mt: { publicName: 'mt', isSignal: true },
-      mr: { publicName: 'mr', isSignal: true },
-      mb: { publicName: 'mb', isSignal: true },
-      ml: { publicName: 'ml', isSignal: true },
-      variant: { publicName: 'variant', isSignal: true },
-      colorName: { publicName: 'colorName', isSignal: true },
-      radius: { publicName: 'radius', isSignal: true },
-      customRadius: { publicName: 'customRadius', isSignal: true },
-      shadow: { publicName: 'shadow', isSignal: true },
-      fill: { publicName: 'fill', isSignal: true },
-      fillX: { publicName: 'fillX', isSignal: true },
-      fillY: { publicName: 'fillY', isSignal: true },
-      alignSelf: { publicName: 'alignSelf', isSignal: true },
-      flexGrow: { publicName: 'flexGrow', isSignal: true },
-      flexShrink: { publicName: 'flexShrink', isSignal: true },
-      width_: { publicName: 'width_', isSignal: true },
-      height_: { publicName: 'height_', isSignal: true },
-      minWidth: { publicName: 'minWidth', isSignal: true },
-      maxWidth: { publicName: 'maxWidth', isSignal: true },
-      minHeight: { publicName: 'minHeight', isSignal: true },
-      maxHeight: { publicName: 'maxHeight', isSignal: true },
-      alignItems: { publicName: 'alignItems', isSignal: true },
-      zIndex: { publicName: 'zIndex', isSignal: true },
-      overflow: { publicName: 'overflow', isSignal: true },
-      clickable: { publicName: 'clickable', isSignal: true },
+      show: { classPropertyName: 'show', publicName: 'show', isSignal: true, isRequired: false, transformFunction: null },
     },
-    outputs: {
-      clicked: 'clicked',
-    },
+    outputs: {},
   });
-  Div[ɵNG_COMP_DEF] = _def;
+  (Div as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Draggable,
     selector: 'Draggable',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-draggable\"\n      [class.is-hovered]=\"_hovered()\"\n      [class.is-active]=\"_active()\"\n      [style.--qml-drag-radius.px]=\"radius() >= 0 ? radius() : 12\"\n      (mousedown)=\"onMouseDown($event)\"\n      (click)=\"onClick($event)\">\n      @if (_active()) {\n        <div class=\"qml-draggable-shadow\"></div>\n      }\n      <div class=\"qml-draggable-content\"\n        [style.transform]=\"_active()\n          ? 'scale(' + dragScale() + ') rotate(' + dragRotation() + 'deg)'\n          : (_hovered() ? 'scale(1.02)' : 'scale(1)')\"\n        [style.opacity]=\"_active() ? dragOpacity() : 1\">\n        <ng-content></ng-content>\n      </div>\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      key: { publicName: 'key', isSignal: true },
-      dragData: { publicName: 'dragData', isSignal: true },
-      threshold: { publicName: 'threshold', isSignal: true },
-      dragScale: { publicName: 'dragScale', isSignal: true },
-      dragOpacity: { publicName: 'dragOpacity', isSignal: true },
-      elevation: { publicName: 'elevation', isSignal: true },
-      radius: { publicName: 'radius', isSignal: true },
-      moves: { publicName: 'moves', isSignal: true },
-      axis: { publicName: 'axis', isSignal: true },
+      key: { classPropertyName: 'key', publicName: 'key', isSignal: true, isRequired: false, transformFunction: null },
+      dragData: { classPropertyName: 'dragData', publicName: 'dragData', isSignal: true, isRequired: false, transformFunction: null },
+      threshold: { classPropertyName: 'threshold', publicName: 'threshold', isSignal: true, isRequired: false, transformFunction: null },
+      dragScale: { classPropertyName: 'dragScale', publicName: 'dragScale', isSignal: true, isRequired: false, transformFunction: null },
+      dragOpacity: { classPropertyName: 'dragOpacity', publicName: 'dragOpacity', isSignal: true, isRequired: false, transformFunction: null },
+      dragRotation: { classPropertyName: 'dragRotation', publicName: 'dragRotation', isSignal: true, isRequired: false, transformFunction: null },
+      elevation: { classPropertyName: 'elevation', publicName: 'elevation', isSignal: true, isRequired: false, transformFunction: null },
+      radius: { classPropertyName: 'radius', publicName: 'radius', isSignal: true, isRequired: false, transformFunction: null },
+      moves: { classPropertyName: 'moves', publicName: 'moves', isSignal: true, isRequired: false, transformFunction: null },
+      axis: { classPropertyName: 'axis', publicName: 'axis', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       dragStarted: 'dragStarted',
@@ -1024,58 +847,54 @@ import { ZoomIn } from './components/ZoomIn';
       clicked: 'clicked',
     },
   });
-  Draggable[ɵNG_COMP_DEF] = _def;
+  (Draggable as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Drawer,
     selector: 'Drawer',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
-    host: ({
-    '[attr.data-qml-component]': '"drawer"',
-  }),
+    template: "\n    @if (isVisible()) {\n      <div class=\"qml-drawer-overlay\" [class.open]=\"open()\" (click)=\"onBackdropClick()\">\n        <div class=\"qml-drawer-panel\" [class]=\"panelClass()\" [class.open]=\"open()\"\n          [style.width.px]=\"finalWidth()\" [style.height.px]=\"finalHeight()\"\n          [style.max-width.vw]=\"position() === 'top' || position() === 'bottom' ? 100 : null\"\n          (click)=\"$event.stopPropagation()\">\n          @if (hasHeader()) {\n            <div class=\"qml-drawer-header\">\n              <div class=\"qml-drawer-head-text\">\n                @if (title()) { <h2 class=\"qml-drawer-title\">{{ title() }}</h2> }\n                @if (subtitle()) { <p class=\"qml-drawer-subtitle\">{{ subtitle() }}</p> }\n              </div>\n              @if (showCloseButton()) {\n                <button class=\"qml-drawer-close\" type=\"button\" (click)=\"onClose()\" aria-label=\"Fechar\">\n                  <span [innerHTML]=\"iconSvg('x', 18)\"></span>\n                </button>\n              }\n            </div>\n            <div class=\"qml-drawer-divider\"></div>\n          }\n          <div class=\"qml-drawer-body\">\n            <ng-content></ng-content>\n          </div>\n          @if (hasFooter()) {\n            <div class=\"qml-drawer-divider\"></div>\n            <div class=\"qml-drawer-footer\">\n              <ng-content select=\"[footer]\"></ng-content>\n            </div>\n          }\n        </div>\n      </div>\n    }\n  ",
+    host: undefined,
     styles: [],
     inputs: {
-      open: { publicName: 'open', isSignal: true },
-      title: { publicName: 'title', isSignal: true },
-      subtitle: { publicName: 'subtitle', isSignal: true },
-      position: { publicName: 'position', isSignal: true },
-      size: { publicName: 'size', isSignal: true },
-      closeOnBackdropClick: { publicName: 'closeOnBackdropClick', isSignal: true },
-      closeOnEscape: { publicName: 'closeOnEscape', isSignal: true },
-      showCloseButton: { publicName: 'showCloseButton', isSignal: true },
-      usePortal: { publicName: 'usePortal', isSignal: true },
-      customRadius: { publicName: 'customRadius', isSignal: true },
+      title: { classPropertyName: 'title', publicName: 'title', isSignal: true, isRequired: false, transformFunction: null },
+      position: { classPropertyName: 'position', publicName: 'position', isSignal: true, isRequired: false, transformFunction: null },
+      size: { classPropertyName: 'size', publicName: 'size', isSignal: true, isRequired: false, transformFunction: null },
+      closeOnBackdropClick: { classPropertyName: 'closeOnBackdropClick', publicName: 'closeOnBackdropClick', isSignal: true, isRequired: false, transformFunction: null },
+      closeOnEscape: { classPropertyName: 'closeOnEscape', publicName: 'closeOnEscape', isSignal: true, isRequired: false, transformFunction: null },
+      showCloseButton: { classPropertyName: 'showCloseButton', publicName: 'showCloseButton', isSignal: true, isRequired: false, transformFunction: null },
+      customRadius: { classPropertyName: 'customRadius', publicName: 'customRadius', isSignal: true, isRequired: false, transformFunction: null },
+      hasFooter: { classPropertyName: 'hasFooter', publicName: 'hasFooter', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       opened: 'opened',
       closed: 'closed',
     },
   });
-  // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
+  (Drawer as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: DropZone,
     selector: 'DropZone',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-dropzone\" [class.is-active]=\"isActive()\"\n      [style.--qml-dz-radius.px]=\"radius()\"\n      [style.--qml-dz-accent]=\"accentColor() || 'var(--ctp-mauve, #cba6f7)'\">\n      <div class=\"qml-dropzone-fill\" [style.opacity]=\"isActive() ? highlightOpacity() : 0\"></div>\n      <div class=\"qml-dropzone-border\" [style.opacity]=\"isActive() ? borderOpacity() : 0\"></div>\n      <div class=\"qml-dropzone-content\"><ng-content></ng-content></div>\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      key: { publicName: 'key', isSignal: true },
-      accentColor: { publicName: 'accentColor', isSignal: true },
-      highlightOpacity: { publicName: 'highlightOpacity', isSignal: true },
-      borderOpacity: { publicName: 'borderOpacity', isSignal: true },
-      radius: { publicName: 'radius', isSignal: true },
-      forceHighlight: { publicName: 'forceHighlight', isSignal: true },
+      key: { classPropertyName: 'key', publicName: 'key', isSignal: true, isRequired: false, transformFunction: null },
+      accentColor: { classPropertyName: 'accentColor', publicName: 'accentColor', isSignal: true, isRequired: false, transformFunction: null },
+      highlightOpacity: { classPropertyName: 'highlightOpacity', publicName: 'highlightOpacity', isSignal: true, isRequired: false, transformFunction: null },
+      borderOpacity: { classPropertyName: 'borderOpacity', publicName: 'borderOpacity', isSignal: true, isRequired: false, transformFunction: null },
+      radius: { classPropertyName: 'radius', publicName: 'radius', isSignal: true, isRequired: false, transformFunction: null },
+      forceHighlight: { classPropertyName: 'forceHighlight', publicName: 'forceHighlight', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       entered: 'entered',
@@ -1083,55 +902,48 @@ import { ZoomIn } from './components/ZoomIn';
       dropped: 'dropped',
     },
   });
-  DropZone[ɵNG_COMP_DEF] = _def;
+  (DropZone as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Dropdown,
     selector: 'Dropdown',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
-    host: ({
-    '[attr.data-qml-component]': '"dropdown"',
-  }),
+    template: "\n    @if (open()) {\n      <div class=\"qml-dropdown-backdrop\" (click)=\"close()\"></div>\n      <div class=\"qml-dropdown-panel\" [style.left.px]=\"panelX()\" [style.top.px]=\"panelY()\"\n        [attr.data-placement]=\"actualPlacement()\">\n        @for (item of itemsList(); track $index) {\n          @if (item.separator) {\n            <div class=\"qml-dropdown-divider\"></div>\n          } @else {\n            <div class=\"qml-dropdown-item\" [class.danger]=\"item.variant === 'danger'\" [class.disabled]=\"item.disabled\"\n              (click)=\"onItemClick(item)\">\n              @if (item.icon) { <span class=\"qml-dropdown-icon\" [innerHTML]=\"iconSvg(item.icon, 14)\"></span> }\n              <span class=\"qml-dropdown-label\">{{ item.label }}</span>\n              @if (item.shortcut) { <span class=\"qml-dropdown-shortcut\">{{ item.shortcut }}</span> }\n            </div>\n          }\n        }\n      </div>\n    }\n  ",
+    host: undefined,
     styles: [],
     inputs: {
-      items: { publicName: 'items', isSignal: true },
-      placement: { publicName: 'placement', isSignal: true },
-      minWidth: { publicName: 'minWidth', isSignal: true },
-      isOpen: { publicName: 'isOpen', isSignal: true },
-      disabled: { publicName: 'disabled', isSignal: true },
-      rowData: { publicName: 'rowData', isSignal: true },
-      isDanger: { publicName: 'isDanger', isSignal: true },
-      isDisabled: { publicName: 'isDisabled', isSignal: true },
+      items: { classPropertyName: 'items', publicName: 'items', isSignal: true, isRequired: false, transformFunction: null },
+      placement: { classPropertyName: 'placement', publicName: 'placement', isSignal: true, isRequired: false, transformFunction: null },
+      minWidth: { classPropertyName: 'minWidth', publicName: 'minWidth', isSignal: true, isRequired: false, transformFunction: null },
+      disabled: { classPropertyName: 'disabled', publicName: 'disabled', isSignal: true, isRequired: false, transformFunction: null },
+      triggerOffset: { classPropertyName: 'triggerOffset', publicName: 'triggerOffset', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       itemSelected: 'itemSelected',
     },
   });
-  // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
+  (Dropdown as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: DynamicForm,
     selector: 'DynamicForm',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
     template: "<ng-content></ng-content>",
-    host: ({
-    '[attr.data-qml-component]': '"dynamicform"',
-  }),
+    host: undefined,
     styles: [],
     inputs: {
-      schema: { publicName: 'schema', isSignal: true },
-      formValues: { publicName: 'formValues', isSignal: true },
-      formErrors: { publicName: 'formErrors', isSignal: true },
-      formStatuses: { publicName: 'formStatuses', isSignal: true },
+      schema: { classPropertyName: 'schema', publicName: 'schema', isSignal: true, isRequired: false, transformFunction: null },
+      formValues: { classPropertyName: 'formValues', publicName: 'formValues', isSignal: true, isRequired: false, transformFunction: null },
+      formErrors: { classPropertyName: 'formErrors', publicName: 'formErrors', isSignal: true, isRequired: false, transformFunction: null },
+      formStatuses: { classPropertyName: 'formStatuses', publicName: 'formStatuses', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       submitted: 'submitted',
@@ -1144,283 +956,246 @@ import { ZoomIn } from './components/ZoomIn';
   const _def = ɵɵngDeclareComponent({
     type: EmptyState,
     selector: 'EmptyState',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-empty-state\" [style.padding]=\"padding()\">\n      @if (icon(); as i) {\n        <div class=\"qml-empty-state-icon\" [style.color]=\"iconColor() || null\">\n          <svg width=\"48\" height=\"48\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" [attr.data-icon]=\"i\">\n            @switch (i) {\n              @case ('inbox') { <polyline points=\"22 12 16 12 14 15 10 15 8 12 2 12\"></polyline><path d=\"M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z\"></path> }\n              @case ('search') { <circle cx=\"11\" cy=\"11\" r=\"8\"></circle><line x1=\"21\" y1=\"21\" x2=\"16.65\" y2=\"16.65\"></line> }\n              @case ('box')   { <path d=\"M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z\"></path><polyline points=\"3.27 6.96 12 12.01 20.73 6.96\"></polyline><line x1=\"12\" y1=\"22.08\" x2=\"12\" y2=\"12\"></line> }\n              @case ('file')  { <path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"></path><polyline points=\"14 2 14 8 20 8\"></polyline> }\n              @default { <circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"12\"></line><line x1=\"12\" y1=\"16\" x2=\"12.01\" y2=\"16\"></line> }\n            }\n          </svg>\n        </div>\n      }\n      @if (title(); as t) { <h2 class=\"qml-empty-state-title\">{{ t }}</h2> }\n      @if (description(); as d) { <p class=\"qml-empty-state-desc\">{{ d }}</p> }\n      <div class=\"qml-empty-state-action\"><ng-content></ng-content></div>\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      icon: { publicName: 'icon', isSignal: true },
-      title: { publicName: 'title', isSignal: true },
-      description: { publicName: 'description', isSignal: true },
-      size: { publicName: 'size', isSignal: true },
+      icon: { classPropertyName: 'icon', publicName: 'icon', isSignal: true, isRequired: false, transformFunction: null },
+      title: { classPropertyName: 'title', publicName: 'title', isSignal: true, isRequired: false, transformFunction: null },
+      description: { classPropertyName: 'description', publicName: 'description', isSignal: true, isRequired: false, transformFunction: null },
+      iconColor: { classPropertyName: 'iconColor', publicName: 'iconColor', isSignal: true, isRequired: false, transformFunction: null },
+      padding: { classPropertyName: 'padding', publicName: 'padding', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  EmptyState[ɵNG_COMP_DEF] = _def;
+  (EmptyState as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: FadeIn,
     selector: 'FadeIn',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "<div class=\"motion\" [class.is-visible]=\"visible()\" [style.--duration.ms]=\"duration()\" [style.--delay.ms]=\"delay()\"><ng-content /></div>",
     host: undefined,
     styles: [],
-    inputs: {
-      duration: { publicName: 'duration', isSignal: true },
-      delay: { publicName: 'delay', isSignal: true },
-      trigger: { publicName: 'trigger', isSignal: true },
-      triggerOnVisibility: { publicName: 'triggerOnVisibility', isSignal: true },
-      visibilityThreshold: { publicName: 'visibilityThreshold', isSignal: true },
-    },
+    inputs: {},
     outputs: {},
   });
-  FadeIn[ɵNG_COMP_DEF] = _def;
+  (FadeIn as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: FadeOut,
     selector: 'FadeOut',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "<div class=\"motion\" [class.is-hidden]=\"!trigger()\" [style.--duration.ms]=\"duration()\" [style.--delay.ms]=\"delay()\"><ng-content /></div>",
     host: undefined,
     styles: [],
-    inputs: {
-      duration: { publicName: 'duration', isSignal: true },
-      delay: { publicName: 'delay', isSignal: true },
-      trigger: { publicName: 'trigger', isSignal: true },
-    },
+    inputs: {},
     outputs: {},
   });
-  FadeOut[ɵNG_COMP_DEF] = _def;
+  (FadeOut as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Flip,
     selector: 'Flip',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "<div class=\"motion\" [class.is-visible]=\"trigger()\" [style.--duration.ms]=\"duration()\" [style.--delay.ms]=\"delay()\" [style.--angle]=\"clockwise() ? '90deg' : '-90deg'\"><ng-content /></div>",
     host: undefined,
     styles: [],
-    inputs: {
-      duration: { publicName: 'duration', isSignal: true },
-      delay: { publicName: 'delay', isSignal: true },
-      clockwise: { publicName: 'clockwise', isSignal: true },
-      trigger: { publicName: 'trigger', isSignal: true },
-    },
+    inputs: {},
     outputs: {},
   });
-  Flip[ɵNG_COMP_DEF] = _def;
+  (Flip as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Form,
-    selector: 'qml-form',
-    standalone: true,
+    selector: 'qml-form-field',
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
     template: "<ng-content></ng-content>",
     host: undefined,
     styles: [],
-    inputs: {
-      validateOnInput: { publicName: 'validateOnInput', isSignal: true },
-    },
-    outputs: {
-      submitted: 'submitted',
-    },
+    inputs: {},
+    outputs: {},
   });
-  Form[ɵNG_COMP_DEF] = _def;
+  (Form as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
-    type: FormController,
+    type: FormControllerComponent,
     selector: 'FormController',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
     template: "<ng-content></ng-content>",
     host: undefined,
     styles: [],
-    inputs: {
-      fields: { publicName: 'fields', isSignal: true },
-      errors: { publicName: 'errors', isSignal: true },
-    },
-    outputs: {
-      validationComplete: 'validationComplete',
-      fieldError: 'fieldError',
-    },
+    inputs: {},
+    outputs: {},
   });
-  FormController[ɵNG_COMP_DEF] = _def;
+  (FormControllerComponent as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: FormField,
     selector: 'qml-form-field',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "\n    <div class=\"qml-form-field\" [class.has-error]=\"!!errorMessage()\">\n      @if (label(); as lbl) {\n        <label class=\"qml-form-field-label\" [attr.for]=\"htmlFor()\">{{ lbl }}@if (required()) { <span class=\"qml-form-field-required\">*</span> }</label>\n      }\n      @if (description(); as desc) { <p class=\"qml-form-field-description\">{{ desc }}</p> }\n      <ng-content></ng-content>\n      @if (errorMessage(); as err) { <p class=\"qml-form-field-error\">{{ err }}</p> }\n    </div>\n  ",
+    template: "\n    <div class=\"qml-form-field\" [attr.data-status]=\"status()\" [class.has-error]=\"!!errorMessage()\">\n      @if (label(); as lbl) {\n        <label class=\"qml-form-field-label\" [attr.for]=\"htmlFor()\">{{ lbl }}@if (required()) { <span class=\"qml-form-field-required\">*</span> }</label>\n      }\n      @if (description(); as desc) { <p class=\"qml-form-field-description\">{{ desc }}</p> }\n      <ng-content></ng-content>\n      @if (errorMessage(); as err) {\n        <p class=\"qml-form-field-error\">\n          <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"12\"/><line x1=\"12\" y1=\"16\" x2=\"12.01\" y2=\"16\"/></svg>\n          {{ err }}\n        </p>\n      }\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      label: { publicName: 'label', isSignal: true },
-      errorMessage: { publicName: 'errorMessage', isSignal: true },
-      htmlFor: { publicName: 'htmlFor', isSignal: true },
+      label: { classPropertyName: 'label', publicName: 'label', isSignal: true, isRequired: false, transformFunction: null },
+      description: { classPropertyName: 'description', publicName: 'description', isSignal: true, isRequired: false, transformFunction: null },
+      errorMessage: { classPropertyName: 'errorMessage', publicName: 'errorMessage', isSignal: true, isRequired: false, transformFunction: null },
+      required: { classPropertyName: 'required', publicName: 'required', isSignal: true, isRequired: false, transformFunction: null },
+      htmlFor: { classPropertyName: 'htmlFor', publicName: 'htmlFor', isSignal: true, isRequired: false, transformFunction: null },
+      status: { classPropertyName: 'status', publicName: 'status', isSignal: true, isRequired: false, transformFunction: null },
     },
-    outputs: {},
+    outputs: {
+      statusChange: 'statusChange',
+    },
   });
-  FormField[ɵNG_COMP_DEF] = _def;
+  (FormField as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: GaugeChart,
     selector: 'GaugeChart',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-gauge\">\n      @if (title(); as t) { <div class=\"chart-title\">{{ t }}</div> }\n      <svg [attr.viewBox]=\"'0 0 ' + size() + ' ' + (size() * 0.7)\" class=\"qml-gauge-svg\">\n        <path [attr.d]=\"bgPath()\" stroke=\"var(--ctp-surface1, #45475a)\" [attr.stroke-width]=\"stroke()\" fill=\"none\" stroke-linecap=\"round\"/>\n        <path [attr.d]=\"valuePath()\" [attr.stroke]=\"color()\" [attr.stroke-width]=\"stroke()\" fill=\"none\" stroke-linecap=\"round\"\n          style=\"transition: stroke-dasharray 0.6s cubic-bezier(0.4, 0, 0.2, 1);\"/>\n        <text [attr.x]=\"cx()\" [attr.y]=\"cy() + 6\" fill=\"var(--ctp-text, #cdd6f4)\"\n          font-size=\"22\" font-weight=\"700\" text-anchor=\"middle\">{{ displayValue() }}{{ unit() }}</text>\n        @if (label()) {\n          <text [attr.x]=\"cx()\" [attr.y]=\"cy() + 30\" fill=\"var(--ctp-subtext0, #a6adc8)\"\n            font-size=\"11\" text-anchor=\"middle\">{{ label() }}</text>\n        }\n      </svg>\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      value: { publicName: 'value', isSignal: true },
-      label: { publicName: 'label', isSignal: true },
-      unit: { publicName: 'unit', isSignal: true },
-      color: { publicName: 'color', isSignal: true },
-      animated: { publicName: 'animated', isSignal: true },
-      drawProgress: { publicName: 'drawProgress', isSignal: true },
+      value: { classPropertyName: 'value', publicName: 'value', isSignal: true, isRequired: false, transformFunction: null },
+      max: { classPropertyName: 'max', publicName: 'max', isSignal: true, isRequired: false, transformFunction: null },
+      title: { classPropertyName: 'title', publicName: 'title', isSignal: true, isRequired: false, transformFunction: null },
+      label: { classPropertyName: 'label', publicName: 'label', isSignal: true, isRequired: false, transformFunction: null },
+      unit: { classPropertyName: 'unit', publicName: 'unit', isSignal: true, isRequired: false, transformFunction: null },
+      size: { classPropertyName: 'size', publicName: 'size', isSignal: true, isRequired: false, transformFunction: null },
+      stroke: { classPropertyName: 'stroke', publicName: 'stroke', isSignal: true, isRequired: false, transformFunction: null },
+      color: { classPropertyName: 'color', publicName: 'color', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  GaugeChart[ɵNG_COMP_DEF] = _def;
+  (GaugeChart as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: GlowPulse,
     selector: 'GlowPulse',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "<div class=\"glow\" [style.--color]=\"color()\" [style.--min]=\"pulseMin()\" [style.--max]=\"pulseMax()\" [style.--duration.ms]=\"duration()\"><ng-content /></div>",
     host: undefined,
     styles: [],
-    inputs: {
-      color: { publicName: 'color', isSignal: true },
-      pulseMin: { publicName: 'pulseMin', isSignal: true },
-      pulseMax: { publicName: 'pulseMax', isSignal: true },
-      duration: { publicName: 'duration', isSignal: true },
-    },
+    inputs: {},
     outputs: {},
   });
-  GlowPulse[ɵNG_COMP_DEF] = _def;
+  (GlowPulse as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: H1,
     selector: 'H1',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "\n    {{ text() }}\n    <ng-content></ng-content>",
+    template: "<h1 class=\"title title-h1\"><ng-content></ng-content></h1>",
     host: undefined,
     styles: [],
     inputs: {},
     outputs: {},
   });
-  H1[ɵNG_COMP_DEF] = _def;
+  (H1 as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: H2,
     selector: 'H2',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "\n    {{ text() }}\n    <ng-content></ng-content>",
+    template: "<h2 class=\"title title-h2\"><ng-content></ng-content></h2>",
     host: undefined,
     styles: [],
     inputs: {},
     outputs: {},
   });
-  H2[ɵNG_COMP_DEF] = _def;
+  (H2 as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: H3,
     selector: 'H3',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "\n    {{ text() }}\n    <ng-content></ng-content>",
+    template: "<h3 class=\"title title-h3\"><ng-content></ng-content></h3>",
     host: undefined,
     styles: [],
     inputs: {},
     outputs: {},
   });
-  H3[ɵNG_COMP_DEF] = _def;
+  (H3 as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: H4,
     selector: 'H4',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "\n    {{ text() }}\n    <ng-content></ng-content>",
+    template: "<h4 class=\"title title-h4\"><ng-content></ng-content></h4>",
     host: undefined,
     styles: [],
     inputs: {},
     outputs: {},
   });
-  H4[ɵNG_COMP_DEF] = _def;
+  (H4 as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: HStack,
     selector: 'HStack',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "\n    <ng-content></ng-content>",
-    host: ({
-    '[style.display]': '"flex"',
-    '[style.flex-direction]': 'reverse() ? "row-reverse" : "row"',
-    '[style.gap.px]': 'spacing()',
-    '[style.justify-content]': 'justifyCSS()',
-    '[style.align-items]': 'alignCSS()',
-    '[style.flex-wrap]': 'wrap() ? "wrap" : "nowrap"',
-    '[attr.data-qml-component]': '"hstack"',
-  }),
+    template: "<ng-content></ng-content>",
+    host: undefined,
     styles: [],
     inputs: {
-      spacing: { publicName: 'spacing', isSignal: true },
-      spacingX: { publicName: 'spacingX', isSignal: true },
-      spacingY: { publicName: 'spacingY', isSignal: true },
-      justifyContent: { publicName: 'justifyContent', isSignal: true },
-      alignItems: { publicName: 'alignItems', isSignal: true },
-      wrap: { publicName: 'wrap', isSignal: true },
-      reverse: { publicName: 'reverse', isSignal: true },
-      alignContent: { publicName: 'alignContent', isSignal: true },
+      spacing: { classPropertyName: 'spacing', publicName: 'spacing', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
@@ -1431,602 +1206,535 @@ import { ZoomIn } from './components/ZoomIn';
   const _def = ɵɵngDeclareComponent({
     type: HeroCarousel,
     selector: 'HeroCarousel',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
     template: "<ng-content></ng-content>",
     host: undefined,
     styles: [],
     inputs: {
-      model: { publicName: 'model', isSignal: true },
-      autoAdvanceInterval: { publicName: 'autoAdvanceInterval', isSignal: true },
-      currentIndex: { publicName: 'currentIndex', isSignal: true },
+      model: { classPropertyName: 'model', publicName: 'model', isSignal: true, isRequired: false, transformFunction: null },
+      autoAdvanceInterval: { classPropertyName: 'autoAdvanceInterval', publicName: 'autoAdvanceInterval', isSignal: true, isRequired: false, transformFunction: null },
+      currentIndex: { classPropertyName: 'currentIndex', publicName: 'currentIndex', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       primaryActionClicked: 'primaryActionClicked',
       secondaryActionClicked: 'secondaryActionClicked',
     },
   });
-  HeroCarousel[ɵNG_COMP_DEF] = _def;
+  (HeroCarousel as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: HoverCard,
     selector: 'HoverCard',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
-    host: ({
-    '[attr.data-qml-component]': '"hovercard"',
-  }),
+    template: "\n    <span class=\"qml-hovercard-trigger\" (mouseenter)=\"onTriggerEnter()\" (mouseleave)=\"onTriggerLeave()\"\n      (focusin)=\"onTriggerEnter()\" (focusout)=\"onTriggerLeave()\" #trigger>\n      <ng-content select=\"[trigger]\"></ng-content>\n      @if (!hasTrigger()) { <ng-content></ng-content> }\n    </span>\n    @if (open()) {\n      <div class=\"qml-hovercard-panel\"\n        [style.left.px]=\"panelX()\" [style.top.px]=\"panelY()\"\n        [attr.data-placement]=\"actualPlacement()\">\n        <ng-content select=\"[content]\"></ng-content>\n        @if (!hasContent()) { <ng-content></ng-content> }\n      </div>\n    }\n  ",
+    host: undefined,
     styles: [],
     inputs: {
-      placement: { publicName: 'placement', isSignal: true },
-      openDelay: { publicName: 'openDelay', isSignal: true },
-      closeDelay: { publicName: 'closeDelay', isSignal: true },
-      disabled: { publicName: 'disabled', isSignal: true },
+      placement: { classPropertyName: 'placement', publicName: 'placement', isSignal: true, isRequired: false, transformFunction: null },
+      openDelay: { classPropertyName: 'openDelay', publicName: 'openDelay', isSignal: true, isRequired: false, transformFunction: null },
+      closeDelay: { classPropertyName: 'closeDelay', publicName: 'closeDelay', isSignal: true, isRequired: false, transformFunction: null },
+      disabled: { classPropertyName: 'disabled', publicName: 'disabled', isSignal: true, isRequired: false, transformFunction: null },
+      hasTrigger: { classPropertyName: 'hasTrigger', publicName: 'hasTrigger', isSignal: true, isRequired: false, transformFunction: null },
+      hasContent: { classPropertyName: 'hasContent', publicName: 'hasContent', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
+  (HoverCard as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Icon,
-    selector: 'qml-icon',
-    standalone: true,
+    selector: 'qml-icon, LucideIcon',
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "\n    <span class=\"qml-icon\" [style.width.px]=\"size()\" [style.height.px]=\"size()\" [style.color]=\"color()\">\n      {{ name() }}\n    </span>\n  ",
+    template: "<span class=\"icon\" [style.width.px]=\"size()\" [style.height.px]=\"size()\" [style.color]=\"color()\" [innerHTML]=\"svg()\"></span>",
     host: undefined,
     styles: [],
-    inputs: {
-      name: { publicName: 'name', isSignal: true },
-      size: { publicName: 'size', isSignal: true },
-      color: { publicName: 'color', isSignal: true },
-    },
+    inputs: {},
     outputs: {},
   });
-  Icon[ɵNG_COMP_DEF] = _def;
+  (Icon as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: InteractiveListCell,
     selector: 'InteractiveListCell',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <button\n      type=\"button\"\n      class=\"qml-list-cell\"\n      [class.selected]=\"isSelected()\"\n      [style.background-color]=\"bgColor()\"\n      [style.border-color]=\"resolvedBorderColor()\"\n      [style.border-width.px]=\"borderWidth()\"\n      [style.border-radius.px]=\"radius()\"\n      [style.padding]=\"'calc(' + paddingVertical() + 'px * 1) calc(' + paddingHorizontal() + 'px * 1)'\"\n      [style.transform]=\"transform()\"\n      (click)=\"onClick()\"\n      (mouseenter)=\"onEnter()\"\n      (mouseleave)=\"onLeave()\"\n      (mousedown)=\"onPress(true)\"\n      (mouseup)=\"onPress(false)\">\n      <div class=\"qml-list-cell-content\">\n        <ng-content></ng-content>\n      </div>\n    </button>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      rowContent: { publicName: 'rowContent', isSignal: true },
-      isSelected: { publicName: 'isSelected', isSignal: true },
-      cellModelData: { publicName: 'cellModelData', isSignal: true },
-      cellIndex: { publicName: 'cellIndex', isSignal: true },
-      backgroundColor: { publicName: 'backgroundColor', isSignal: true },
-      hoverColor: { publicName: 'hoverColor', isSignal: true },
-      pressedColor: { publicName: 'pressedColor', isSignal: true },
-      borderColor: { publicName: 'borderColor', isSignal: true },
-      hoverBorderColor: { publicName: 'hoverBorderColor', isSignal: true },
-      radius: { publicName: 'radius', isSignal: true },
-      borderWidth: { publicName: 'borderWidth', isSignal: true },
-      paddingHorizontal: { publicName: 'paddingHorizontal', isSignal: true },
-      paddingVertical: { publicName: 'paddingVertical', isSignal: true },
-      modelData: { publicName: 'modelData', isSignal: true },
-      model: { publicName: 'model', isSignal: true },
-      index: { publicName: 'index', isSignal: true },
+      rowContent: { classPropertyName: 'rowContent', publicName: 'rowContent', isSignal: true, isRequired: false, transformFunction: null },
+      isSelected: { classPropertyName: 'isSelected', publicName: 'isSelected', isSignal: true, isRequired: false, transformFunction: null },
+      cellModelData: { classPropertyName: 'cellModelData', publicName: 'cellModelData', isSignal: true, isRequired: false, transformFunction: null },
+      cellIndex: { classPropertyName: 'cellIndex', publicName: 'cellIndex', isSignal: true, isRequired: false, transformFunction: null },
+      backgroundColor: { classPropertyName: 'backgroundColor', publicName: 'backgroundColor', isSignal: true, isRequired: false, transformFunction: null },
+      hoverColor: { classPropertyName: 'hoverColor', publicName: 'hoverColor', isSignal: true, isRequired: false, transformFunction: null },
+      pressedColor: { classPropertyName: 'pressedColor', publicName: 'pressedColor', isSignal: true, isRequired: false, transformFunction: null },
+      borderColor: { classPropertyName: 'borderColor', publicName: 'borderColor', isSignal: true, isRequired: false, transformFunction: null },
+      hoverBorderColor: { classPropertyName: 'hoverBorderColor', publicName: 'hoverBorderColor', isSignal: true, isRequired: false, transformFunction: null },
+      radius: { classPropertyName: 'radius', publicName: 'radius', isSignal: true, isRequired: false, transformFunction: null },
+      borderWidth: { classPropertyName: 'borderWidth', publicName: 'borderWidth', isSignal: true, isRequired: false, transformFunction: null },
+      paddingHorizontal: { classPropertyName: 'paddingHorizontal', publicName: 'paddingHorizontal', isSignal: true, isRequired: false, transformFunction: null },
+      paddingVertical: { classPropertyName: 'paddingVertical', publicName: 'paddingVertical', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       clicked: 'clicked',
     },
   });
-  InteractiveListCell[ɵNG_COMP_DEF] = _def;
+  (InteractiveListCell as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: ItemsPerPage,
     selector: 'ItemsPerPage',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <label class=\"qml-items-per-page\" [attr.data-size]=\"size()\" [class.disabled]=\"disabled()\">\n      <span>Exibir:</span>\n      <select [disabled]=\"disabled()\" [value]=\"pageSize()\" (change)=\"changeSize($event)\">\n        @for (option of options(); track option) { <option [value]=\"option\">{{ option }}</option> }\n      </select>\n    </label>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      pageSize: { publicName: 'pageSize', isSignal: true },
-      options: { publicName: 'options', isSignal: true },
-      disabled: { publicName: 'disabled', isSignal: true },
-      size: { publicName: 'size', isSignal: true },
+      options: { classPropertyName: 'options', publicName: 'options', isSignal: true, isRequired: false, transformFunction: null },
+      disabled: { classPropertyName: 'disabled', publicName: 'disabled', isSignal: true, isRequired: false, transformFunction: null },
+      size: { classPropertyName: 'size', publicName: 'size', isSignal: true, isRequired: false, transformFunction: null },
     },
-    outputs: {},
+    outputs: {
+      pageSizeChanged: 'pageSizeChanged',
+    },
   });
-  ItemsPerPage[ɵNG_COMP_DEF] = _def;
+  (ItemsPerPage as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: LineChart,
     selector: 'LineChart',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-line-chart\">\n      @if (title(); as t) { <div class=\"chart-title\">{{ t }}</div> }\n      <svg [attr.viewBox]=\"'0 0 ' + width() + ' ' + height()\" class=\"qml-line-svg\" (mouseleave)=\"hoverIndex.set(-1)\">\n        <defs>\n          <linearGradient id=\"line-fill\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n            <stop offset=\"0%\" stop-color=\"var(--ctp-mauve, #cba6f7)\" stop-opacity=\"0.35\"/>\n            <stop offset=\"100%\" stop-color=\"var(--ctp-mauve, #cba6f7)\" stop-opacity=\"0\"/>\n          </linearGradient>\n        </defs>\n        @for (g of gridLines(); track $index) {\n          <line [attr.x1]=\"padding().left\" [attr.x2]=\"width() - padding().right\"\n            [attr.y1]=\"g.y\" [attr.y2]=\"g.y\" stroke=\"var(--ctp-surface1, #45475a)\" stroke-width=\"1\" stroke-dasharray=\"2 4\"/>\n          <text [attr.x]=\"padding().left - 8\" [attr.y]=\"g.y + 4\" fill=\"var(--ctp-overlay0, #6e738d)\" font-size=\"10\" text-anchor=\"end\">{{ g.label }}</text>\n        }\n        <path [attr.d]=\"fillPath()\" fill=\"url(#line-fill)\" stroke=\"none\"/>\n        <path [attr.d]=\"linePath()\" fill=\"none\" stroke=\"var(--ctp-mauve, #cba6f7)\" stroke-width=\"2.5\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n        @for (p of points(); track $index; let i = $index) {\n          <g>\n            <circle [attr.cx]=\"p.x\" [attr.cy]=\"p.y\" r=\"3\" fill=\"var(--ctp-mauve, #cba6f7)\"/>\n            <rect [attr.x]=\"p.x - 18\" [attr.y]=\"padding().top\" width=\"36\" [attr.height]=\"height() - padding().top - padding().bottom\"\n              fill=\"transparent\" (mouseenter)=\"hoverIndex.set(i)\"/>\n            <text [attr.x]=\"p.x\" [attr.y]=\"height() - 8\" fill=\"var(--ctp-subtext0, #a6adc8)\" font-size=\"11\" text-anchor=\"middle\">{{ p.label }}</text>\n          </g>\n        }\n        @if (hoverIndex() >= 0 && hoverPoint(); as hp) {\n          <g>\n            <circle [attr.cx]=\"hp.x\" [attr.cy]=\"hp.y\" r=\"6\" fill=\"var(--ctp-mauve, #cba6f7)\" stroke=\"var(--ctp-base, #1e1e2e)\" stroke-width=\"2\"/>\n            <g [attr.transform]=\"'translate(' + (hp.x + 12) + ',' + (hp.y - 12) + ')'\">\n              <rect x=\"0\" y=\"-12\" width=\"68\" height=\"34\" rx=\"6\" fill=\"var(--ctp-crust, #11111b)\" stroke=\"var(--ctp-surface1, #45475a)\"/>\n              <text x=\"34\" y=\"6\" fill=\"var(--ctp-text, #cdd6f4)\" font-size=\"11\" text-anchor=\"middle\">{{ hp.label }}: {{ hp.value }}</text>\n            </g>\n          </g>\n        }\n      </svg>\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      chartData: { publicName: 'chartData', isSignal: true },
-      lineColor: { publicName: 'lineColor', isSignal: true },
-      fillArea: { publicName: 'fillArea', isSignal: true },
-      maxValue: { publicName: 'maxValue', isSignal: true },
-      gridLines: { publicName: 'gridLines', isSignal: true },
-      smooth: { publicName: 'smooth', isSignal: true },
-      animated: { publicName: 'animated', isSignal: true },
-      drawProgress: { publicName: 'drawProgress', isSignal: true },
-      hoverIndex: { publicName: 'hoverIndex', isSignal: true },
+      data: { classPropertyName: 'data', publicName: 'data', isSignal: true, isRequired: false, transformFunction: null },
+      title: { classPropertyName: 'title', publicName: 'title', isSignal: true, isRequired: false, transformFunction: null },
+      width: { classPropertyName: 'width', publicName: 'width', isSignal: true, isRequired: false, transformFunction: null },
+      height: { classPropertyName: 'height', publicName: 'height', isSignal: true, isRequired: false, transformFunction: null },
+      padding: { classPropertyName: 'padding', publicName: 'padding', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  LineChart[ɵNG_COMP_DEF] = _def;
+  (LineChart as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: MediaQuery,
     selector: 'MediaQuery',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
     template: "<ng-content></ng-content>",
     host: undefined,
     styles: [],
-    inputs: {
-      windowWidth: { publicName: 'windowWidth', isSignal: true },
-      windowHeight: { publicName: 'windowHeight', isSignal: true },
-      breakpoints: { publicName: 'breakpoints', isSignal: true },
-    },
+    inputs: {},
     outputs: {},
   });
-  MediaQuery[ɵNG_COMP_DEF] = _def;
+  (MediaQuery as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: MochaLogo,
     selector: 'MochaLogo',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <svg class=\"qml-mocha-logo\" [attr.width]=\"size()\" [attr.height]=\"finalHeight()\"\n      [attr.viewBox]=\"'0 0 116.25877 133.19615'\" xmlns=\"http://www.w3.org/2000/svg\"\n      preserveAspectRatio=\"xMidYMid meet\" [innerHTML]=\"pathContent()\" aria-hidden=\"true\"></svg>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      size: { publicName: 'size', isSignal: true },
-      color: { publicName: 'color', isSignal: true },
+      size: { classPropertyName: 'size', publicName: 'size', isSignal: true, isRequired: false, transformFunction: null },
+      color: { classPropertyName: 'color', publicName: 'color', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  MochaLogo[ɵNG_COMP_DEF] = _def;
+  (MochaLogo as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: MochaMap,
     selector: 'MochaMap',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-mocha-map\" [class]=\"layout()\" [style.gap.px]=\"spacing()\">\n      @for (item of itemsArray(); track $index; let idx = $index) {\n        <div class=\"qml-mocha-map-item\" [attr.data-index]=\"idx\">\n          <ng-container *ngTemplateOutlet=\"itemTpl; context: { $implicit: item, index: idx }\"></ng-container>\n        </div>\n      }\n    </div>\n    <ng-template #itemTpl let-item let-i=\"index\">\n      <ng-content></ng-content>\n    </ng-template>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      items: { publicName: 'items', isSignal: true },
-      delegate: { publicName: 'delegate', isSignal: true },
-      spacing: { publicName: 'spacing', isSignal: true },
-      orientation: { publicName: 'orientation', isSignal: true },
-      modelData: { publicName: 'modelData', isSignal: true },
-      index: { publicName: 'index', isSignal: true },
+      items: { classPropertyName: 'items', publicName: 'items', isSignal: true, isRequired: false, transformFunction: null },
+      delegate: { classPropertyName: 'delegate', publicName: 'delegate', isSignal: true, isRequired: false, transformFunction: null },
+      spacing: { classPropertyName: 'spacing', publicName: 'spacing', isSignal: true, isRequired: false, transformFunction: null },
+      orientation: { classPropertyName: 'orientation', publicName: 'orientation', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  MochaMap[ɵNG_COMP_DEF] = _def;
+  (MochaMap as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Modal,
     selector: 'Modal',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "\n    @if (open()) {\n      <div class=\"qml-modal-overlay\" (click)=\"onBackdropClick($event)\">\n        <div class=\"qml-modal-container\" [style.width.px]=\"finalWidth\" [style.max-height.px]=\"finalMaxHeight\" (click)=\"$event.stopPropagation()\">\n          @if (showCloseButton()) {\n            <button class=\"qml-modal-close\" (click)=\"onClose()\">&times;</button>\n          }\n          @if (title() || subtitle()) {\n            <div class=\"qml-modal-header\">\n              @if (title(); as t) { <h2 class=\"qml-modal-title\">{{ t }}</h2> }\n              @if (subtitle(); as s) { <p class=\"qml-modal-subtitle\">{{ s }}</p> }\n            </div>\n          }\n          <div class=\"qml-modal-body\">\n            <ng-content></ng-content>\n          </div>\n          <div class=\"qml-modal-footer\">\n            <ng-content select=\"[footer]\"></ng-content>\n          </div>\n        </div>\n      </div>\n    }\n  ",
+    template: "\n    @if (open()) {\n      <div class=\"qml-modal-overlay\" (click)=\"onBackdropClick($event)\">\n        <div class=\"qml-modal-container\"\n          [style.width.px]=\"finalWidth()\"\n          [style.height.px]=\"finalHeight()\"\n          [style.max-height.px]=\"finalMaxHeight()\"\n          (click)=\"$event.stopPropagation()\">\n          @if (showCloseButton()) {\n            <button class=\"qml-modal-close\" type=\"button\" (click)=\"onClose()\" aria-label=\"Fechar\">\n              <span [innerHTML]=\"iconSvg('x', 18)\"></span>\n            </button>\n          }\n          @if (hasHeader()) {\n            <div class=\"qml-modal-header\">\n              <div class=\"qml-modal-head-text\">\n                @if (title()) { <h2 class=\"qml-modal-title\">{{ title() }}</h2> }\n                @if (subtitle()) { <p class=\"qml-modal-subtitle\">{{ subtitle() }}</p> }\n              </div>\n            </div>\n          }\n          @if (hasHeader() && hasBody()) {\n            <div class=\"qml-modal-divider\"></div>\n          }\n          <div class=\"qml-modal-body\">\n            <ng-content></ng-content>\n          </div>\n          @if (hasFooter()) {\n            <div class=\"qml-modal-divider\"></div>\n            <div class=\"qml-modal-footer\">\n              <ng-content select=\"[footer]\"></ng-content>\n            </div>\n          }\n        </div>\n      </div>\n    }\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      title: { publicName: 'title', isSignal: true },
-      subtitle: { publicName: 'subtitle', isSignal: true },
-      size: { publicName: 'size', isSignal: true },
-      customWidth: { publicName: 'customWidth', isSignal: true },
-      customHeight: { publicName: 'customHeight', isSignal: true },
-      minHeight: { publicName: 'minHeight', isSignal: true },
-      closeOnBackdropClick: { publicName: 'closeOnBackdropClick', isSignal: true },
-      closeOnEscape: { publicName: 'closeOnEscape', isSignal: true },
-      showCloseButton: { publicName: 'showCloseButton', isSignal: true },
-      usePortal: { publicName: 'usePortal', isSignal: true },
+      title: { classPropertyName: 'title', publicName: 'title', isSignal: true, isRequired: false, transformFunction: null },
+      size: { classPropertyName: 'size', publicName: 'size', isSignal: true, isRequired: false, transformFunction: null },
+      customWidth: { classPropertyName: 'customWidth', publicName: 'customWidth', isSignal: true, isRequired: false, transformFunction: null },
+      minBodyHeight: { classPropertyName: 'minBodyHeight', publicName: 'minBodyHeight', isSignal: true, isRequired: false, transformFunction: null },
+      maxHeight: { classPropertyName: 'maxHeight', publicName: 'maxHeight', isSignal: true, isRequired: false, transformFunction: null },
+      closeOnBackdropClick: { classPropertyName: 'closeOnBackdropClick', publicName: 'closeOnBackdropClick', isSignal: true, isRequired: false, transformFunction: null },
+      closeOnEscape: { classPropertyName: 'closeOnEscape', publicName: 'closeOnEscape', isSignal: true, isRequired: false, transformFunction: null },
+      showCloseButton: { classPropertyName: 'showCloseButton', publicName: 'showCloseButton', isSignal: true, isRequired: false, transformFunction: null },
+      hasFooter: { classPropertyName: 'hasFooter', publicName: 'hasFooter', isSignal: true, isRequired: false, transformFunction: null },
+      viewportHeight: { classPropertyName: 'viewportHeight', publicName: 'viewportHeight', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       accepted: 'accepted',
-      rejected: 'rejected',
       opened: 'opened',
-      closed: 'closed',
     },
   });
-  Modal[ɵNG_COMP_DEF] = _def;
+  (Modal as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: NavigationBar,
     selector: 'NavigationBar',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <nav class=\"qml-navigation-bar\" [class]=\"'qml-navigation-bar ' + variant()\" [class.light]=\"!darkMode()\" [style.--qml-nav-accent]=\"highlightColor()\">\n      <div class=\"qml-navigation-items\">\n        @for (item of items(); track $index; let i = $index) {\n          <button class=\"qml-navigation-item\" [class.active]=\"i === currentIndex()\" type=\"button\" (click)=\"select(i)\">\n            <span class=\"icon-wrap\"><qml-icon [name]=\"item.iconName\" size=\"24\" /></span><span class=\"label\">{{ item.label }}</span>\n          </button>\n        }\n        <ng-content></ng-content>\n      </div>\n    </nav>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      variant: { publicName: 'variant', isSignal: true },
-      currentIndex: { publicName: 'currentIndex', isSignal: true },
-      highlightColor: { publicName: 'highlightColor', isSignal: true },
-      darkMode: { publicName: 'darkMode', isSignal: true },
-      itemsList: { publicName: 'itemsList', isSignal: true },
+      variant: { classPropertyName: 'variant', publicName: 'variant', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  NavigationBar[ɵNG_COMP_DEF] = _def;
+  (NavigationBar as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: NavigationItem,
     selector: 'NavigationItem',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <button class=\"qml-navigation-item\" [class.active]=\"isActive()\" [class]=\"'qml-navigation-item ' + variant() + (isActive() ? ' active' : '')\" type=\"button\" (click)=\"clicked.emit()\">\n      <span class=\"icon-wrap\"><qml-icon [name]=\"iconName()\" size=\"24\" /></span><span class=\"label\">{{ label() }}</span>\n    </button>\n  ",
     host: undefined,
     styles: [],
-    inputs: {
-      iconName: { publicName: 'iconName', isSignal: true },
-      label: { publicName: 'label', isSignal: true },
-      expandingProgress: { publicName: 'expandingProgress', isSignal: true },
-    },
+    inputs: {},
     outputs: {},
   });
-  NavigationItem[ɵNG_COMP_DEF] = _def;
+  (NavigationItem as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: P,
     selector: 'P',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "\n    {{ text() }}\n    <ng-content></ng-content>",
+    template: "<p class=\"text text-body\"><ng-content></ng-content></p>",
     host: undefined,
     styles: [],
     inputs: {},
     outputs: {},
   });
-  P[ɵNG_COMP_DEF] = _def;
+  (P as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Paginator,
     selector: 'Paginator',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
-    host: ({
-    '[attr.data-qml-component]': '"paginator"',
-  }),
+    template: "\n    <div class=\"qml-paginator\" [class.disabled]=\"disabled()\">\n      <button class=\"qml-page outline\" [disabled]=\"disabled() || currentPage() <= 1\" (click)=\"move(-1)\" aria-label=\"Página anterior\"><qml-icon name=\"chevron-left\" size=\"16\" /></button>\n      <div class=\"qml-pages\" [class.animate]=\"animating()\">\n        @for (page of pages(); track $index) {\n          @if (page === '...') { <span class=\"ellipsis\">...</span> }\n          @else { <button class=\"qml-page\" [class.active]=\"page === currentPage()\" [disabled]=\"disabled()\" (click)=\"go(page)\">{{ page }}</button> }\n        }\n      </div>\n      @if (showGoToPage()) { <input #jump class=\"qml-jump\" [class.error]=\"invalid()\" type=\"number\" placeholder=\"Ir\" [disabled]=\"disabled()\" (input)=\"jumpValue.set(jump.value)\" (keydown.enter)=\"confirm()\" /> }\n      <button class=\"qml-page outline\" [class.confirm]=\"confirmState()\" [disabled]=\"disabled() || (!confirmState() && currentPage() >= totalPages())\" (click)=\"confirmState() ? confirm() : move(1)\" aria-label=\"Próxima página\">\n        <qml-icon [name]=\"confirmState() ? 'check' : 'chevron-right'\" size=\"16\" />\n      </button>\n    </div>\n  ",
+    host: undefined,
     styles: [],
-    inputs: {
-      currentPage: { publicName: 'currentPage', isSignal: true },
-      totalPages: { publicName: 'totalPages', isSignal: true },
-      showGoToPage: { publicName: 'showGoToPage', isSignal: true },
-      disabled: { publicName: 'disabled', isSignal: true },
-      suppressPageChangeAnim: { publicName: 'suppressPageChangeAnim', isSignal: true },
-      previousPage: { publicName: 'previousPage', isSignal: true },
-      pageDirection: { publicName: 'pageDirection', isSignal: true },
-    },
+    inputs: {},
     outputs: {
       pageChanged: 'pageChanged',
     },
   });
-  // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
+  (Paginator as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Particles,
     selector: 'Particles',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "<div class=\"particles\">@for (particle of particles(); track $index) {<span [style]=\"particle\"></span>}</div>",
     host: undefined,
     styles: [],
-    inputs: {
-      count: { publicName: 'count', isSignal: true },
-      color: { publicName: 'color', isSignal: true },
-      minSize: { publicName: 'minSize', isSignal: true },
-      maxSize: { publicName: 'maxSize', isSignal: true },
-      duration: { publicName: 'duration', isSignal: true },
-      spread: { publicName: 'spread', isSignal: true },
-      running: { publicName: 'running', isSignal: true },
-      size: { publicName: 'size', isSignal: true },
-      startX: { publicName: 'startX', isSignal: true },
-      startY: { publicName: 'startY', isSignal: true },
-      endX: { publicName: 'endX', isSignal: true },
-      endY: { publicName: 'endY', isSignal: true },
-      randomDelay: { publicName: 'randomDelay', isSignal: true },
-      randomDuration: { publicName: 'randomDuration', isSignal: true },
-    },
+    inputs: {},
     outputs: {},
   });
-  Particles[ɵNG_COMP_DEF] = _def;
+  (Particles as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: PieChart,
     selector: 'PieChart',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-pie-chart\">\n      @if (title(); as t) { <div class=\"chart-title\">{{ t }}</div> }\n      <div class=\"qml-pie-content\">\n        <svg [attr.viewBox]=\"'0 0 ' + size() + ' ' + size()\" class=\"qml-pie-svg\">\n          @for (s of slices(); track $index) {\n            <path [attr.d]=\"s.path\" [attr.fill]=\"s.color\" stroke=\"var(--ctp-surface0, #313244)\" stroke-width=\"2\"/>\n          }\n          @if (donut()) {\n            <circle [attr.cx]=\"size() / 2\" [attr.cy]=\"size() / 2\" [attr.r]=\"size() / 4\"\n              fill=\"var(--ctp-surface0, #313244)\"/>\n            @if (centerValue()) {\n              <text [attr.x]=\"size() / 2\" [attr.y]=\"size() / 2 + 4\" fill=\"var(--ctp-text, #cdd6f4)\"\n                font-size=\"16\" font-weight=\"700\" text-anchor=\"middle\">{{ centerValue() }}</text>\n            }\n          }\n        </svg>\n        <ul class=\"qml-pie-legend\">\n          @for (s of slices(); track $index) {\n            <li class=\"qml-pie-legend-item\">\n              <span class=\"qml-pie-legend-color\" [style.background]=\"s.color\"></span>\n              <span class=\"qml-pie-legend-label\">{{ s.label }}</span>\n              <span class=\"qml-pie-legend-value\">{{ s.percent }}%</span>\n            </li>\n          }\n        </ul>\n      </div>\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      chartData: { publicName: 'chartData', isSignal: true },
-      colors: { publicName: 'colors', isSignal: true },
-      animated: { publicName: 'animated', isSignal: true },
-      donutRatio: { publicName: 'donutRatio', isSignal: true },
-      drawProgress: { publicName: 'drawProgress', isSignal: true },
-      hoverIndex: { publicName: 'hoverIndex', isSignal: true },
+      data: { classPropertyName: 'data', publicName: 'data', isSignal: true, isRequired: false, transformFunction: null },
+      title: { classPropertyName: 'title', publicName: 'title', isSignal: true, isRequired: false, transformFunction: null },
+      size: { classPropertyName: 'size', publicName: 'size', isSignal: true, isRequired: false, transformFunction: null },
+      donut: { classPropertyName: 'donut', publicName: 'donut', isSignal: true, isRequired: false, transformFunction: null },
+      centerValue: { classPropertyName: 'centerValue', publicName: 'centerValue', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  PieChart[ɵNG_COMP_DEF] = _def;
+  (PieChart as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: PinInput,
     selector: 'PinInput',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-pin-input\" [attr.data-size]=\"size()\" [class.disabled]=\"disabled()\">\n      @if (label(); as lbl) { <label class=\"qml-pin-input-label\">{{ lbl }}</label> }\n      <input #hiddenInput type=\"text\" inputmode=\"numeric\" [value]=\"value()\" (input)=\"onInput($event)\" [maxlength]=\"length()\"\n        [disabled]=\"disabled()\" class=\"qml-pin-hidden\" autocomplete=\"one-time-code\" />\n      <div class=\"qml-pin-slots\" (click)=\"focusHidden()\">\n        @for (char of slots(); track $index; let i = $index) {\n          <span class=\"qml-pin-slot\" [class.filled]=\"!!char\" [class.active]=\"i === value().length && focused()\">\n            {{ char || '' }}@if (!char && i === value().length && focused()) { <span class=\"qml-pin-cursor\"></span> }\n          </span>\n        }\n      </div>\n      @if (errorText(); as err) { <p class=\"qml-pin-input-error\">{{ err }}</p> }\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      length: { publicName: 'length', isSignal: true },
-      text: { publicName: 'text', isSignal: true },
-      type: { publicName: 'type', isSignal: true },
-      mask: { publicName: 'mask', isSignal: true },
-      status: { publicName: 'status', isSignal: true },
-      disabled: { publicName: 'disabled', isSignal: true },
-      size: { publicName: 'size', isSignal: true },
-      spacing: { publicName: 'spacing', isSignal: true },
-      errorText: { publicName: 'errorText', isSignal: true },
-      isInvalid: { publicName: 'isInvalid', isSignal: true },
-      isHovered: { publicName: 'isHovered', isSignal: true },
+      length: { classPropertyName: 'length', publicName: 'length', isSignal: true, isRequired: false, transformFunction: null },
+      label: { classPropertyName: 'label', publicName: 'label', isSignal: true, isRequired: false, transformFunction: null },
+      size: { classPropertyName: 'size', publicName: 'size', isSignal: true, isRequired: false, transformFunction: null },
+      disabled: { classPropertyName: 'disabled', publicName: 'disabled', isSignal: true, isRequired: false, transformFunction: null },
+      errorText: { classPropertyName: 'errorText', publicName: 'errorText', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       completed: 'completed',
-      accepted: 'accepted',
-      textEdited: 'textEdited',
     },
   });
-  PinInput[ɵNG_COMP_DEF] = _def;
+  (PinInput as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Popover,
     selector: 'Popover',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
-    host: ({
-    '[attr.data-qml-component]': '"popover"',
-  }),
+    template: "\n    @if (isOpen()) {\n      <div class=\"qml-popover-backdrop\" (click)=\"close()\"></div>\n      <div class=\"qml-popover-panel\" [style.left.px]=\"panelX()\" [style.top.px]=\"panelY()\"\n        [attr.data-placement]=\"actualPlacement()\">\n        <ng-content select=\"[content]\"></ng-content>\n        @if (!hasContent()) { <ng-content></ng-content> }\n      </div>\n    }\n  ",
+    host: undefined,
     styles: [],
     inputs: {
-      placement: { publicName: 'placement', isSignal: true },
-      isOpen: { publicName: 'isOpen', isSignal: true },
-      disabled: { publicName: 'disabled', isSignal: true },
+      placement: { classPropertyName: 'placement', publicName: 'placement', isSignal: true, isRequired: false, transformFunction: null },
+      disabled: { classPropertyName: 'disabled', publicName: 'disabled', isSignal: true, isRequired: false, transformFunction: null },
+      hasContent: { classPropertyName: 'hasContent', publicName: 'hasContent', isSignal: true, isRequired: false, transformFunction: null },
+      offset: { classPropertyName: 'offset', publicName: 'offset', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
+  (Popover as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: ProgressBar,
     selector: 'ProgressBar',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
-    host: ({
-    '[attr.data-qml-component]': '"progressbar"',
-  }),
+    template: "\n    <div class=\"qml-progress\" [attr.data-size]=\"size()\" [attr.data-color]=\"color()\" [attr.data-state]=\"state()\" [class.indeterminate]=\"indeterminate()\">\n      @if (label(); as lbl) {\n        <div class=\"qml-progress-label-group\">\n          <span class=\"qml-progress-label\">{{ lbl }}</span>\n          @if (!indeterminate()) { <span class=\"qml-progress-value\">{{ percentDisplay() }}%</span> }\n        </div>\n      }\n      <div class=\"qml-progress-track\">\n        <div class=\"qml-progress-fill\" [style.width.%]=\"indeterminate() ? null : percentDisplay()\"></div>\n      </div>\n    </div>\n  ",
+    host: undefined,
     styles: [],
     inputs: {
-      value: { publicName: 'value', isSignal: true },
-      label: { publicName: 'label', isSignal: true },
-      variant: { publicName: 'variant', isSignal: true },
-      showLabel: { publicName: 'showLabel', isSignal: true },
-      indeterminate: { publicName: 'indeterminate', isSignal: true },
-      pill: { publicName: 'pill', isSignal: true },
-      customColor: { publicName: 'customColor', isSignal: true },
-      customHeight: { publicName: 'customHeight', isSignal: true },
+      value: { classPropertyName: 'value', publicName: 'value', isSignal: true, isRequired: false, transformFunction: null },
+      max: { classPropertyName: 'max', publicName: 'max', isSignal: true, isRequired: false, transformFunction: null },
+      label: { classPropertyName: 'label', publicName: 'label', isSignal: true, isRequired: false, transformFunction: null },
+      size: { classPropertyName: 'size', publicName: 'size', isSignal: true, isRequired: false, transformFunction: null },
+      color: { classPropertyName: 'color', publicName: 'color', isSignal: true, isRequired: false, transformFunction: null },
+      state: { classPropertyName: 'state', publicName: 'state', isSignal: true, isRequired: false, transformFunction: null },
+      indeterminate: { classPropertyName: 'indeterminate', publicName: 'indeterminate', isSignal: true, isRequired: false, transformFunction: null },
+      showValue: { classPropertyName: 'showValue', publicName: 'showValue', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
+  (ProgressBar as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: RadarChart,
     selector: 'RadarChart',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-radar\">\n      @if (title(); as t) { <div class=\"chart-title\">{{ t }}</div> }\n      <svg [attr.viewBox]=\"'0 0 ' + size() + ' ' + size()\" class=\"qml-radar-svg\">\n        @for (ring of rings(); track $index) {\n          <polygon [attr.points]=\"ring.points\" fill=\"none\"\n            [attr.stroke]=\"$index === rings().length - 1 ? 'var(--ctp-overlay0, #6e738d)' : 'var(--ctp-surface1, #45475a)'\"\n            [attr.stroke-width]=\"$index === rings().length - 1 ? 1.5 : 1\"/>\n        }\n        @for (axis of axes(); track $index) {\n          <line [attr.x1]=\"cx()\" [attr.y1]=\"cy()\" [attr.x2]=\"axis.x\" [attr.y2]=\"axis.y\"\n            stroke=\"var(--ctp-surface1, #45475a)\" stroke-width=\"1\"/>\n          <text [attr.x]=\"axis.lx\" [attr.y]=\"axis.ly\" [attr.text-anchor]=\"axis.anchor\" fill=\"var(--ctp-subtext0, #a6adc8)\" font-size=\"11\">{{ axis.label }}</text>\n        }\n        <polygon [attr.points]=\"dataPoints()\" fill=\"var(--ctp-mauve, #cba6f7)\" fill-opacity=\"0.25\"\n          stroke=\"var(--ctp-mauve, #cba6f7)\" stroke-width=\"2\"/>\n        @for (p of dataPointsAsList(); track $index) {\n          <circle [attr.cx]=\"p.x\" [attr.cy]=\"p.y\" r=\"4\" fill=\"var(--ctp-mauve, #cba6f7)\"/>\n        }\n      </svg>\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      chartData: { publicName: 'chartData', isSignal: true },
-      color: { publicName: 'color', isSignal: true },
-      maxValue: { publicName: 'maxValue', isSignal: true },
-      levels: { publicName: 'levels', isSignal: true },
-      animated: { publicName: 'animated', isSignal: true },
-      drawProgress: { publicName: 'drawProgress', isSignal: true },
+      data: { classPropertyName: 'data', publicName: 'data', isSignal: true, isRequired: false, transformFunction: null },
+      title: { classPropertyName: 'title', publicName: 'title', isSignal: true, isRequired: false, transformFunction: null },
+      size: { classPropertyName: 'size', publicName: 'size', isSignal: true, isRequired: false, transformFunction: null },
+      max: { classPropertyName: 'max', publicName: 'max', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  RadarChart[ɵNG_COMP_DEF] = _def;
+  (RadarChart as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: RadioButton,
     selector: 'RadioButton',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <label class=\"qml-radio\" [class.disabled]=\"disabled()\" [class.checked]=\"checked()\" [attr.data-size]=\"size()\">\n      <input type=\"radio\" [checked]=\"checked()\" [disabled]=\"disabled()\" [name]=\"name()\" [value]=\"value()\"\n        (change)=\"onChange()\" (keydown.enter)=\"onChange()\" (keydown.space)=\"$event.preventDefault(); onChange()\" />\n      <span class=\"qml-radio-circle\"><span class=\"qml-radio-dot\"></span></span>\n      @if (label(); as lbl) { <span class=\"qml-radio-label\">{{ lbl }}</span> }\n    </label>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      label: { publicName: 'label', isSignal: true },
-      value: { publicName: 'value', isSignal: true },
-      size: { publicName: 'size', isSignal: true },
-      checked: { publicName: 'checked', isSignal: true },
-      disabled: { publicName: 'disabled', isSignal: true },
+      label: { classPropertyName: 'label', publicName: 'label', isSignal: true, isRequired: false, transformFunction: null },
+      value: { classPropertyName: 'value', publicName: 'value', isSignal: true, isRequired: false, transformFunction: null },
+      name: { classPropertyName: 'name', publicName: 'name', isSignal: true, isRequired: false, transformFunction: null },
+      size: { classPropertyName: 'size', publicName: 'size', isSignal: true, isRequired: false, transformFunction: null },
+      color: { classPropertyName: 'color', publicName: 'color', isSignal: true, isRequired: false, transformFunction: null },
+      disabled: { classPropertyName: 'disabled', publicName: 'disabled', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
-      clicked: 'clicked',
+      selected: 'selected',
     },
   });
-  RadioButton[ɵNG_COMP_DEF] = _def;
+  (RadioButton as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: RadioGroup,
     selector: 'RadioGroup',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-radio-group\" [attr.data-orientation]=\"orientation()\" role=\"radiogroup\">\n      @if (label(); as lbl) { <label class=\"qml-radio-group-label\">{{ lbl }}</label> }\n      <div class=\"qml-radio-group-list\">\n        <ng-content></ng-content>\n      </div>\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      selectedValue: { publicName: 'selectedValue', isSignal: true },
-      direction: { publicName: 'direction', isSignal: true },
-      spacing: { publicName: 'spacing', isSignal: true },
+      label: { classPropertyName: 'label', publicName: 'label', isSignal: true, isRequired: false, transformFunction: null },
+      orientation: { classPropertyName: 'orientation', publicName: 'orientation', isSignal: true, isRequired: false, transformFunction: null },
     },
-    outputs: {},
+    outputs: {
+      changed: 'changed',
+    },
   });
-  RadioGroup[ɵNG_COMP_DEF] = _def;
+  (RadioGroup as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: RangeSelector,
     selector: 'RangeSelector',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-range\" [class.disabled]=\"disabled()\" [attr.data-size]=\"size()\">\n      @if (label(); as lbl) {\n        <div class=\"qml-range-header\">\n          <span class=\"qml-range-label\">{{ lbl }}</span>\n          <span class=\"qml-range-value\">{{ minValue() }} – {{ maxValue() }}</span>\n        </div>\n      }\n      <div class=\"qml-range-track-wrap\" #wrap>\n        <div class=\"qml-range-track\"></div>\n        <div class=\"qml-range-fill\" [style.left.%]=\"leftPct()\" [style.right.%]=\"rightPct()\"></div>\n        <button type=\"button\" class=\"qml-range-thumb\" [style.left.%]=\"leftPct()\" (pointerdown)=\"onDragStart($event, 'min')\" [attr.aria-label]=\"'Min: ' + minValue()\">\n          @if (showTooltip()) { <span class=\"qml-range-tooltip\">{{ minValue() }}</span> }\n        </button>\n        <button type=\"button\" class=\"qml-range-thumb\" [style.left.%]=\"rightPct()\" (pointerdown)=\"onDragStart($event, 'max')\" [attr.aria-label]=\"'Max: ' + maxValue()\">\n          @if (showTooltip()) { <span class=\"qml-range-tooltip\">{{ maxValue() }}</span> }\n        </button>\n      </div>\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      min: { publicName: 'min', isSignal: true },
-      max: { publicName: 'max', isSignal: true },
-      firstValue: { publicName: 'firstValue', isSignal: true },
-      secondValue: { publicName: 'secondValue', isSignal: true },
-      step: { publicName: 'step', isSignal: true },
-      disabled: { publicName: 'disabled', isSignal: true },
-      showFirstThumb: { publicName: 'showFirstThumb', isSignal: true },
-      onChange: { publicName: 'onChange', isSignal: true },
-      activeThumb: { publicName: 'activeThumb', isSignal: true },
+      min: { classPropertyName: 'min', publicName: 'min', isSignal: true, isRequired: false, transformFunction: null },
+      max: { classPropertyName: 'max', publicName: 'max', isSignal: true, isRequired: false, transformFunction: null },
+      step: { classPropertyName: 'step', publicName: 'step', isSignal: true, isRequired: false, transformFunction: null },
+      label: { classPropertyName: 'label', publicName: 'label', isSignal: true, isRequired: false, transformFunction: null },
+      size: { classPropertyName: 'size', publicName: 'size', isSignal: true, isRequired: false, transformFunction: null },
+      disabled: { classPropertyName: 'disabled', publicName: 'disabled', isSignal: true, isRequired: false, transformFunction: null },
+      showTooltip: { classPropertyName: 'showTooltip', publicName: 'showTooltip', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
-      valuesChanged: 'valuesChanged',
+      changed: 'changed',
     },
   });
-  RangeSelector[ɵNG_COMP_DEF] = _def;
+  (RangeSelector as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Route,
     selector: 'Route',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
     template: "<ng-content></ng-content>",
     host: undefined,
     styles: [],
     inputs: {
-      path: { publicName: 'path', isSignal: true },
-      source: { publicName: 'source', isSignal: true },
-      view: { publicName: 'view', isSignal: true },
-      title: { publicName: 'title', isSignal: true },
-      canActivate: { publicName: 'canActivate', isSignal: true },
-      canDeactivate: { publicName: 'canDeactivate', isSignal: true },
-      guardRedirect: { publicName: 'guardRedirect', isSignal: true },
+      path: { classPropertyName: 'path', publicName: 'path', isSignal: true, isRequired: false, transformFunction: null },
+      source: { classPropertyName: 'source', publicName: 'source', isSignal: true, isRequired: false, transformFunction: null },
+      view: { classPropertyName: 'view', publicName: 'view', isSignal: true, isRequired: false, transformFunction: null },
+      title: { classPropertyName: 'title', publicName: 'title', isSignal: true, isRequired: false, transformFunction: null },
+      canActivate: { classPropertyName: 'canActivate', publicName: 'canActivate', isSignal: true, isRequired: false, transformFunction: null },
+      canDeactivate: { classPropertyName: 'canDeactivate', publicName: 'canDeactivate', isSignal: true, isRequired: false, transformFunction: null },
+      guardRedirect: { classPropertyName: 'guardRedirect', publicName: 'guardRedirect', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  Route[ɵNG_COMP_DEF] = _def;
+  (Route as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Router,
     selector: 'Router',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-router\" [style.opacity]=\"loaderOpacity()\"\n      [style.transition]=\"'opacity ' + (transitionDuration() / 2) + 'ms ease'\">\n      <ng-container #routeHost></ng-container>\n      @if (!_hasView()) {\n        <div class=\"qml-router-empty\">\n          <span>404 — Rota não encontrada</span>\n        </div>\n      }\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      initialRoute: { publicName: 'initialRoute', isSignal: true },
-      transitionDuration: { publicName: 'transitionDuration', isSignal: true },
-      notFoundComponent: { publicName: 'notFoundComponent', isSignal: true },
-      onRouteLeave: { publicName: 'onRouteLeave', isSignal: true },
-      onRouteEnter: { publicName: 'onRouteEnter', isSignal: true },
-      params: { publicName: 'params', isSignal: true },
-      router: { publicName: 'router', isSignal: true },
+      initialRoute: { classPropertyName: 'initialRoute', publicName: 'initialRoute', isSignal: true, isRequired: false, transformFunction: null },
+      transitionDuration: { classPropertyName: 'transitionDuration', publicName: 'transitionDuration', isSignal: true, isRequired: false, transformFunction: null },
+      notFoundComponent: { classPropertyName: 'notFoundComponent', publicName: 'notFoundComponent', isSignal: true, isRequired: false, transformFunction: null },
+      onRouteLeave: { classPropertyName: 'onRouteLeave', publicName: 'onRouteLeave', isSignal: true, isRequired: false, transformFunction: null },
+      onRouteEnter: { classPropertyName: 'onRouteEnter', publicName: 'onRouteEnter', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       navigationStarted: 'navigationStarted',
@@ -2035,64 +1743,96 @@ import { ZoomIn } from './components/ZoomIn';
       navigationBlocked: 'navigationBlocked',
     },
   });
-  Router[ɵNG_COMP_DEF] = _def;
+  (Router as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: RouterLink,
     selector: 'RouterLink',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <a class=\"qml-router-link\"\n      [class.is-active]=\"isActive()\"\n      [class.is-hovered]=\"_hovered()\"\n      [style.color]=\"currentColor()\"\n      [attr.href]=\"href()\"\n      (click)=\"onClick($event)\"\n      (mouseenter)=\"_hovered.set(true)\"\n      (mouseleave)=\"_hovered.set(false)\">\n      @if (text() || icon()) {\n        <span class=\"qml-router-link-inner\">\n          @if (icon()) { <span class=\"qml-router-link-icon\" aria-hidden=\"true\">{{ icon() }}</span> }\n          @if (text()) { <span class=\"qml-router-link-text\">{{ text() }}</span> }\n        </span>\n      }\n      <ng-content></ng-content>\n    </a>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      to: { publicName: 'to', isSignal: true },
-      params: { publicName: 'params', isSignal: true },
-      router: { publicName: 'router', isSignal: true },
-      action: { publicName: 'action', isSignal: true },
-      text: { publicName: 'text', isSignal: true },
-      icon: { publicName: 'icon', isSignal: true },
-      activeColor: { publicName: 'activeColor', isSignal: true },
-      inactiveColor: { publicName: 'inactiveColor', isSignal: true },
+      to: { classPropertyName: 'to', publicName: 'to', isSignal: true, isRequired: false, transformFunction: null },
+      params: { classPropertyName: 'params', publicName: 'params', isSignal: true, isRequired: false, transformFunction: null },
+      router: { classPropertyName: 'router', publicName: 'router', isSignal: true, isRequired: false, transformFunction: null },
+      action: { classPropertyName: 'action', publicName: 'action', isSignal: true, isRequired: false, transformFunction: null },
+      text: { classPropertyName: 'text', publicName: 'text', isSignal: true, isRequired: false, transformFunction: null },
+      icon: { classPropertyName: 'icon', publicName: 'icon', isSignal: true, isRequired: false, transformFunction: null },
+      activeColor: { classPropertyName: 'activeColor', publicName: 'activeColor', isSignal: true, isRequired: false, transformFunction: null },
+      inactiveColor: { classPropertyName: 'inactiveColor', publicName: 'inactiveColor', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  RouterLink[ɵNG_COMP_DEF] = _def;
+  (RouterLink as any)[ɵNG_COMP_DEF] = _def;
+}
+
+{
+  const _def = ɵɵngDeclareComponent({
+    type: ScrollBar,
+    selector: 'ScrollBar',
+    isStandalone: true,
+    version: '20.0.0',
+    isSignal: true,
+    template: "<div class=\"bar\" [class.vertical]=\"orientation()==='vertical'\" [class.permanent]=\"permanent()\" [style.--thickness.px]=\"thickness()\" (pointerdown)=\"drag($event)\"><div class=\"thumb\" [class.moving]=\"moving()\" [style.width]=\"orientation()==='vertical' ? thickness()+'px' : thumbSize()+'px'\" [style.height]=\"orientation()==='vertical' ? thumbSize()+'px' : thickness()+'px'\" [style.transform]=\"thumbTransform()\"></div></div>",
+    host: undefined,
+    styles: [],
+    inputs: {},
+    outputs: {},
+  });
+  (ScrollBar as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Select,
-    selector: 'qml-select',
-    standalone: true,
+    selector: 'Select',
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
-    host: ({
-    '[attr.data-qml-component]': '"select"',
-  }),
+    template: "\n    <div class=\"qml-select\" [class.disabled]=\"disabled()\" [class.is-open]=\"open()\" [class.has-error]=\"!!errorText()\" [style.width]=\"width()\">\n      @if (label(); as lbl) {\n        <label class=\"qml-select-label\">{{ lbl }}@if (required()) { <span class=\"qml-select-required\">*</span> }</label>\n      }\n      <button type=\"button\" class=\"qml-select-trigger\" [disabled]=\"disabled()\" (click)=\"toggle()\" (keydown)=\"onKey($event)\">\n        <span class=\"qml-select-value\" [class.placeholder]=\"!selectedLabel()\">{{ selectedLabel() || placeholder() }}</span>\n        <svg class=\"qml-select-chevron\" [class.up]=\"open()\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"6 9 12 15 18 9\"></polyline></svg>\n      </button>\n      @if (open()) {\n        <div class=\"qml-select-popover\" role=\"listbox\">\n          @if (searchable()) {\n            <div class=\"qml-select-search\">\n              <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><line x1=\"21\" y1=\"21\" x2=\"16.65\" y2=\"16.65\"/></svg>\n              <input type=\"text\" [value]=\"search()\" (input)=\"onSearch($event)\" placeholder=\"Buscar...\" />\n            </div>\n          }\n          <div class=\"qml-select-list\">\n            @for (opt of filteredOptions(); track opt.value; let i = $index) {\n              <button type=\"button\" class=\"qml-select-item\" [class.selected]=\"opt.value === value()\" [class.highlighted]=\"i === highlightIndex()\" (click)=\"select(opt.value)\" (mouseenter)=\"highlightIndex.set(i)\">\n                @if (opt.icon; as ic) { <span class=\"qml-select-item-icon\">{{ ic }}</span> }\n                <span class=\"qml-select-item-label\">{{ opt.label }}</span>\n                @if (opt.value === value()) { <svg class=\"qml-select-item-check\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"></polyline></svg> }\n              </button>\n            }\n            @if (filteredOptions().length === 0) { <div class=\"qml-select-empty\">Nenhum item</div> }\n          </div>\n        </div>\n      }\n      @if (errorText(); as err) { <p class=\"qml-select-error\">{{ err }}</p> }\n    </div>\n  ",
+    host: undefined,
     styles: [],
     inputs: {
-      options: { publicName: 'options', isSignal: true },
-      selectedValue: { publicName: 'selectedValue', isSignal: true },
-      selectedLabel: { publicName: 'selectedLabel', isSignal: true },
-      placeholder: { publicName: 'placeholder', isSignal: true },
-      disabled: { publicName: 'disabled', isSignal: true },
-      size: { publicName: 'size', isSignal: true },
-      status: { publicName: 'status', isSignal: true },
-      errorText: { publicName: 'errorText', isSignal: true },
-      isInvalid: { publicName: 'isInvalid', isSignal: true },
-      expanded: { publicName: 'expanded', isSignal: true },
-      openUpward: { publicName: 'openUpward', isSignal: true },
-      customRadius: { publicName: 'customRadius', isSignal: true },
-      customBorderColor: { publicName: 'customBorderColor', isSignal: true },
-      customBackgroundColor: { publicName: 'customBackgroundColor', isSignal: true },
+      options: { classPropertyName: 'options', publicName: 'options', isSignal: true, isRequired: false, transformFunction: null },
+      label: { classPropertyName: 'label', publicName: 'label', isSignal: true, isRequired: false, transformFunction: null },
+      placeholder: { classPropertyName: 'placeholder', publicName: 'placeholder', isSignal: true, isRequired: false, transformFunction: null },
+      disabled: { classPropertyName: 'disabled', publicName: 'disabled', isSignal: true, isRequired: false, transformFunction: null },
+      required: { classPropertyName: 'required', publicName: 'required', isSignal: true, isRequired: false, transformFunction: null },
+      errorText: { classPropertyName: 'errorText', publicName: 'errorText', isSignal: true, isRequired: false, transformFunction: null },
+      searchable: { classPropertyName: 'searchable', publicName: 'searchable', isSignal: true, isRequired: false, transformFunction: null },
+      width: { classPropertyName: 'width', publicName: 'width', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
-      valueChanged: 'valueChanged',
+      selectedIndex: 'selectedIndex',
+      selectedValue: 'selectedValue',
+    },
+  });
+  (Select as any)[ɵNG_COMP_DEF] = _def;
+}
+
+{
+  const _def = ɵɵngDeclareComponent({
+    type: SelectTree,
+    selector: 'SelectTree',
+    isStandalone: true,
+    version: '20.0.0',
+    isSignal: true,
+    template: "\n    <div class=\"qml-select-tree\" [class.is-open]=\"open()\" [class.disabled]=\"disabled()\">\n      @if (label(); as lbl) { <label class=\"qml-select-tree-label\">{{ lbl }}</label> }\n      <button type=\"button\" class=\"qml-select-tree-trigger\" [disabled]=\"disabled()\" (click)=\"toggle()\">\n        @if (selectedNode(); as sel) {\n          <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z\"></path></svg>\n          <span>{{ sel.label }}</span>\n        } @else {\n          <span class=\"qml-select-tree-placeholder\">{{ placeholder() }}</span>\n        }\n        <svg class=\"qml-select-tree-chevron\" [class.up]=\"open()\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"6 9 12 15 18 9\"></polyline></svg>\n      </button>\n      @if (open()) {\n        <div class=\"qml-select-tree-popover\" (click)=\"$event.stopPropagation()\">\n          <div class=\"qml-select-tree-list\">\n            @for (item of flatList(); track item.node.key) {\n              <button type=\"button\" class=\"qml-select-tree-item\"\n                [class.selected]=\"item.node.key === value()\"\n                [style.padding-left.px]=\"10 + item.level * 16\"\n                (click)=\"select(item.node)\">\n                <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                  @if (item.node.children && item.node.children.length > 0) {\n                    <path d=\"M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z\"></path>\n                  } @else {\n                    <path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"></path>\n                    <polyline points=\"14 2 14 8 20 8\"></polyline>\n                  }\n                </svg>\n                <span>{{ item.node.label }}</span>\n              </button>\n            }\n            @if (flatList().length === 0) { <div class=\"qml-select-tree-empty\">Sem itens</div> }\n          </div>\n        </div>\n      }\n    </div>\n  ",
+    host: undefined,
+    styles: [],
+    inputs: {
+      nodes: { classPropertyName: 'nodes', publicName: 'nodes', isSignal: true, isRequired: false, transformFunction: null },
+      label: { classPropertyName: 'label', publicName: 'label', isSignal: true, isRequired: false, transformFunction: null },
+      placeholder: { classPropertyName: 'placeholder', publicName: 'placeholder', isSignal: true, isRequired: false, transformFunction: null },
+      disabled: { classPropertyName: 'disabled', publicName: 'disabled', isSignal: true, isRequired: false, transformFunction: null },
+    },
+    outputs: {
+      selected: 'selected',
     },
   });
   // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
@@ -2100,89 +1840,35 @@ import { ZoomIn } from './components/ZoomIn';
 
 {
   const _def = ɵɵngDeclareComponent({
-    type: SelectTree,
-    selector: 'SelectTree',
-    standalone: true,
-    version: '20.0.0',
-    isSignal: true,
-    template: "<ng-content></ng-content>",
-    host: undefined,
-    styles: [],
-    inputs: {
-      options: { publicName: 'options', isSignal: true },
-      selectedValue: { publicName: 'selectedValue', isSignal: true },
-      selectedLabel: { publicName: 'selectedLabel', isSignal: true },
-      placeholder: { publicName: 'placeholder', isSignal: true },
-      disabled: { publicName: 'disabled', isSignal: true },
-      size: { publicName: 'size', isSignal: true },
-      expanded: { publicName: 'expanded', isSignal: true },
-      openUpward: { publicName: 'openUpward', isSignal: true },
-      expandedNodes: { publicName: 'expandedNodes', isSignal: true },
-      flatList: { publicName: 'flatList', isSignal: true },
-    },
-    outputs: {
-      valueChanged: 'valueChanged',
-    },
-  });
-  SelectTree[ɵNG_COMP_DEF] = _def;
-}
-
-{
-  const _def = ɵɵngDeclareComponent({
     type: Separator,
     selector: 'Separator',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-separator\" [attr.data-orientation]=\"orientation()\" [attr.data-variant]=\"variant()\" role=\"separator\"></div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      orientation: { publicName: 'orientation', isSignal: true },
-      variant: { publicName: 'variant', isSignal: true },
-      thickness: { publicName: 'thickness', isSignal: true },
-      margin: { publicName: 'margin', isSignal: true },
+      orientation: { classPropertyName: 'orientation', publicName: 'orientation', isSignal: true, isRequired: false, transformFunction: null },
+      variant: { classPropertyName: 'variant', publicName: 'variant', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  Separator[ɵNG_COMP_DEF] = _def;
+  (Separator as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Shell,
     selector: 'Shell',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
-    host: ({
-    '[attr.data-qml-component]': '"shell"',
-  }),
+    template: "\n    <div class=\"qml-shell\" [class.mobile]=\"mobile()\">\n      @if(headerVisible()){<header><ng-content select=\"[shellHeader]\"></ng-content><span class=\"default-title\">Mocha App</span></header>}\n      @if(sidebarVisible()){<aside class=\"primary\"><ng-content select=\"[shellSidebar]\"></ng-content></aside>}\n      @if(secondarySidebarVisible()){<aside class=\"secondary\"><ng-content select=\"[shellSecondarySidebar]\"></ng-content></aside>}\n      <main [style.grid-template-columns]=\"columnTemplate()\">\n        <section [class.hidden-mobile]=\"mobile() && activeMobileColumn() !== 0\"><ng-content select=\"[shellCol1]\"></ng-content><ng-content></ng-content></section>\n        @if(columnCount()>=2){<section [class.hidden-mobile]=\"mobile() && activeMobileColumn() !== 1\"><ng-content select=\"[shellCol2]\"></ng-content></section>}\n        @if(columnCount()>=3){<section [class.hidden-mobile]=\"mobile() && activeMobileColumn() !== 2\"><ng-content select=\"[shellCol3]\"></ng-content></section>}\n      </main>\n      @if(footerVisible()){<footer><ng-content select=\"[shellFooter]\"></ng-content></footer>}\n      @if(mobile()&&sidebarOpenMobile()){<button class=\"backdrop\" (click)=\"sidebarOpenMobile.set(false)\"></button><aside class=\"drawer\"><ng-content select=\"[shellSidebar]\"></ng-content></aside>}\n    </div>",
+    host: undefined,
     styles: [],
     inputs: {
-      sidebarWidth: { publicName: 'sidebarWidth', isSignal: true },
-      secondarySidebarWidth: { publicName: 'secondarySidebarWidth', isSignal: true },
-      headerHeight: { publicName: 'headerHeight', isSignal: true },
-      footerHeight: { publicName: 'footerHeight', isSignal: true },
-      headerVisible: { publicName: 'headerVisible', isSignal: true },
-      footerVisible: { publicName: 'footerVisible', isSignal: true },
-      sidebarVisible: { publicName: 'sidebarVisible', isSignal: true },
-      secondarySidebarVisible: { publicName: 'secondarySidebarVisible', isSignal: true },
-      sidebarCollapsed: { publicName: 'sidebarCollapsed', isSignal: true },
-      sidebarShowBackground: { publicName: 'sidebarShowBackground', isSignal: true },
-      secondarySidebarShowBackground: { publicName: 'secondarySidebarShowBackground', isSignal: true },
-      sidebarOpenMobile: { publicName: 'sidebarOpenMobile', isSignal: true },
-      columnCount: { publicName: 'columnCount', isSignal: true },
-      columnSpacing: { publicName: 'columnSpacing', isSignal: true },
-      columnRatio1: { publicName: 'columnRatio1', isSignal: true },
-      columnRatio2: { publicName: 'columnRatio2', isSignal: true },
-      columnRatio3: { publicName: 'columnRatio3', isSignal: true },
-      activeMobileColumn: { publicName: 'activeMobileColumn', isSignal: true },
-      isReady: { publicName: 'isReady', isSignal: true },
-      breakpointMd: { publicName: 'breakpointMd', isSignal: true },
-      breakpointLg: { publicName: 'breakpointLg', isSignal: true },
-      backgroundColor: { publicName: 'backgroundColor', isSignal: true },
+      sidebarWidth: { classPropertyName: 'sidebarWidth', publicName: 'sidebarWidth', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
@@ -2193,21 +1879,14 @@ import { ZoomIn } from './components/ZoomIn';
   const _def = ɵɵngDeclareComponent({
     type: Sidebar,
     selector: 'Sidebar',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
-    host: ({
-    '[attr.data-qml-component]': '"sidebar"',
-  }),
+    template: "\n    <aside class=\"qml-sidebar\" [class.floated]=\"variant() === 'floated'\" [class.collapsed]=\"isCollapsed()\" [class.expand-hover]=\"expandOnHover()\">\n      <div class=\"qml-sidebar-header-slot\"><ng-content select=\"SidebarHeader,[sidebarHeader]\"></ng-content></div>\n      <div class=\"qml-sidebar-section-slot\"><ng-content select=\"SidebarSection,[sidebarSection]\"></ng-content><ng-content select=\"SidebarItem\"></ng-content></div>\n      <div class=\"qml-sidebar-footer-slot\"><ng-content select=\"SidebarFooter,[sidebarFooter]\"></ng-content></div>\n    </aside>\n  ",
+    host: undefined,
     styles: [],
     inputs: {
-      variant: { publicName: 'variant', isSignal: true },
-      isCollapsed: { publicName: 'isCollapsed', isSignal: true },
-      expandOnHover: { publicName: 'expandOnHover', isSignal: true },
-      collapsedWidth: { publicName: 'collapsedWidth', isSignal: true },
-      expandedWidth: { publicName: 'expandedWidth', isSignal: true },
-      currentWidth: { publicName: 'currentWidth', isSignal: true },
+      variant: { classPropertyName: 'variant', publicName: 'variant', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
@@ -2218,420 +1897,323 @@ import { ZoomIn } from './components/ZoomIn';
   const _def = ɵɵngDeclareComponent({
     type: SidebarFooter,
     selector: 'SidebarFooter',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <footer class=\"qml-sidebar-footer\" [class.collapsed]=\"!expanded()\">\n      @if (username()) {\n        <span class=\"avatar\"><qml-icon [name]=\"avatarIcon()\" size=\"18\" /></span>\n        <div class=\"profile\"><strong>{{ username() }}</strong>@if (email()) { <small>{{ email() }}</small> }</div>\n      } @else { <ng-content></ng-content> }\n    </footer>\n  ",
     host: undefined,
     styles: [],
-    inputs: {
-      username: { publicName: 'username', isSignal: true },
-      email: { publicName: 'email', isSignal: true },
-      avatarIcon: { publicName: 'avatarIcon', isSignal: true },
-    },
+    inputs: {},
     outputs: {},
   });
-  SidebarFooter[ɵNG_COMP_DEF] = _def;
+  (SidebarFooter as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: SidebarHeader,
     selector: 'SidebarHeader',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <header class=\"qml-sidebar-header\" [class.collapsed]=\"!expanded()\">\n      @if (title() || logoIcon()) {\n        @if (logoIcon()) { <qml-icon class=\"logo\" [name]=\"logoIcon()\" size=\"24\" /> }\n        <div class=\"text\"><strong>{{ title() }}</strong>@if (subtitle()) { <small>{{ subtitle() }}</small> }</div>\n      } @else { <ng-content></ng-content> }\n    </header>\n  ",
     host: undefined,
     styles: [],
-    inputs: {
-      title: { publicName: 'title', isSignal: true },
-      subtitle: { publicName: 'subtitle', isSignal: true },
-      logoIcon: { publicName: 'logoIcon', isSignal: true },
-    },
+    inputs: {},
     outputs: {},
   });
-  SidebarHeader[ɵNG_COMP_DEF] = _def;
+  (SidebarHeader as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: SidebarItem,
     selector: 'SidebarItem',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-sidebar-item-root\" [class.open]=\"expanded()\">\n      <button class=\"qml-sidebar-item\" [class.active]=\"isActive()\" type=\"button\" (click)=\"activate()\">\n        @if (icon()) { <qml-icon class=\"icon\" [name]=\"icon()\" size=\"20\" /> }\n        <span class=\"label\">{{ label() }}</span>\n        @if (hasChildren()) { <qml-icon class=\"chevron\" name=\"chevron-right\" size=\"16\" /> }\n      </button>\n      <div class=\"qml-sidebar-subitems\"><ng-content></ng-content></div>\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      icon: { publicName: 'icon', isSignal: true },
-      label: { publicName: 'label', isSignal: true },
-      isActive: { publicName: 'isActive', isSignal: true },
-      expanded: { publicName: 'expanded', isSignal: true },
+      icon: { classPropertyName: 'icon', publicName: 'icon', isSignal: true, isRequired: false, transformFunction: null },
     },
-    outputs: {
-      clicked: 'clicked',
-    },
+    outputs: {},
   });
-  SidebarItem[ɵNG_COMP_DEF] = _def;
+  (SidebarItem as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: SidebarSection,
     selector: 'SidebarSection',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "<section class=\"qml-sidebar-section\"><ng-content></ng-content></section>",
     host: undefined,
     styles: [],
-    inputs: {
-      spacing: { publicName: 'spacing', isSignal: true },
-    },
+    inputs: {},
     outputs: {},
   });
-  SidebarSection[ɵNG_COMP_DEF] = _def;
+  // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: SlideDown,
     selector: 'SlideDown',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "<div class=\"motion\" [class.is-visible]=\"trigger()\" [style.--duration.ms]=\"duration()\" [style.--delay.ms]=\"delay()\" [style.--offset.px]=\"offset()\"><ng-content /></div>",
     host: undefined,
     styles: [],
-    inputs: {
-      duration: { publicName: 'duration', isSignal: true },
-      delay: { publicName: 'delay', isSignal: true },
-      offset: { publicName: 'offset', isSignal: true },
-      trigger: { publicName: 'trigger', isSignal: true },
-    },
+    inputs: {},
     outputs: {},
   });
-  SlideDown[ɵNG_COMP_DEF] = _def;
+  (SlideDown as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: SlideLeft,
     selector: 'SlideLeft',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "<div class=\"motion\" [class.is-visible]=\"trigger()\" [style.--duration.ms]=\"duration()\" [style.--delay.ms]=\"delay()\" [style.--offset.px]=\"offset()\"><ng-content /></div>",
     host: undefined,
     styles: [],
-    inputs: {
-      duration: { publicName: 'duration', isSignal: true },
-      delay: { publicName: 'delay', isSignal: true },
-      offset: { publicName: 'offset', isSignal: true },
-      trigger: { publicName: 'trigger', isSignal: true },
-    },
+    inputs: {},
     outputs: {},
   });
-  SlideLeft[ɵNG_COMP_DEF] = _def;
+  (SlideLeft as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: SlideOutDown,
     selector: 'SlideOutDown',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "<div class=\"motion\" [class.is-hidden]=\"!trigger()\" [style.--duration.ms]=\"duration()\" [style.--delay.ms]=\"delay()\" [style.--offset.px]=\"offset()\"><ng-content /></div>",
     host: undefined,
     styles: [],
-    inputs: {
-      duration: { publicName: 'duration', isSignal: true },
-      delay: { publicName: 'delay', isSignal: true },
-      offset: { publicName: 'offset', isSignal: true },
-      trigger: { publicName: 'trigger', isSignal: true },
-    },
+    inputs: {},
     outputs: {},
   });
-  SlideOutDown[ɵNG_COMP_DEF] = _def;
+  (SlideOutDown as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: SlideOutUp,
     selector: 'SlideOutUp',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "<div class=\"motion\" [class.is-hidden]=\"!trigger()\" [style.--duration.ms]=\"duration()\" [style.--delay.ms]=\"delay()\" [style.--offset.px]=\"offset()\"><ng-content /></div>",
     host: undefined,
     styles: [],
-    inputs: {
-      duration: { publicName: 'duration', isSignal: true },
-      delay: { publicName: 'delay', isSignal: true },
-      offset: { publicName: 'offset', isSignal: true },
-      trigger: { publicName: 'trigger', isSignal: true },
-    },
+    inputs: {},
     outputs: {},
   });
-  SlideOutUp[ɵNG_COMP_DEF] = _def;
+  (SlideOutUp as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: SlideRight,
     selector: 'SlideRight',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "<div class=\"motion\" [class.is-visible]=\"trigger()\" [style.--duration.ms]=\"duration()\" [style.--delay.ms]=\"delay()\" [style.--offset.px]=\"offset()\"><ng-content /></div>",
     host: undefined,
     styles: [],
-    inputs: {
-      duration: { publicName: 'duration', isSignal: true },
-      delay: { publicName: 'delay', isSignal: true },
-      offset: { publicName: 'offset', isSignal: true },
-      trigger: { publicName: 'trigger', isSignal: true },
-    },
+    inputs: {},
     outputs: {},
   });
-  SlideRight[ɵNG_COMP_DEF] = _def;
+  (SlideRight as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: SlideUp,
     selector: 'SlideUp',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "<div class=\"motion\" [class.is-visible]=\"visible()\" [style.--duration.ms]=\"duration()\" [style.--delay.ms]=\"delay()\" [style.--offset.px]=\"offset()\"><ng-content /></div>",
     host: undefined,
     styles: [],
-    inputs: {
-      duration: { publicName: 'duration', isSignal: true },
-      delay: { publicName: 'delay', isSignal: true },
-      offset: { publicName: 'offset', isSignal: true },
-      trigger: { publicName: 'trigger', isSignal: true },
-      triggerOnVisibility: { publicName: 'triggerOnVisibility', isSignal: true },
-      visibilityThreshold: { publicName: 'visibilityThreshold', isSignal: true },
-    },
+    inputs: {},
     outputs: {},
   });
-  SlideUp[ɵNG_COMP_DEF] = _def;
+  (SlideUp as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Slider,
     selector: 'Slider',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
-    host: ({
-    '[attr.data-qml-component]': '"slider"',
-  }),
+    template: "\n    <div class=\"qml-slider\" [attr.data-size]=\"size()\" [class.disabled]=\"disabled()\" [class.has-error]=\"!!errorText()\">\n      @if (label(); as lbl) {\n        <div class=\"qml-slider-header\">\n          <span class=\"qml-slider-label\">{{ lbl }}</span>\n          @if (showValue()) { <span class=\"qml-slider-value\">{{ displayValue() }}</span> }\n        </div>\n      }\n      <div class=\"qml-slider-track-wrap\">\n        <div class=\"qml-slider-track\">\n          <div class=\"qml-slider-fill\" [style.width.%]=\"percent()\"></div>\n        </div>\n        <input type=\"range\" class=\"qml-slider-input\"\n          [min]=\"min()\" [max]=\"max()\" [step]=\"step()\" [value]=\"value()\" [disabled]=\"disabled()\"\n          (input)=\"onInput($event)\" (change)=\"onChange($event)\" />\n      </div>\n      @if (errorText(); as err) { <p class=\"qml-slider-error\">{{ err }}</p> }\n    </div>\n  ",
+    host: undefined,
     styles: [],
     inputs: {
-      value: { publicName: 'value', isSignal: true },
-      minimum: { publicName: 'minimum', isSignal: true },
-      maximum: { publicName: 'maximum', isSignal: true },
-      step: { publicName: 'step', isSignal: true },
-      disabled: { publicName: 'disabled', isSignal: true },
-      size: { publicName: 'size', isSignal: true },
+      min: { classPropertyName: 'min', publicName: 'min', isSignal: true, isRequired: false, transformFunction: null },
+      max: { classPropertyName: 'max', publicName: 'max', isSignal: true, isRequired: false, transformFunction: null },
+      step: { classPropertyName: 'step', publicName: 'step', isSignal: true, isRequired: false, transformFunction: null },
+      label: { classPropertyName: 'label', publicName: 'label', isSignal: true, isRequired: false, transformFunction: null },
+      size: { classPropertyName: 'size', publicName: 'size', isSignal: true, isRequired: false, transformFunction: null },
+      disabled: { classPropertyName: 'disabled', publicName: 'disabled', isSignal: true, isRequired: false, transformFunction: null },
+      showValue: { classPropertyName: 'showValue', publicName: 'showValue', isSignal: true, isRequired: false, transformFunction: null },
+      format: { classPropertyName: 'format', publicName: 'format', isSignal: true, isRequired: false, transformFunction: null },
+      errorText: { classPropertyName: 'errorText', publicName: 'errorText', isSignal: true, isRequired: false, transformFunction: null },
     },
-    outputs: {},
+    outputs: {
+      changed: 'changed',
+    },
   });
-  // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
+  (Slider as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: SortableList,
     selector: 'SortableList',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-sortable\" [style.gap.px]=\"spacing()\"\n      [style.padding]=\"paddingStyle()\"\n      [style.overflow]=\"clip() ? 'hidden' : 'visible'\">\n      @for (item of items(); track item.id; let i = $index) {\n        <div class=\"qml-sortable-item\"\n          [class.is-held]=\"heldIndex() === i\"\n          [class.is-target]=\"dragTargetIndex() === i && heldIndex() !== i\"\n          [style.opacity]=\"heldIndex() === i ? 0.35 : 1\"\n          [style.transform]=\"heldIndex() === i ? 'scale(1.02)' : 'scale(1)'\"\n          [style.transition]=\"'transform 120ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 120ms ease'\"\n          (mousedown)=\"onItemMouseDown($event, i)\">\n          @if (delegate(); as tpl) {\n            <ng-container *ngTemplateOutlet=\"tpl; context: { $implicit: item.data, index: i, modelData: item.data }\"></ng-container>\n          } @else {\n            <span class=\"qml-sortable-fallback\">{{ stringifyItem(item.data) }}</span>\n          }\n        </div>\n      }\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      delegate: { publicName: 'delegate', isSignal: true },
-      spacing: { publicName: 'spacing', isSignal: true },
-      paddingLeft: { publicName: 'paddingLeft', isSignal: true },
-      paddingRight: { publicName: 'paddingRight', isSignal: true },
-      paddingTop: { publicName: 'paddingTop', isSignal: true },
-      paddingBottom: { publicName: 'paddingBottom', isSignal: true },
-      listId: { publicName: 'listId', isSignal: true },
-      dragKey: { publicName: 'dragKey', isSignal: true },
-      sortable: { publicName: 'sortable', isSignal: true },
-      clip: { publicName: 'clip', isSignal: true },
-      dragIndex: { publicName: 'dragIndex', isSignal: true },
-      dragTargetIndex: { publicName: 'dragTargetIndex', isSignal: true },
-      isDragging: { publicName: 'isDragging', isSignal: true },
-      held: { publicName: 'held', isSignal: true },
-      model: { publicName: 'model', isSignal: true },
-      modelData: { publicName: 'modelData', isSignal: true },
-      index: { publicName: 'index', isSignal: true },
+      model: { classPropertyName: 'model', publicName: 'model', isSignal: true, isRequired: false, transformFunction: null },
+      delegate: { classPropertyName: 'delegate', publicName: 'delegate', isSignal: true, isRequired: false, transformFunction: null },
+      spacing: { classPropertyName: 'spacing', publicName: 'spacing', isSignal: true, isRequired: false, transformFunction: null },
+      paddingLeft: { classPropertyName: 'paddingLeft', publicName: 'paddingLeft', isSignal: true, isRequired: false, transformFunction: null },
+      paddingRight: { classPropertyName: 'paddingRight', publicName: 'paddingRight', isSignal: true, isRequired: false, transformFunction: null },
+      paddingTop: { classPropertyName: 'paddingTop', publicName: 'paddingTop', isSignal: true, isRequired: false, transformFunction: null },
+      paddingBottom: { classPropertyName: 'paddingBottom', publicName: 'paddingBottom', isSignal: true, isRequired: false, transformFunction: null },
+      listId: { classPropertyName: 'listId', publicName: 'listId', isSignal: true, isRequired: false, transformFunction: null },
+      dragKey: { classPropertyName: 'dragKey', publicName: 'dragKey', isSignal: true, isRequired: false, transformFunction: null },
+      sortable: { classPropertyName: 'sortable', publicName: 'sortable', isSignal: true, isRequired: false, transformFunction: null },
+      clip: { classPropertyName: 'clip', publicName: 'clip', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       itemsReordered: 'itemsReordered',
       externalItemDropped: 'externalItemDropped',
     },
   });
-  SortableList[ɵNG_COMP_DEF] = _def;
+  (SortableList as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Span,
     selector: 'Span',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "<span class=\"qml-span\" [style]=\"styles()\">{{ uppercase() ? text().toUpperCase() : text() }}<ng-content></ng-content></span>",
     host: undefined,
     styles: [],
     inputs: {
-      text: { publicName: 'text', isSignal: true },
-      variant: { publicName: 'variant', isSignal: true },
-      colorName: { publicName: 'colorName', isSignal: true },
-      customColor: { publicName: 'customColor', isSignal: true },
-      fontFamily: { publicName: 'fontFamily', isSignal: true },
-      fontSize: { publicName: 'fontSize', isSignal: true },
-      weight: { publicName: 'weight', isSignal: true },
-      weightNumber: { publicName: 'weightNumber', isSignal: true },
-      italic: { publicName: 'italic', isSignal: true },
-      align: { publicName: 'align', isSignal: true },
-      decoration: { publicName: 'decoration', isSignal: true },
-      uppercase: { publicName: 'uppercase', isSignal: true },
-      lineHeight: { publicName: 'lineHeight', isSignal: true },
-      letterSpacing: { publicName: 'letterSpacing', isSignal: true },
-      selectable: { publicName: 'selectable', isSignal: true },
-      maxLines: { publicName: 'maxLines', isSignal: true },
-      gradient: { publicName: 'gradient', isSignal: true },
-      htmlTag: { publicName: 'htmlTag', isSignal: true },
+      text: { classPropertyName: 'text', publicName: 'text', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  Span[ɵNG_COMP_DEF] = _def;
+  (Span as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Spin,
     selector: 'Spin',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "<div class=\"motion\" [class.is-visible]=\"trigger()\" [style.--duration.ms]=\"duration()\" [style.--delay.ms]=\"delay()\" [style.--rotation]=\"fromRotation() + 'deg'\"><ng-content /></div>",
     host: undefined,
     styles: [],
-    inputs: {
-      duration: { publicName: 'duration', isSignal: true },
-      delay: { publicName: 'delay', isSignal: true },
-      fromRotation: { publicName: 'fromRotation', isSignal: true },
-      trigger: { publicName: 'trigger', isSignal: true },
-    },
+    inputs: {},
     outputs: {},
   });
-  Spin[ɵNG_COMP_DEF] = _def;
+  (Spin as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: SteppedProgress,
     selector: 'SteppedProgress',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-stepped\" [attr.data-color]=\"color()\">\n      @if (label(); as lbl) {\n        <div class=\"qml-stepped-header\">\n          <span class=\"qml-stepped-label\">{{ lbl }}</span>\n          <span class=\"qml-stepped-counter\">{{ currentStep() + 1 }} / {{ totalSteps() }}</span>\n        </div>\n      }\n      <div class=\"qml-stepped-pills\">\n        @for (i of stepArray(); track i) {\n          <span class=\"qml-stepped-pill\" [class.done]=\"i < currentStep()\" [class.current]=\"i === currentStep()\"\n            [style.animation-delay]=\"(i * 0.08) + 's'\"></span>\n        }\n      </div>\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      totalSteps: { publicName: 'totalSteps', isSignal: true },
-      currentStep: { publicName: 'currentStep', isSignal: true },
-      variant: { publicName: 'variant', isSignal: true },
-      showStripes: { publicName: 'showStripes', isSignal: true },
-      animateCurrent: { publicName: 'animateCurrent', isSignal: true },
-      spacing: { publicName: 'spacing', isSignal: true },
-      customColor: { publicName: 'customColor', isSignal: true },
-      customRadius: { publicName: 'customRadius', isSignal: true },
+      currentStep: { classPropertyName: 'currentStep', publicName: 'currentStep', isSignal: true, isRequired: false, transformFunction: null },
+      totalSteps: { classPropertyName: 'totalSteps', publicName: 'totalSteps', isSignal: true, isRequired: false, transformFunction: null },
+      label: { classPropertyName: 'label', publicName: 'label', isSignal: true, isRequired: false, transformFunction: null },
+      color: { classPropertyName: 'color', publicName: 'color', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  SteppedProgress[ɵNG_COMP_DEF] = _def;
+  (SteppedProgress as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Stepper,
     selector: 'Stepper',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
-    host: ({
-    '[attr.data-qml-component]': '"stepper"',
-  }),
+    template: "\n    <div class=\"qml-stepper\" [class.vertical]=\"orientation() === 'vertical'\" [style.--qml-stepper-accent]=\"accent()\">\n      <div class=\"track\"><span [style.width.%]=\"orientation() === 'horizontal' ? progress() : null\" [style.height.%]=\"orientation() === 'vertical' ? progress() : null\"></span></div>\n      @for (step of steps(); track $index; let i = $index) {\n        <div class=\"step\" [class.completed]=\"i < currentStep()\" [class.active]=\"i === currentStep()\">\n          <span class=\"node\">\n            @if (variant() === 'dots') { <i></i> }\n            @else if (i < currentStep()) { <qml-icon name=\"check\" size=\"18\" /> }\n            @else if ((variant() === 'icon' || variant() === 'labeled-icon') && step.icon) { <qml-icon [name]=\"step.icon\" size=\"18\" /> }\n            @else { {{ i + 1 }} }\n          </span>\n          @if (variant() !== 'dots') { <span class=\"copy\"><strong>{{ step.label || '' }}</strong>@if (step.description) { <small>{{ step.description }}</small> }</span> }\n        </div>\n      }\n    </div>\n  ",
+    host: undefined,
     styles: [],
     inputs: {
-      steps: { publicName: 'steps', isSignal: true },
-      currentStep: { publicName: 'currentStep', isSignal: true },
-      orientation: { publicName: 'orientation', isSignal: true },
-      variant: { publicName: 'variant', isSignal: true },
-      color: { publicName: 'color', isSignal: true },
+      steps: { classPropertyName: 'steps', publicName: 'steps', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
+  (Stepper as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Steps,
     selector: 'Steps',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
-    host: ({
-    '[attr.data-qml-component]': '"steps"',
-  }),
+    template: "\n    @if (variant() === 'carousel') {\n      <div class=\"qml-carousel\" [style.--qml-steps-accent]=\"accent()\">@for (_ of indices(); track $index; let i = $index) { <button [class.active]=\"i === currentStep()\" (click)=\"select(i)\"></button> }</div>\n    } @else {\n      <div class=\"qml-steps\" [class.vertical]=\"orientation() === 'vertical'\" [style.--qml-steps-accent]=\"accent()\">\n        <div class=\"track\"><span [style.width.%]=\"orientation() === 'horizontal' ? progress() : null\" [style.height.%]=\"orientation() === 'vertical' ? progress() : null\"></span></div>\n        @for (_ of indices(); track $index; let i = $index) { <button class=\"step\" [class.active]=\"i === currentStep()\" [class.completed]=\"i < currentStep()\" (click)=\"select(i)\"><i></i><span>{{ labels()[i] || '' }}</span></button> }\n      </div>\n    }\n  ",
+    host: undefined,
     styles: [],
-    inputs: {
-      currentStep: { publicName: 'currentStep', isSignal: true },
-      stepsCount: { publicName: 'stepsCount', isSignal: true },
-      labels: { publicName: 'labels', isSignal: true },
-      variant: { publicName: 'variant', isSignal: true },
-      color: { publicName: 'color', isSignal: true },
-      orientation: { publicName: 'orientation', isSignal: true },
-    },
-    outputs: {
-      changeStep: 'changeStep',
-    },
+    inputs: {},
+    outputs: {},
   });
-  // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
+  (Steps as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: StepsSlider,
     selector: 'StepsSlider',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
-    host: ({
-    '[attr.data-qml-component]': '"stepsslider"',
-  }),
+    template: "<div class=\"qml-steps-slider\"><div class=\"qml-steps-slider-track\"><ng-content></ng-content></div></div>",
+    host: undefined,
     styles: [],
-    inputs: {
-      currentStep: { publicName: 'currentStep', isSignal: true },
-    },
+    inputs: {},
     outputs: {},
   });
   // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
@@ -2641,321 +2223,305 @@ import { ZoomIn } from './components/ZoomIn';
   const _def = ɵɵngDeclareComponent({
     type: StripedFill,
     selector: 'StripedFill',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
     template: "<ng-content></ng-content>",
     host: undefined,
     styles: [],
     inputs: {
-      color1: { publicName: 'color1', isSignal: true },
-      color2: { publicName: 'color2', isSignal: true },
-      time: { publicName: 'time', isSignal: true },
+      color1: { classPropertyName: 'color1', publicName: 'color1', isSignal: true, isRequired: false, transformFunction: null },
+      color2: { classPropertyName: 'color2', publicName: 'color2', isSignal: true, isRequired: false, transformFunction: null },
+      time: { classPropertyName: 'time', publicName: 'time', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  StripedFill[ɵNG_COMP_DEF] = _def;
+  (StripedFill as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Switch,
     selector: 'Switch',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
-    host: ({
-    '[attr.data-qml-component]': '"switch"',
-  }),
+    template: "\n    <button type=\"button\" role=\"switch\" class=\"qml-switch\" [attr.data-size]=\"size()\" [attr.data-color]=\"color()\"\n      [class.checked]=\"checked()\" [disabled]=\"disabled()\" [attr.aria-checked]=\"checked()\" (click)=\"onToggle()\">\n      <span class=\"qml-switch-track\"><span class=\"qml-switch-thumb\"></span></span>\n      @if (label(); as lbl) { <span class=\"qml-switch-label\">{{ lbl }}</span> }\n    </button>\n  ",
+    host: undefined,
     styles: [],
     inputs: {
-      checked: { publicName: 'checked', isSignal: true },
-      disabled: { publicName: 'disabled', isSignal: true },
-      size: { publicName: 'size', isSignal: true },
-      label: { publicName: 'label', isSignal: true },
+      label: { classPropertyName: 'label', publicName: 'label', isSignal: true, isRequired: false, transformFunction: null },
+      disabled: { classPropertyName: 'disabled', publicName: 'disabled', isSignal: true, isRequired: false, transformFunction: null },
+      size: { classPropertyName: 'size', publicName: 'size', isSignal: true, isRequired: false, transformFunction: null },
+      color: { classPropertyName: 'color', publicName: 'color', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       toggled: 'toggled',
     },
   });
-  // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
+  (Switch as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Table,
     selector: 'qml-table',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
     template: "\n    <table class=\"qml-table\">\n      @if (title(); as t) { <caption>{{ t }}</caption> }\n      <thead><tr>\n        @for (col of resolvedColumns(); track col.key) {\n          <th [style.width.px]=\"col.width\" [class.sortable]=\"col.sortable\" [class.sorted]=\"sortKey() === col.key\"\n            (click)=\"handleSort(col)\">{{ col.label }}{{ sortKey() === col.key ? (sortDesc() ? ' ▼' : ' ▲') : '' }}</th>\n        }\n      </tr></thead>\n      <tbody>\n        @for (row of sortedData(); track trackBy ? row[trackBy] : $index) {\n          <tr [class.selected]=\"selectedKey() === (trackBy ? row[trackBy] : $index)\"\n            (click)=\"handleRowClick(row, $index)\">\n            @for (col of resolvedColumns(); track col.key) {\n              <td>{{ row[col.key] }}</td>\n            }\n          </tr>\n        }\n      </tbody>\n    </table>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      columns: { publicName: 'columns', isSignal: true },
-      title: { publicName: 'title', isSignal: true },
+      columns: { classPropertyName: 'columns', publicName: 'columns', isSignal: true, isRequired: false, transformFunction: null },
+      title: { classPropertyName: 'title', publicName: 'title', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       rowClick: 'rowClick',
       sortChange: 'sortChange',
     },
   });
-  Table[ɵNG_COMP_DEF] = _def;
+  (Table as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Tabs,
     selector: 'Tabs',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "\n    <div class=\"qml-tabs\" [class]=\"'qml-tabs-' + variant()\" [style.--qml-accent]=\"finalAccentColor()\">\n      <div class=\"qml-tabs-list\" role=\"tablist\">\n        @for (tab of tabsList(); track tab.id; let i = $index) {\n          <button class=\"qml-tabs-trigger\" [class.active]=\"i === currentIndex()\"\n            (click)=\"selectTab(i)\" role=\"tab\" [attr.aria-selected]=\"i === currentIndex()\">\n            @if (tab.icon) { <qml-icon [name]=\"tab.icon\" size=\"16\" /> }\n            {{ tab.label }}\n          </button>\n        }\n        <div class=\"qml-tabs-highlight\"></div>\n      </div>\n      <div class=\"qml-tabs-content\"><ng-content></ng-content></div>\n    </div>\n  ",
+    template: "\n    <div class=\"qml-tabs\" [class]=\"'qml-tabs ' + variant()\" [style.--qml-tabs-accent]=\"accent()\" [style.--qml-tabs-text]=\"textColor()\">\n      <div class=\"qml-tabs-list\" role=\"tablist\">\n        @for (tab of tabsList(); track tab.id; let i = $index) {\n          <button class=\"qml-tab\" [class.active]=\"i === currentIndex()\" [class.held]=\"dragIndex() === i\" type=\"button\" role=\"tab\" [attr.aria-selected]=\"i === currentIndex()\" [draggable]=\"sortable()\" (click)=\"selectTab(i)\" (dragstart)=\"dragIndex.set(i)\" (dragover)=\"$event.preventDefault()\" (drop)=\"drop(i)\" (dragend)=\"dragIndex.set(-1)\">\n            @if (tab.icon) { <qml-icon [name]=\"tab.icon\" size=\"16\" /> }<span>{{ tab.label }}</span>\n          </button>\n        }\n      </div>\n      <div class=\"qml-tabs-content\"><ng-content></ng-content></div>\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      model: { publicName: 'model', isSignal: true },
-      variant: { publicName: 'variant', isSignal: true },
-      customAccentColor: { publicName: 'customAccentColor', isSignal: true },
-      customTextColor: { publicName: 'customTextColor', isSignal: true },
-      sortable: { publicName: 'sortable', isSignal: true },
+      model: { classPropertyName: 'model', publicName: 'model', isSignal: true, isRequired: false, transformFunction: null },
     },
-    outputs: {
-      tabSelected: 'tabSelected',
-      tabsReordered: 'tabsReordered',
-    },
+    outputs: {},
   });
-  Tabs[ɵNG_COMP_DEF] = _def;
+  (Tabs as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Tag,
     selector: 'Tag',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <span class=\"qml-tag\" [attr.data-variant]=\"variant()\" [attr.data-size]=\"size()\" [attr.data-shape]=\"shape()\" [attr.data-color]=\"color()\" [class.draggable]=\"draggable()\" [style.backgroundColor]=\"bgColor() || null\">\n      @if (leftIcon(); as icon) {\n        <span class=\"qml-tag-icon\"><svg width=\"0.85em\" height=\"0.85em\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><line x1=\"21\" y1=\"21\" x2=\"16.65\" y2=\"16.65\"/></svg></span>\n      }\n      <ng-content></ng-content>\n      @if (closable()) {\n        <button class=\"qml-tag-close\" type=\"button\" (click)=\"onClose($event)\" aria-label=\"Remove\">\n          <svg width=\"0.8em\" height=\"0.8em\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg>\n        </button>\n      }\n    </span>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      text: { publicName: 'text', isSignal: true },
-      variant: { publicName: 'variant', isSignal: true },
-      color: { publicName: 'color', isSignal: true },
-      size: { publicName: 'size', isSignal: true },
-      removable: { publicName: 'removable', isSignal: true },
-      selected: { publicName: 'selected', isSignal: true },
-      icon: { publicName: 'icon', isSignal: true },
-      draggable: { publicName: 'draggable', isSignal: true },
-      dragKey: { publicName: 'dragKey', isSignal: true },
+      variant: { classPropertyName: 'variant', publicName: 'variant', isSignal: true, isRequired: false, transformFunction: null },
+      size: { classPropertyName: 'size', publicName: 'size', isSignal: true, isRequired: false, transformFunction: null },
+      shape: { classPropertyName: 'shape', publicName: 'shape', isSignal: true, isRequired: false, transformFunction: null },
+      color: { classPropertyName: 'color', publicName: 'color', isSignal: true, isRequired: false, transformFunction: null },
+      leftIcon: { classPropertyName: 'leftIcon', publicName: 'leftIcon', isSignal: true, isRequired: false, transformFunction: null },
+      closable: { classPropertyName: 'closable', publicName: 'closable', isSignal: true, isRequired: false, transformFunction: null },
+      draggable: { classPropertyName: 'draggable', publicName: 'draggable', isSignal: true, isRequired: false, transformFunction: null },
+      bgColor: { classPropertyName: 'bgColor', publicName: 'bgColor', isSignal: true, isRequired: false, transformFunction: null },
+      closed: { classPropertyName: 'closed', publicName: 'closed', isSignal: true, isRequired: false, transformFunction: null },
     },
-    outputs: {
-      removed: 'removed',
-      clicked: 'clicked',
-    },
+    outputs: {},
   });
-  Tag[ɵNG_COMP_DEF] = _def;
+  (Tag as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Text,
     selector: 'qml-text',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
     template: "<span>{{ text() }}<ng-content></ng-content></span>",
     host: undefined,
     styles: [],
     inputs: {
-      text: { publicName: 'text', isSignal: true },
-      fontPixelSize: { publicName: 'fontPixelSize', isSignal: true },
-      fontFamily: { publicName: 'fontFamily', isSignal: true },
-      color: { publicName: 'color', isSignal: true },
-      bold: { publicName: 'bold', isSignal: true },
-      italic: { publicName: 'italic', isSignal: true },
-      wrap: { publicName: 'wrap', isSignal: true },
+      text: { classPropertyName: 'text', publicName: 'text', isSignal: true, isRequired: false, transformFunction: null },
+      fontPixelSize: { classPropertyName: 'fontPixelSize', publicName: 'fontPixelSize', isSignal: true, isRequired: false, transformFunction: null },
+      fontFamily: { classPropertyName: 'fontFamily', publicName: 'fontFamily', isSignal: true, isRequired: false, transformFunction: null },
+      color: { classPropertyName: 'color', publicName: 'color', isSignal: true, isRequired: false, transformFunction: null },
+      bold: { classPropertyName: 'bold', publicName: 'bold', isSignal: true, isRequired: false, transformFunction: null },
+      italic: { classPropertyName: 'italic', publicName: 'italic', isSignal: true, isRequired: false, transformFunction: null },
+      wrap: { classPropertyName: 'wrap', publicName: 'wrap', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  Text[ɵNG_COMP_DEF] = _def;
+  (Text as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: TextEditor,
     selector: 'TextEditor',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-text-editor\" [class.is-focused]=\"focused()\" [class.has-error]=\"!!errorText()\">\n      @if (label(); as lbl) {\n        <label class=\"qml-text-editor-label\">{{ lbl }}</label>\n      }\n      <div class=\"qml-text-editor-wrapper\">\n        <textarea #ta class=\"qml-text-editor-area\" [value]=\"value()\" [placeholder]=\"placeholder()\"\n          [readOnly]=\"readOnly()\" [disabled]=\"disabled()\"\n          (input)=\"onInput($event)\" (focus)=\"focused.set(true)\" (blur)=\"focused.set(false)\"></textarea>\n        <div class=\"qml-text-editor-scrollbar\"><div class=\"qml-text-editor-thumb\" [style.height.%]=\"thumbHeight()\" [style.top.%]=\"thumbTop()\"></div></div>\n      </div>\n      @if (errorText(); as err) { <p class=\"qml-text-editor-error\">{{ err }}</p> }\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      text: { publicName: 'text', isSignal: true },
-      placeholder: { publicName: 'placeholder', isSignal: true },
-      disabled: { publicName: 'disabled', isSignal: true },
-      readOnly: { publicName: 'readOnly', isSignal: true },
-      size: { publicName: 'size', isSignal: true },
-      status: { publicName: 'status', isSignal: true },
-      customRadius: { publicName: 'customRadius', isSignal: true },
-      customBorderColor: { publicName: 'customBorderColor', isSignal: true },
-      customBackgroundColor: { publicName: 'customBackgroundColor', isSignal: true },
+      label: { classPropertyName: 'label', publicName: 'label', isSignal: true, isRequired: false, transformFunction: null },
+      placeholder: { classPropertyName: 'placeholder', publicName: 'placeholder', isSignal: true, isRequired: false, transformFunction: null },
+      readOnly: { classPropertyName: 'readOnly', publicName: 'readOnly', isSignal: true, isRequired: false, transformFunction: null },
+      disabled: { classPropertyName: 'disabled', publicName: 'disabled', isSignal: true, isRequired: false, transformFunction: null },
+      errorText: { classPropertyName: 'errorText', publicName: 'errorText', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
-      textEdited: 'textEdited',
+      changed: 'changed',
     },
   });
-  TextEditor[ɵNG_COMP_DEF] = _def;
+  (TextEditor as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: TextField,
     selector: 'qml-text-field',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "\n    <div class=\"qml-text-field\" [class]=\"'qml-text-field-' + size()\" [class.has-error]=\"!!errorText()\" [class.disabled]=\"disabled()\">\n      <div class=\"qml-text-field-wrapper\">\n        @if (iconLeft(); as name) { <qml-icon [name]=\"name\" size=\"16\" /> }\n        <input #inputEl class=\"qml-text-field-input\" [type]=\"inputType()\"\n          [placeholder]=\"placeholder()\" [value]=\"value()\" [disabled]=\"disabled()\" [readOnly]=\"readOnly()\"\n          (input)=\"onInput($event)\" (keydown.enter)=\"onEnter()\" />\n        @if (showClear() && type() !== 'password') {\n          <button class=\"qml-text-field-btn\" (click)=\"clear()\">&times;</button>\n        }\n        @if (type() === 'password') {\n          <button class=\"qml-text-field-btn\" (click)=\"togglePassword()\">{{ showPassword() ? '🙈' : '👁' }}</button>\n        }\n        @if (iconRight(); as name) { <qml-icon [name]=\"name\" size=\"16\" /> }\n      </div>\n      @if (errorText(); as err) { <p class=\"qml-text-field-error\">{{ err }}</p> }\n    </div>\n  ",
+    template: "\n    <div class=\"qml-text-field\" [class.has-error]=\"!!errorText()\" [class.disabled]=\"disabled()\" [class.readonly]=\"readOnly()\" [class.is-focused]=\"focused()\">\n      @if (label(); as lbl) {\n        <label class=\"qml-text-field-label\">{{ lbl }}@if (required()) { <span class=\"qml-text-field-required\">*</span> }</label>\n      }\n      <div class=\"qml-text-field-wrapper\" [class.shake]=\"!!errorText()\">\n        @if (iconLeft(); as name) { <span class=\"qml-text-field-icon\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><line x1=\"21\" y1=\"21\" x2=\"16.65\" y2=\"16.65\"/></svg></span> }\n        <input #inputEl class=\"qml-text-field-input\" [type]=\"inputType()\" [attr.inputmode]=\"inputMode()\"\n          [placeholder]=\"placeholder()\" [value]=\"value()\" [disabled]=\"disabled()\" [readOnly]=\"readOnly()\"\n          [maxLength]=\"maxLength()\"\n          (input)=\"onInput($event)\" (focus)=\"focused.set(true)\" (blur)=\"focused.set(false)\"\n          (keydown.enter)=\"onEnter()\" />\n        @if (showClear() && type() !== 'password' && value().length > 0) {\n          <button class=\"qml-text-field-btn\" type=\"button\" (click)=\"clear()\" aria-label=\"Clear\">\n            <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg>\n          </button>\n        }\n        @if (type() === 'password') {\n          <button class=\"qml-text-field-btn\" type=\"button\" (click)=\"togglePassword()\" [attr.aria-label]=\"showPassword() ? 'Hide password' : 'Show password'\">\n            @if (showPassword()) {\n              <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24\"/><line x1=\"1\" y1=\"1\" x2=\"23\" y2=\"23\"/></svg>\n            } @else {\n              <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/></svg>\n            }\n          </button>\n        }\n        @if (iconRight(); as name) { <span class=\"qml-text-field-icon\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"/></svg></span> }\n      </div>\n      @if (description(); as d) { <p class=\"qml-text-field-description\">{{ d }}</p> }\n      @if (errorText(); as err) {\n        <p class=\"qml-text-field-error\">\n          <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"12\"/><line x1=\"12\" y1=\"16\" x2=\"12.01\" y2=\"16\"/></svg>\n          {{ err }}\n        </p>\n      }\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      type: { publicName: 'type', isSignal: true },
-      iconLeft: { publicName: 'iconLeft', isSignal: true },
-      status: { publicName: 'status', isSignal: true },
-      disabled: { publicName: 'disabled', isSignal: true },
-      size: { publicName: 'size', isSignal: true },
-      customRadius: { publicName: 'customRadius', isSignal: true },
-      customBackgroundColor: { publicName: 'customBackgroundColor', isSignal: true },
+      label: { classPropertyName: 'label', publicName: 'label', isSignal: true, isRequired: false, transformFunction: null },
+      placeholder: { classPropertyName: 'placeholder', publicName: 'placeholder', isSignal: true, isRequired: false, transformFunction: null },
+      type: { classPropertyName: 'type', publicName: 'type', isSignal: true, isRequired: false, transformFunction: null },
+      iconLeft: { classPropertyName: 'iconLeft', publicName: 'iconLeft', isSignal: true, isRequired: false, transformFunction: null },
+      iconRight: { classPropertyName: 'iconRight', publicName: 'iconRight', isSignal: true, isRequired: false, transformFunction: null },
+      status: { classPropertyName: 'status', publicName: 'status', isSignal: true, isRequired: false, transformFunction: null },
+      disabled: { classPropertyName: 'disabled', publicName: 'disabled', isSignal: true, isRequired: false, transformFunction: null },
+      readOnly: { classPropertyName: 'readOnly', publicName: 'readOnly', isSignal: true, isRequired: false, transformFunction: null },
+      required: { classPropertyName: 'required', publicName: 'required', isSignal: true, isRequired: false, transformFunction: null },
+      description: { classPropertyName: 'description', publicName: 'description', isSignal: true, isRequired: false, transformFunction: null },
+      errorText: { classPropertyName: 'errorText', publicName: 'errorText', isSignal: true, isRequired: false, transformFunction: null },
+      maxLength: { classPropertyName: 'maxLength', publicName: 'maxLength', isSignal: true, isRequired: false, transformFunction: null },
+      customRadius: { classPropertyName: 'customRadius', publicName: 'customRadius', isSignal: true, isRequired: false, transformFunction: null },
+      customBorderColor: { classPropertyName: 'customBorderColor', publicName: 'customBorderColor', isSignal: true, isRequired: false, transformFunction: null },
+      customBackgroundColor: { classPropertyName: 'customBackgroundColor', publicName: 'customBackgroundColor', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       accepted: 'accepted',
+      textEdited: 'textEdited',
     },
   });
-  TextField[ɵNG_COMP_DEF] = _def;
+  (TextField as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Tile,
     selector: 'Tile',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
-    host: ({
-    '[attr.data-qml-component]': '"tile"',
-  }),
+    template: "\n    <div class=\"qml-tile\" [class]=\"rootClass()\" [class.qml-tile-active]=\"active()\"\n      [style.--qml-tile-radius.px]=\"finalRadius()\"\n      [style.--qml-tile-bg]=\"finalBackground()\"\n      [style.--qml-tile-border-color]=\"finalBorderColor()\"\n      [style.--qml-tile-accent]=\"accentColorResolved()\"\n      [style.--qml-tile-text]=\"finalTextColor()\"\n      (click)=\"handleClick()\">\n      @if (showAccent()) {\n        <div class=\"qml-tile-accent\"></div>\n      }\n      <div class=\"qml-tile-row\">\n        @if (icon()) {\n          <span class=\"qml-tile-icon\" [innerHTML]=\"iconSvg(icon(), 24)\"></span>\n        }\n        <div class=\"qml-tile-text\">\n          @if (title()) { <div class=\"qml-tile-title\">{{ title() }}</div> }\n          @if (description()) { <div class=\"qml-tile-description\">{{ description() }}</div> }\n          <ng-content></ng-content>\n        </div>\n        @if (rightIcon() || (interactive() && !rightIconSet())) {\n          <span class=\"qml-tile-right\" [innerHTML]=\"iconSvg(rightIcon() || 'chevron-right', 20)\"></span>\n        }\n        <ng-content select=\"[right]\"></ng-content>\n      </div>\n    </div>\n  ",
+    host: undefined,
     styles: [],
     inputs: {
-      title: { publicName: 'title', isSignal: true },
-      description: { publicName: 'description', isSignal: true },
-      icon: { publicName: 'icon', isSignal: true },
-      rightIcon: { publicName: 'rightIcon', isSignal: true },
-      variant: { publicName: 'variant', isSignal: true },
-      active: { publicName: 'active', isSignal: true },
-      interactive: { publicName: 'interactive', isSignal: true },
-      draggable: { publicName: 'draggable', isSignal: true },
-      dragKey: { publicName: 'dragKey', isSignal: true },
-      backgroundColor: { publicName: 'backgroundColor', isSignal: true },
-      customRadius: { publicName: 'customRadius', isSignal: true },
-      customColor: { publicName: 'customColor', isSignal: true },
-      customAccentColor: { publicName: 'customAccentColor', isSignal: true },
-      customTextColor: { publicName: 'customTextColor', isSignal: true },
+      title: { classPropertyName: 'title', publicName: 'title', isSignal: true, isRequired: false, transformFunction: null },
+      rightIcon: { classPropertyName: 'rightIcon', publicName: 'rightIcon', isSignal: true, isRequired: false, transformFunction: null },
+      variant: { classPropertyName: 'variant', publicName: 'variant', isSignal: true, isRequired: false, transformFunction: null },
+      active: { classPropertyName: 'active', publicName: 'active', isSignal: true, isRequired: false, transformFunction: null },
+      interactive: { classPropertyName: 'interactive', publicName: 'interactive', isSignal: true, isRequired: false, transformFunction: null },
+      draggable: { classPropertyName: 'draggable', publicName: 'draggable', isSignal: true, isRequired: false, transformFunction: null },
+      dragKey: { classPropertyName: 'dragKey', publicName: 'dragKey', isSignal: true, isRequired: false, transformFunction: null },
+      backgroundColor: { classPropertyName: 'backgroundColor', publicName: 'backgroundColor', isSignal: true, isRequired: false, transformFunction: null },
+      customRadius: { classPropertyName: 'customRadius', publicName: 'customRadius', isSignal: true, isRequired: false, transformFunction: null },
+      customColor: { classPropertyName: 'customColor', publicName: 'customColor', isSignal: true, isRequired: false, transformFunction: null },
+      customAccentColor: { classPropertyName: 'customAccentColor', publicName: 'customAccentColor', isSignal: true, isRequired: false, transformFunction: null },
+      customTextColor: { classPropertyName: 'customTextColor', publicName: 'customTextColor', isSignal: true, isRequired: false, transformFunction: null },
+      hasRightSlot: { classPropertyName: 'hasRightSlot', publicName: 'hasRightSlot', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       clicked: 'clicked',
     },
   });
-  // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
+  (Tile as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Toast,
     selector: 'Toast',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
-    host: ({
-    '[attr.data-qml-component]': '"toast"',
-  }),
+    template: "\n    <div class=\"qml-toast\" [class.exiting]=\"exiting()\" [attr.data-type]=\"type()\"\n      [style.--qml-toast-accent]=\"accentColor()\" (mouseenter)=\"pause()\" (mouseleave)=\"resume()\">\n      <span class=\"qml-toast-icon\" [style.color]=\"accentColor()\" [innerHTML]=\"iconSvg(typeIcon(), 20)\"></span>\n      <div class=\"qml-toast-text\">\n        <div class=\"qml-toast-title\">{{ resolvedTitle() }}</div>\n        <div class=\"qml-toast-message\">{{ message() }}</div>\n      </div>\n      @if (showClose()) {\n        <button class=\"qml-toast-close\" type=\"button\" (click)=\"dismiss()\" aria-label=\"Fechar\">\n          <span [innerHTML]=\"iconSvg('x', 16)\"></span>\n        </button>\n      }\n      <div class=\"qml-toast-progress\">\n        <div class=\"qml-toast-progress-bar\" [style.width.%]=\"progress()\"></div>\n      </div>\n    </div>\n  ",
+    host: undefined,
     styles: [],
     inputs: {
-      title: { publicName: 'title', isSignal: true },
-      message: { publicName: 'message', isSignal: true },
-      type: { publicName: 'type', isSignal: true },
-      duration: { publicName: 'duration', isSignal: true },
-      showClose: { publicName: 'showClose', isSignal: true },
-      remainingTime: { publicName: 'remainingTime', isSignal: true },
+      title: { classPropertyName: 'title', publicName: 'title', isSignal: true, isRequired: false, transformFunction: null },
+      message: { classPropertyName: 'message', publicName: 'message', isSignal: true, isRequired: false, transformFunction: null },
+      type: { classPropertyName: 'type', publicName: 'type', isSignal: true, isRequired: false, transformFunction: null },
+      duration: { classPropertyName: 'duration', publicName: 'duration', isSignal: true, isRequired: false, transformFunction: null },
+      showClose: { classPropertyName: 'showClose', publicName: 'showClose', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       dismissed: 'dismissed',
     },
   });
-  // host bindings present: skip ɵcmp override to preserve @Component-built hostBindings
+  (Toast as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: ToastManager,
     selector: 'ToastManager',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    @if (service.entries().length > 0) {\n      <div class=\"qml-toastmanager\" [attr.data-position]=\"position()\" [class]=\"'qml-toastmanager-' + position()\">\n        @for (entry of service.entries(); track entry.id) {\n          <div class=\"qml-toastmanager-item\">\n            <span class=\"qml-toastmanager-icon\" [style.color]=\"accentFor(entry.type)\" [innerHTML]=\"iconSvg(iconFor(entry.type), 20)\"></span>\n            <div class=\"qml-toastmanager-text\">\n              <div class=\"qml-toastmanager-title\">{{ resolvedTitle(entry) }}</div>\n              <div class=\"qml-toastmanager-message\">{{ entry.message }}</div>\n            </div>\n            @if (entry.showClose) {\n              <button class=\"qml-toastmanager-close\" type=\"button\" (click)=\"service.remove(entry.id)\" aria-label=\"Fechar\">\n                <span [innerHTML]=\"iconSvg('x', 16)\"></span>\n              </button>\n            }\n          </div>\n        }\n      </div>\n    }\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      position: { publicName: 'position', isSignal: true },
+      position: { classPropertyName: 'position', publicName: 'position', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
-  ToastManager[ɵNG_COMP_DEF] = _def;
+  (ToastManager as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: ToggleButton,
     selector: 'ToggleButton',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <button type=\"button\" role=\"switch\" class=\"qml-toggle\" [class.checked]=\"checked()\" [disabled]=\"disabled()\" [attr.aria-checked]=\"checked()\" (click)=\"onToggle()\">\n      <span class=\"qml-toggle-track\" [class.disabled]=\"disabled()\">\n        <span class=\"qml-toggle-thumb\"></span>\n      </span>\n      @if (label(); as lbl) { <span class=\"qml-toggle-label\">{{ lbl }}</span> }\n    </button>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      checked: { publicName: 'checked', isSignal: true },
-      label: { publicName: 'label', isSignal: true },
-      disabled: { publicName: 'disabled', isSignal: true },
+      label: { classPropertyName: 'label', publicName: 'label', isSignal: true, isRequired: false, transformFunction: null },
+      disabled: { classPropertyName: 'disabled', publicName: 'disabled', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       toggled: 'toggled',
     },
   });
-  ToggleButton[ɵNG_COMP_DEF] = _def;
+  (ToggleButton as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: Tooltip,
     selector: 'Tooltip',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
     template: "<ng-content></ng-content>",
-    host: ({
-    '[attr.data-qml-component]': '"tooltip"',
-  }),
+    host: undefined,
     styles: [],
     inputs: {
-      text: { publicName: 'text', isSignal: true },
-      placement: { publicName: 'placement', isSignal: true },
-      delay: { publicName: 'delay', isSignal: true },
-      maxWidth: { publicName: 'maxWidth', isSignal: true },
-      sz: { publicName: 'sz', isSignal: true },
+      text: { classPropertyName: 'text', publicName: 'text', isSignal: true, isRequired: false, transformFunction: null },
+      placement: { classPropertyName: 'placement', publicName: 'placement', isSignal: true, isRequired: false, transformFunction: null },
+      delay: { classPropertyName: 'delay', publicName: 'delay', isSignal: true, isRequired: false, transformFunction: null },
+      maxWidth: { classPropertyName: 'maxWidth', publicName: 'maxWidth', isSignal: true, isRequired: false, transformFunction: null },
+      sz: { classPropertyName: 'sz', publicName: 'sz', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
@@ -2966,24 +2532,22 @@ import { ZoomIn } from './components/ZoomIn';
   const _def = ɵɵngDeclareComponent({
     type: TreeTable,
     selector: 'TreeTable',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
     template: "<ng-content></ng-content>",
-    host: ({
-    '[attr.data-qml-component]': '"treetable"',
-  }),
+    host: undefined,
     styles: [],
     inputs: {
-      columns: { publicName: 'columns', isSignal: true },
-      rows: { publicName: 'rows', isSignal: true },
-      selectedIndexes: { publicName: 'selectedIndexes', isSignal: true },
-      sortColumn: { publicName: 'sortColumn', isSignal: true },
-      sortOrder: { publicName: 'sortOrder', isSignal: true },
-      selectable: { publicName: 'selectable', isSignal: true },
-      flatRows: { publicName: 'flatRows', isSignal: true },
-      sharedContentX: { publicName: 'sharedContentX', isSignal: true },
-      sharedContentWidth: { publicName: 'sharedContentWidth', isSignal: true },
+      columns: { classPropertyName: 'columns', publicName: 'columns', isSignal: true, isRequired: false, transformFunction: null },
+      rows: { classPropertyName: 'rows', publicName: 'rows', isSignal: true, isRequired: false, transformFunction: null },
+      selectedIndexes: { classPropertyName: 'selectedIndexes', publicName: 'selectedIndexes', isSignal: true, isRequired: false, transformFunction: null },
+      sortColumn: { classPropertyName: 'sortColumn', publicName: 'sortColumn', isSignal: true, isRequired: false, transformFunction: null },
+      sortOrder: { classPropertyName: 'sortOrder', publicName: 'sortOrder', isSignal: true, isRequired: false, transformFunction: null },
+      selectable: { classPropertyName: 'selectable', publicName: 'selectable', isSignal: true, isRequired: false, transformFunction: null },
+      flatRows: { classPropertyName: 'flatRows', publicName: 'flatRows', isSignal: true, isRequired: false, transformFunction: null },
+      sharedContentX: { classPropertyName: 'sharedContentX', publicName: 'sharedContentX', isSignal: true, isRequired: false, transformFunction: null },
+      sharedContentWidth: { classPropertyName: 'sharedContentWidth', publicName: 'sharedContentWidth', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       selectionChanged: 'selectionChanged',
@@ -2998,29 +2562,14 @@ import { ZoomIn } from './components/ZoomIn';
   const _def = ɵɵngDeclareComponent({
     type: VStack,
     selector: 'VStack',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "\n    <ng-content></ng-content>",
-    host: ({
-    '[style.display]': '"flex"',
-    '[style.flex-direction]': 'reverse() ? "column-reverse" : "column"',
-    '[style.gap.px]': 'spacing()',
-    '[style.justify-content]': 'justifyCSS()',
-    '[style.align-items]': 'alignCSS()',
-    '[style.flex-wrap]': 'wrap() ? "wrap" : "nowrap"',
-    '[attr.data-qml-component]': '"vstack"',
-  }),
+    template: "<ng-content></ng-content>",
+    host: undefined,
     styles: [],
     inputs: {
-      spacing: { publicName: 'spacing', isSignal: true },
-      spacingX: { publicName: 'spacingX', isSignal: true },
-      spacingY: { publicName: 'spacingY', isSignal: true },
-      justifyContent: { publicName: 'justifyContent', isSignal: true },
-      alignItems: { publicName: 'alignItems', isSignal: true },
-      wrap: { publicName: 'wrap', isSignal: true },
-      reverse: { publicName: 'reverse', isSignal: true },
-      alignContent: { publicName: 'alignContent', isSignal: true },
+      spacing: { classPropertyName: 'spacing', publicName: 'spacing', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {},
   });
@@ -3031,29 +2580,29 @@ import { ZoomIn } from './components/ZoomIn';
   const _def = ɵɵngDeclareComponent({
     type: Window,
     selector: 'Window',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "\n    <div class=\"qml-window\" [style.--handle.px]=\"handleSize()\">\n      <div class=\"qml-window-border\"></div>\n\n      @if (showCaption()) {\n        <div class=\"qml-window-caption\" [style.height.px]=\"captionHeight()\"\n          [class.no-move]=\"__maximized()\"\n          (dblclick)=\"toggleMaximized()\">\n          <div class=\"qml-window-caption-bg\" [style.background]=\"captionBackground()\"></div>\n          <div class=\"qml-window-caption-sep\" [style.background]=\"borderColor()\"></div>\n          <div class=\"qml-window-caption-move\" (mousedown)=\"startDrag($event)\"></div>\n\n          @if (icon()) {\n            <span class=\"qml-window-icon\" aria-hidden=\"true\">{{ icon() }}</span>\n          }\n          <span class=\"qml-window-title\" [style.color]=\"captionTextColor()\">{{ titleText() }}</span>\n\n          <div class=\"qml-window-controls\">\n            <button type=\"button\" class=\"qml-window-btn\" (click)=\"onMinimize()\" aria-label=\"Minimize\">−</button>\n            <button type=\"button\" class=\"qml-window-btn\" (click)=\"toggleMaximized()\" [attr.aria-label]=\"__maximized() ? 'Restore' : 'Maximize'\">\n              {{ __maximized() ? '❐' : '☐' }}\n            </button>\n            <button type=\"button\" class=\"qml-window-btn qml-window-btn-close\" (click)=\"onClose()\" aria-label=\"Close\">×</button>\n          </div>\n        </div>\n      }\n\n      <div class=\"qml-window-content\" [style.height.%]=\"showCaption() ? 100 : 100\">\n        <ng-content></ng-content>\n      </div>\n\n      @if (resizable() && !__maximized()) {\n        <div class=\"resize resize-tl\" (mousedown)=\"onResizeStart($event, 'tl')\"></div>\n        <div class=\"resize resize-tr\" (mousedown)=\"onResizeStart($event, 'tr')\"></div>\n        <div class=\"resize resize-bl\" (mousedown)=\"onResizeStart($event, 'bl')\"></div>\n        <div class=\"resize resize-br\" (mousedown)=\"onResizeStart($event, 'br')\"></div>\n        <div class=\"resize resize-left\" (mousedown)=\"onResizeStart($event, 'left')\"></div>\n        <div class=\"resize resize-right\" (mousedown)=\"onResizeStart($event, 'right')\"></div>\n        <div class=\"resize resize-top\" (mousedown)=\"onResizeStart($event, 'top')\"></div>\n        <div class=\"resize resize-bottom\" (mousedown)=\"onResizeStart($event, 'bottom')\"></div>\n      }\n    </div>\n  ",
     host: undefined,
     styles: [],
     inputs: {
-      titleText: { publicName: 'titleText', isSignal: true },
-      caption: { publicName: 'caption', isSignal: true },
-      icon: { publicName: 'icon', isSignal: true },
-      themeMode: { publicName: 'themeMode', isSignal: true },
-      flavor: { publicName: 'flavor', isSignal: true },
-      showCaption: { publicName: 'showCaption', isSignal: true },
-      resizable: { publicName: 'resizable', isSignal: true },
-      captionHeight: { publicName: 'captionHeight', isSignal: true },
-      handleSize: { publicName: 'handleSize', isSignal: true },
-      captionBackground: { publicName: 'captionBackground', isSignal: true },
-      captionTextColor: { publicName: 'captionTextColor', isSignal: true },
-      buttonHover: { publicName: 'buttonHover', isSignal: true },
-      buttonCloseHover: { publicName: 'buttonCloseHover', isSignal: true },
-      borderColor: { publicName: 'borderColor', isSignal: true },
-      minimumWidth: { publicName: 'minimumWidth', isSignal: true },
-      minimumHeight: { publicName: 'minimumHeight', isSignal: true },
+      titleText: { classPropertyName: 'titleText', publicName: 'titleText', isSignal: true, isRequired: false, transformFunction: null },
+      caption: { classPropertyName: 'caption', publicName: 'caption', isSignal: true, isRequired: false, transformFunction: null },
+      icon: { classPropertyName: 'icon', publicName: 'icon', isSignal: true, isRequired: false, transformFunction: null },
+      themeMode: { classPropertyName: 'themeMode', publicName: 'themeMode', isSignal: true, isRequired: false, transformFunction: null },
+      flavor: { classPropertyName: 'flavor', publicName: 'flavor', isSignal: true, isRequired: false, transformFunction: null },
+      showCaption: { classPropertyName: 'showCaption', publicName: 'showCaption', isSignal: true, isRequired: false, transformFunction: null },
+      resizable: { classPropertyName: 'resizable', publicName: 'resizable', isSignal: true, isRequired: false, transformFunction: null },
+      captionHeight: { classPropertyName: 'captionHeight', publicName: 'captionHeight', isSignal: true, isRequired: false, transformFunction: null },
+      handleSize: { classPropertyName: 'handleSize', publicName: 'handleSize', isSignal: true, isRequired: false, transformFunction: null },
+      captionBackground: { classPropertyName: 'captionBackground', publicName: 'captionBackground', isSignal: true, isRequired: false, transformFunction: null },
+      captionTextColor: { classPropertyName: 'captionTextColor', publicName: 'captionTextColor', isSignal: true, isRequired: false, transformFunction: null },
+      buttonHover: { classPropertyName: 'buttonHover', publicName: 'buttonHover', isSignal: true, isRequired: false, transformFunction: null },
+      buttonCloseHover: { classPropertyName: 'buttonCloseHover', publicName: 'buttonCloseHover', isSignal: true, isRequired: false, transformFunction: null },
+      borderColor: { classPropertyName: 'borderColor', publicName: 'borderColor', isSignal: true, isRequired: false, transformFunction: null },
+      minimumWidth: { classPropertyName: 'minimumWidth', publicName: 'minimumWidth', isSignal: true, isRequired: false, transformFunction: null },
+      minimumHeight: { classPropertyName: 'minimumHeight', publicName: 'minimumHeight', isSignal: true, isRequired: false, transformFunction: null },
     },
     outputs: {
       minimized: 'minimized',
@@ -3062,28 +2611,21 @@ import { ZoomIn } from './components/ZoomIn';
       closed: 'closed',
     },
   });
-  Window[ɵNG_COMP_DEF] = _def;
+  (Window as any)[ɵNG_COMP_DEF] = _def;
 }
 
 {
   const _def = ɵɵngDeclareComponent({
     type: ZoomIn,
     selector: 'ZoomIn',
-    standalone: true,
+    isStandalone: true,
     version: '20.0.0',
     isSignal: true,
-    template: "<ng-content></ng-content>",
+    template: "<div class=\"motion\" [class.is-visible]=\"visible()\" [style.--duration.ms]=\"duration()\" [style.--delay.ms]=\"delay()\" [style.--scale]=\"fromScale()\"><ng-content /></div>",
     host: undefined,
     styles: [],
-    inputs: {
-      duration: { publicName: 'duration', isSignal: true },
-      delay: { publicName: 'delay', isSignal: true },
-      fromScale: { publicName: 'fromScale', isSignal: true },
-      trigger: { publicName: 'trigger', isSignal: true },
-      triggerOnVisibility: { publicName: 'triggerOnVisibility', isSignal: true },
-      visibilityThreshold: { publicName: 'visibilityThreshold', isSignal: true },
-    },
+    inputs: {},
     outputs: {},
   });
-  ZoomIn[ɵNG_COMP_DEF] = _def;
+  (ZoomIn as any)[ɵNG_COMP_DEF] = _def;
 }

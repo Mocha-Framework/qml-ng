@@ -1,19 +1,42 @@
+// Refined manually. Do not overwrite.
 
-// Auto-generated from design-system/MochaDS/MochaMap.qml
-// Do not edit manually. Run `pnpm generate` to regenerate.
-
-import { Component, input, output, computed } from '@angular/core';
+import { Component, input, computed } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'MochaMap',
   standalone: true,
-  template: `<ng-content></ng-content>`,
+  imports: [NgTemplateOutlet],
+  template: `
+    <div class="qml-mocha-map" [class]="layout()" [style.gap.px]="spacing()">
+      @for (item of itemsArray(); track $index; let idx = $index) {
+        <div class="qml-mocha-map-item" [attr.data-index]="idx">
+          <ng-container *ngTemplateOutlet="itemTpl; context: { $implicit: item, index: idx }"></ng-container>
+        </div>
+      }
+    </div>
+    <ng-template #itemTpl let-item let-i="index">
+      <ng-content></ng-content>
+    </ng-template>
+  `,
+  styles: [`
+    :host { display: block; }
+    .qml-mocha-map { display: flex; width: 100%; flex-wrap: nowrap; }
+    .vertical { flex-direction: column; }
+    .horizontal { flex-direction: row; }
+    .qml-mocha-map-item { display: block; }
+  `],
 })
 export class MochaMap {
-  items = input<unknown>([]);
-  delegate = input<unknown>("null");
+  items = input<unknown[]>([]);
+  delegate = input<unknown>(null);
   spacing = input<number>(0);
-  orientation = input<string>("vertical");
-  modelData = input<unknown>(undefined);
-  index = input<number>(0);
+  orientation = input<string>('vertical');
+
+  protected itemsArray = computed<unknown[]>(() => {
+    const v = this.items();
+    return Array.isArray(v) ? v : [];
+  });
+
+  protected layout = computed(() => this.orientation() === 'horizontal' ? 'horizontal' : 'vertical');
 }

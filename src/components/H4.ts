@@ -1,15 +1,17 @@
+// Refined manually. Do not overwrite.
 
-// Auto-generated from design-system/MochaDS/H4.qml
-// Do not edit manually. Run `pnpm generate` to regenerate.
-
-import { Component, input, output, computed } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'H4',
   standalone: true,
-  template: `
-    {{ text() }}
-    <ng-content></ng-content>`,
+  template: `<h4 class="title title-h4"><ng-content></ng-content></h4>`,
+  styles: [`
+    :host { display: block; }
+    h4 { all: unset; display: block; }
+    h4:focus-visible { outline: none; }
+  `],
 })
 export class H4 {
+  readonly variant = input<'h4'>('h4');
 }

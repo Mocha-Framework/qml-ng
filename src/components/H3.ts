@@ -1,15 +1,17 @@
+// Refined manually. Do not overwrite.
 
-// Auto-generated from design-system/MochaDS/H3.qml
-// Do not edit manually. Run `pnpm generate` to regenerate.
-
-import { Component, input, output, computed } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'H3',
   standalone: true,
-  template: `
-    {{ text() }}
-    <ng-content></ng-content>`,
+  template: `<h3 class="title title-h3"><ng-content></ng-content></h3>`,
+  styles: [`
+    :host { display: block; }
+    h3 { all: unset; display: block; }
+    h3:focus-visible { outline: none; }
+  `],
 })
 export class H3 {
+  readonly variant = input<'h3'>('h3');
 }

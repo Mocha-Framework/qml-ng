@@ -1,22 +1,5 @@
+// Refined manually. Do not overwrite.
 
-// Auto-generated from design-system/MochaDS/AnimatedNumber.qml
-// Do not edit manually. Run `pnpm generate` to regenerate.
-
-import { Component, input, output, computed } from '@angular/core';
-
-@Component({
-  selector: 'AnimatedNumber',
-  standalone: true,
-  template: `<ng-content></ng-content>`,
-})
-export class AnimatedNumber {
-  value = input<number>(0);
-  from = input<number>(0);
-  animated = input<boolean>(true);
-  duration = input<number>(800);
-  easing = input<string>("OutQuart");
-  prefix = input<string>("");
-  suffix = input<string>("");
-  decimalPlaces = input<number>(0);
-  separator = input<string>("");
-}
+import { Component, OnDestroy, OnInit, effect, input, signal } from '@angular/core';
+@Component({selector:'AnimatedNumber',standalone:true,template:`<span>{{ formatted() }}</span>`,styles:[`:host{display:inline-block;color:var(--qml-text,#cdd6f4);font-family:var(--qml-font-bold,monospace);font-size:24px;font-weight:700}`]})
+export class AnimatedNumber implements OnInit,OnDestroy {value=input(0);from=input(0);animated=input(true);duration=input(800);easing=input('OutQuart');prefix=input('');suffix=input('');decimalPlaces=input(0);separator=input('');formatted=signal('0');private frame=0;constructor(){effect(()=>this.animate(this.value()))}ngOnInit(){this.animate(this.value())}ngOnDestroy(){cancelAnimationFrame(this.frame)}private animate(target:number){cancelAnimationFrame(this.frame);if(!this.animated()){this.formatted.set(this.format(target));return}const startValue=Number(this.formatted().replace(this.prefix(),'').replace(this.suffix(),'').split(this.separator()).join(''))||this.from(),start=performance.now();const tick=(now:number)=>{const p=Math.min(1,(now-start)/Math.max(1,this.duration())),e=1-Math.pow(1-p,4);this.formatted.set(this.format(startValue+(target-startValue)*e));if(p<1)this.frame=requestAnimationFrame(tick)};this.frame=requestAnimationFrame(tick)}private format(value:number){let text=value.toFixed(this.decimalPlaces());if(this.separator()){const parts=text.split('.');parts[0]=parts[0].replace(/\B(?=(\d{3})+(?!\d))/g,this.separator());text=parts.join('.')}return this.prefix()+text+this.suffix()}}

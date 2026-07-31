@@ -1,15 +1,17 @@
+// Refined manually. Do not overwrite.
 
-// Auto-generated from design-system/MochaDS/H1.qml
-// Do not edit manually. Run `pnpm generate` to regenerate.
-
-import { Component, input, output, computed } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'H1',
   standalone: true,
-  template: `
-    {{ text() }}
-    <ng-content></ng-content>`,
+  template: `<h1 class="title title-h1"><ng-content></ng-content></h1>`,
+  styles: [`
+    :host { display: block; }
+    h1 { all: unset; display: block; }
+    h1:focus-visible { outline: none; }
+  `],
 })
 export class H1 {
+  readonly variant = input<'h1'>('h1');
 }

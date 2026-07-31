@@ -2,7 +2,6 @@
 // Do not edit manually. Run `pnpm generate` to regenerate.
 
 import { Component, input, output, computed } from '@angular/core';
-import { TreeTableComponent } from '@mocha-ds/angular';
 
 @Component({
   selector: 'TreeTable',

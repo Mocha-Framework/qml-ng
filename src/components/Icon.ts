@@ -1,18 +1,7 @@
-// Manually written Icon component for qml-ng
-import { Component, input, computed } from '@angular/core';
+// Refined manually. Do not overwrite.
 
-@Component({
-  selector: 'qml-icon',
-  standalone: true,
-  template: `
-    <span class="qml-icon" [style.width.px]="size()" [style.height.px]="size()" [style.color]="color()">
-      {{ name() }}
-    </span>
-  `,
-  styles: [`:host { display: inline-flex; align-items: center; justify-content: center; }`],
-})
-export class Icon {
-  name = input<string>('');
-  size = input<number>(18);
-  color = input<string>('currentColor');
-}
+import { Component, OnDestroy, effect, input, signal } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+
+@Component({selector:'qml-icon, LucideIcon',standalone:true,template:`<span class="icon" [style.width.px]="size()" [style.height.px]="size()" [style.color]="color()" [innerHTML]="svg()"></span>`,styles:[`:host,.icon{display:inline-flex;align-items:center;justify-content:center;flex:none}.icon svg{display:block;width:100%;height:100%}`]})
+export class Icon implements OnDestroy {name=input('');size=input(24);color=input('var(--qml-text,currentColor)');strokeWidth=input(2);svg=signal<SafeHtml>('');private controller?:AbortController;constructor(private sanitizer:DomSanitizer){effect(()=>this.load(this.name(),this.strokeWidth()))}ngOnDestroy(){this.controller?.abort()}private async load(name:string,strokeWidth:number){this.controller?.abort();if(!name){this.svg.set('');return}this.controller=new AbortController();const source=name.includes('/')||name.includes(':')?name:`/assets/icons/${name}.svg`;try{const text=await fetch(source,{signal:this.controller.signal}).then(response=>{if(!response.ok)throw new Error();return response.text()});const svg=text.replace(/stroke\s*=\s*["']currentColor["']/g,'stroke="currentColor"').replace(/fill\s*=\s*["']currentColor["']/g,'fill="currentColor"').replace(/stroke-width\s*=\s*["'][^"']*["']/g,`stroke-width="${strokeWidth}"`).replace(/<script[\s\S]*?<\/script>/gi,'');this.svg.set(this.sanitizer.bypassSecurityTrustHtml(svg))}catch{if(!this.controller.signal.aborted)this.svg.set('')}}}

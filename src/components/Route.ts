@@ -1,8 +1,9 @@
+// Refined manually. Do not overwrite.
 
-// Auto-generated from design-system/MochaDS/Route.qml
-// Do not edit manually. Run `pnpm generate` to regenerate.
+import { Component, input, computed } from '@angular/core';
 
-import { Component, input, output, computed } from '@angular/core';
+export type CanActivateFn = (params: Record<string, string>, router: unknown) => boolean;
+export type CanDeactivateFn = (params: Record<string, string>, router: unknown) => boolean;
 
 @Component({
   selector: 'Route',
@@ -10,11 +11,23 @@ import { Component, input, output, computed } from '@angular/core';
   template: `<ng-content></ng-content>`,
 })
 export class Route {
-  path = input<string>("");
-  source = input<string>("");
-  view = input<unknown>("null");
-  title = input<string>("");
-  canActivate = input<unknown>(null);
-  canDeactivate = input<unknown>(null);
-  guardRedirect = input<string>("");
+  path = input<string>('');
+  source = input<string>('');
+  view = input<unknown>(null);
+  title = input<string>('');
+  canActivate = input<CanActivateFn | null>(null);
+  canDeactivate = input<CanDeactivateFn | null>(null);
+  guardRedirect = input<string>('');
+
+  readonly isRoute = true;
+
+  readonly resolved = computed(() => ({
+    path: this.path(),
+    source: this.source(),
+    view: this.view(),
+    title: this.title(),
+    canActivate: this.canActivate(),
+    canDeactivate: this.canDeactivate(),
+    guardRedirect: this.guardRedirect(),
+  }));
 }

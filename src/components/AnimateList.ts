@@ -1,22 +1,5 @@
+// Refined manually. Do not overwrite.
 
-// Auto-generated from design-system/MochaDS/AnimateList.qml
-// Do not edit manually. Run `pnpm generate` to regenerate.
-
-import { Component, input, output, computed } from '@angular/core';
-
-@Component({
-  selector: 'AnimateList',
-  standalone: true,
-  template: `<ng-content></ng-content>`,
-})
-export class AnimateList {
-  model = input<unknown>(null);
-  delegate = input<unknown>("null");
-  animation = input<string>("fade");
-  duration = input<number>(300);
-  perItemDelay = input<number>(60);
-  trigger = input<boolean>(true);
-  offset = input<number>(20);
-  fromScale = input<number>(0.8);
-  itemIndex = input<number>(0);
-}
+import { Component, computed, input } from '@angular/core';
+@Component({selector:'AnimateList',standalone:true,template:`<div class="list" [class.is-visible]="trigger()">@for (item of items(); track $index) {<div class="item" [style.--index]="$index" [style.--duration.ms]="duration()" [style.--delay.ms]="perItemDelay()" [style.--offset.px]="offset()" [style.--scale]="fromScale()"><ng-content /></div>}</div>`,styles:[`:host,.list{display:block;overflow:hidden}.item{opacity:1}.is-visible .item{animation:list-reveal var(--duration) cubic-bezier(.215,.61,.355,1) calc(var(--index) * var(--delay)) both}@keyframes list-reveal{from{opacity:0;transform:translateY(var(--offset)) scale(var(--scale))}to{opacity:1;transform:none}}`]})
+export class AnimateList {model=input<readonly unknown[]|null>(null);delegate=input<unknown>(null);animation=input('fade');duration=input(300);perItemDelay=input(60);trigger=input(true);offset=input(20);fromScale=input(.8);items=computed(()=>this.model()??[])}

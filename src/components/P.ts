@@ -1,15 +1,17 @@
+// Refined manually. Do not overwrite.
 
-// Auto-generated from design-system/MochaDS/P.qml
-// Do not edit manually. Run `pnpm generate` to regenerate.
-
-import { Component, input, output, computed } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'P',
   standalone: true,
-  template: `
-    {{ text() }}
-    <ng-content></ng-content>`,
+  template: `<p class="text text-body"><ng-content></ng-content></p>`,
+  styles: [`
+    :host { display: block; }
+    p { all: unset; display: block; }
+    p:focus-visible { outline: none; }
+  `],
 })
 export class P {
+  readonly variant = input<'body'>('body');
 }

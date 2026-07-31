@@ -1,19 +1,5 @@
+// Refined manually. Do not overwrite.
 
-// Auto-generated from design-system/MochaDS/ZoomIn.qml
-// Do not edit manually. Run `pnpm generate` to regenerate.
-
-import { Component, input, output, computed } from '@angular/core';
-
-@Component({
-  selector: 'ZoomIn',
-  standalone: true,
-  template: `<ng-content></ng-content>`,
-})
-export class ZoomIn {
-  duration = input<number>(350);
-  delay = input<number>(0);
-  fromScale = input<number>(0.8);
-  trigger = input<boolean>(true);
-  triggerOnVisibility = input<boolean>(false);
-  visibilityThreshold = input<number>(0.3);
-}
+import { AfterViewInit, Component, ElementRef, OnDestroy, input, signal } from '@angular/core';
+@Component({selector:'ZoomIn',standalone:true,template:`<div class="motion" [class.is-visible]="visible()" [style.--duration.ms]="duration()" [style.--delay.ms]="delay()" [style.--scale]="fromScale()"><ng-content /></div>`,styles:[`:host{display:inline-block}.motion{opacity:0;transform:scale(var(--scale))}.motion.is-visible{animation:zoom-in-back var(--duration) cubic-bezier(.34,1.56,.64,1) var(--delay) both}@keyframes zoom-in-back{to{opacity:1;transform:scale(1)}}`]})
+export class ZoomIn implements AfterViewInit,OnDestroy {duration=input(350);delay=input(0);fromScale=input(.8);trigger=input(true);triggerOnVisibility=input(false);visibilityThreshold=input(.3);visible=signal(false);private observer?:IntersectionObserver;constructor(private el:ElementRef<HTMLElement>){}ngAfterViewInit(){if(this.triggerOnVisibility()){this.observer=new IntersectionObserver(([e])=>{if(e.isIntersecting){this.visible.set(true);this.observer?.disconnect()}},{threshold:this.visibilityThreshold()});this.observer.observe(this.el.nativeElement)}else this.visible.set(this.trigger())}ngOnDestroy(){this.observer?.disconnect()}}

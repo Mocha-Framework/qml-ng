@@ -1,27 +1,6 @@
+// Refined manually. Do not overwrite.
 
-// Auto-generated from design-system/MochaDS/Particles.qml
-// Do not edit manually. Run `pnpm generate` to regenerate.
-
-import { Component, input, output, computed } from '@angular/core';
-
-@Component({
-  selector: 'Particles',
-  standalone: true,
-  template: `<ng-content></ng-content>`,
-})
-export class Particles {
-  count = input<number>(15);
-  color = input<string>("");
-  minSize = input<number>(2);
-  maxSize = input<number>(6);
-  duration = input<number>(3000);
-  spread = input<number>(100);
-  running = input<boolean>(true);
-  size = input<number>(0);
-  startX = input<number>(0);
-  startY = input<number>(0);
-  endX = input<number>(0);
-  endY = input<number>(0);
-  randomDelay = input<number>(0);
-  randomDuration = input<number>(0);
-}
+import { Component, computed, input } from '@angular/core';
+type ParticleStyle=Record<string,string>;
+@Component({selector:'Particles',standalone:true,template:`<div class="particles">@for (particle of particles(); track $index) {<span [style]="particle"></span>}</div>`,styles:[`:host,.particles{display:block;position:absolute;inset:0;overflow:hidden;pointer-events:none}.particles span{position:absolute;border-radius:50%;background:var(--particle-color);opacity:0;animation:particle-drift var(--particle-duration) ease-in-out var(--particle-delay) infinite;animation-play-state:var(--particle-state)}@keyframes particle-drift{0%{opacity:0;transform:translate(0,0)}30%{opacity:var(--particle-opacity)}70%{opacity:var(--particle-opacity)}100%{opacity:0;transform:translate(var(--particle-x),var(--particle-y))}}`]})
+export class Particles {count=input(15);color=input('var(--qml-surface2, #585b70)');minSize=input(2);maxSize=input(6);duration=input(3000);spread=input(100);running=input(true);particles=computed<ParticleStyle[]>(()=>Array.from({length:Math.max(0,this.count())},()=>{const size=this.minSize()+Math.random()*(this.maxSize()-this.minSize()),duration=this.duration()*.5+Math.random()*this.duration();return {'--particle-color':this.color(),'--particle-duration':`${duration}ms`,'--particle-delay':`${Math.random()*this.duration()*.5}ms`,'--particle-state':this.running()?'running':'paused','--particle-opacity':`${.6+Math.random()*.4}`,'--particle-x':`${(Math.random()-.5)*this.spread()*2}px`,'--particle-y':`${(Math.random()-.5)*this.spread()*2}px`,left:`${Math.random()*100}%`,top:`${Math.random()*100}%`,width:`${size}px`,height:`${size}px`}}))}

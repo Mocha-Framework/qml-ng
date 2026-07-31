@@ -20,18 +20,24 @@
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@angular/core": "^20.0.0",
     "@angular/common": "^20.0.0",
+    "@angular/compiler": "^20.0.0",
+    "@angular/core": "^20.0.0",
     "@angular/forms": "^20.0.0",
-    "@angular/router": "^20.0.0",
     "@angular/platform-browser": "^20.0.0",
-    "@angular/compiler": "^20.0.0"
-  },
-  "dependencies": {
-    "@mocha-ds/angular": "^0.1.0"
+    "@angular/router": "^20.0.0"
   },
   "devDependencies": {
-    "tsx": "^4.0.0",
-    "typescript": "^5.0.0"
+    "@angular/cdk": "^20.2.14",
+    "@angular/common": "^20.3.27",
+    "@angular/compiler": "^20.3.27",
+    "@angular/core": "^20.3.27",
+    "@angular/forms": "^20.3.27",
+    "@angular/platform-browser": "^20.3.27",
+    "@angular/router": "^20.3.27",
+    "esbuild": "^0.28.1",
+    "rxjs": "^7.8.2",
+    "tsx": "^4.23.1",
+    "typescript": "^5.9.3"
   }
 }

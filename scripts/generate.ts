@@ -491,10 +491,9 @@ function sanitizeName(name: string): string {
 }
 
 function generateAdapterComponent(spec: QmlComponentSpec): string {
-  const { name, properties, signals, selector, adapterComponent } = spec;
+  const { name, properties, signals, selector } = spec;
   const publicProps = properties.filter(p => !p.isInternal && !p.isReadonly && !p.isAlias && p.name !== 'data');
   const publicSignals = signals;
-  const adapter = ADAPTER_MAP[name];
 
   // Determine which imports are needed
   const imports: string[] = [];
@@ -505,9 +504,6 @@ function generateAdapterComponent(spec: QmlComponentSpec): string {
 
   // Build imports
   imports.push(`import { Component, input, output, computed } from '@angular/core';`);
-  if (adapter) {
-    imports.push(`import { ${adapter.componentClass} } from '${adapter.importPath}';`);
-  }
 
   // Build input() signals for public properties
   for (const prop of publicProps) {

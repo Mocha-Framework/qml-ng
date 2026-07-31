@@ -1,17 +1,5 @@
+// Refined manually. Do not overwrite.
 
-// Auto-generated from design-system/MochaDS/SlideOutDown.qml
-// Do not edit manually. Run `pnpm generate` to regenerate.
-
-import { Component, input, output, computed } from '@angular/core';
-
-@Component({
-  selector: 'SlideOutDown',
-  standalone: true,
-  template: `<ng-content></ng-content>`,
-})
-export class SlideOutDown {
-  duration = input<number>(350);
-  delay = input<number>(0);
-  offset = input<number>(20);
-  trigger = input<boolean>(true);
-}
+import { Component, input } from '@angular/core';
+@Component({selector:'SlideOutDown',standalone:true,template:`<div class="motion" [class.is-hidden]="!trigger()" [style.--duration.ms]="duration()" [style.--delay.ms]="delay()" [style.--offset.px]="offset()"><ng-content /></div>`,styles:[`:host{display:inline-block}.motion.is-hidden{animation:slide-out-down var(--duration) cubic-bezier(.55,.055,.675,.19) var(--delay) both}@keyframes slide-out-down{to{transform:translateY(var(--offset))}}`]})
+export class SlideOutDown {duration=input(350);delay=input(0);offset=input(20);trigger=input(true)}

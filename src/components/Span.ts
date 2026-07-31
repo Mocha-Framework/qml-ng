@@ -1,31 +1,13 @@
+// Refined manually. Do not overwrite.
 
-// Auto-generated from design-system/MochaDS/Span.qml
-// Do not edit manually. Run `pnpm generate` to regenerate.
-
-import { Component, input, output, computed } from '@angular/core';
-
+import { Component, computed, input } from '@angular/core';
 @Component({
-  selector: 'Span',
-  standalone: true,
-  template: `<ng-content></ng-content>`,
+  selector:'Span', standalone:true,
+  template:`<span class="qml-span" [style]="styles()">{{ uppercase() ? text().toUpperCase() : text() }}<ng-content></ng-content></span>`,
+  styles:[`.qml-span{display:inline;white-space:normal}.qml-span[data-code]{white-space:nowrap}`],
 })
 export class Span {
-  text = input<string>("");
-  variant = input<string>("body");
-  colorName = input<string>("");
-  customColor = input<string>("transparent");
-  fontFamily = input<string>("");
-  fontSize = input<number>(0);
-  weight = input<string>("");
-  weightNumber = input<number>(0);
-  italic = input<boolean>(false);
-  align = input<string>("left");
-  decoration = input<string>("none");
-  uppercase = input<boolean>(false);
-  lineHeight = input<number>(0);
-  letterSpacing = input<number>(0);
-  selectable = input<boolean>(true);
-  maxLines = input<number>(0);
-  gradient = input<string>("");
-  htmlTag = input<string>("");
+  text=input('');variant=input('body');colorName=input('');customColor=input('transparent');fontFamily=input('');fontSize=input(0);weight=input('');weightNumber=input(0);italic=input(false);align=input('left');decoration=input('none');uppercase=input(false);lineHeight=input(0);letterSpacing=input(0);selectable=input(true);maxLines=input(0);gradient=input('');htmlTag=input('');
+  protected styles=computed(()=>{const preset=this.preset(),color=this.customColor()!=='transparent'?this.customColor():this.colorName()?`var(--ctp-${this.colorName()})`:preset.color,family=this.family(preset.family),weight=this.weightNumber()>0?this.weightNumber():this.weight()?({light:300,regular:400,medium:500,semibold:600,bold:700,extrabold:800}as Record<string,number>)[this.weight()]??preset.weight:preset.weight,gradient=this.gradient()?`background:linear-gradient(90deg,var(--ctp-${this.gradient().split('-')[0]}),var(--ctp-${this.gradient().split('-')[1]??'blue'}));background-clip:text;color:transparent;`:'';return`font-family:${family};font-size:${this.fontSize()||preset.size}px;font-weight:${weight};font-style:${this.italic()?'italic':'normal'};line-height:${this.lineHeight()||preset.line};letter-spacing:${this.letterSpacing()||preset.spacing}px;color:${color};text-align:${this.align()};text-decoration:${this.decoration()};user-select:${this.selectable()?'text':'none'};${this.maxLines()>0?`display:-webkit-box;-webkit-line-clamp:${this.maxLines()};-webkit-box-orient:vertical;overflow:hidden;`:''}${gradient}`});
+  private family(fallback:string):string{if(this.fontFamily()==='display')return'var(--ctp-font-family-display, sans-serif)';if(this.fontFamily()==='mono')return'var(--ctp-font-family-mono, monospace)';if(this.fontFamily()==='body'||!this.fontFamily())return fallback;return this.fontFamily();} private preset():{size:number;weight:number;line:number;spacing:number;color:string;family:string}{const base={size:14,weight:400,line:1.6,spacing:0,color:'var(--ctp-subtext1, #bac2de)',family:'var(--ctp-font-family, sans-serif)'};return({h1:{...base,size:32,weight:700,line:1.25,spacing:-1,color:'var(--ctp-text)'},h2:{...base,size:24,weight:700,line:1.25,spacing:-.5,color:'var(--ctp-text)'},h3:{...base,size:20,weight:600,line:1.3,spacing:-.3,color:'var(--ctp-text)'},h4:{...base,size:16,weight:600,line:1.35,color:'var(--ctp-text)'},h5:{...base,size:14,weight:500,line:1.35,color:'var(--ctp-text)'},h6:{...base,size:12,weight:500,line:1.35,spacing:1,color:'var(--ctp-text)'},caption:{...base,size:10,line:1.4,color:'var(--ctp-subtext0)'},overline:{...base,size:10,weight:700,line:1.2,spacing:2,color:'var(--ctp-subtext0)'},label:{...base,size:12,weight:500,line:1.4,color:'var(--ctp-text)'},code:{...base,size:12,line:1.5,color:'var(--ctp-green)',family:'var(--ctp-font-family-mono, monospace)'},body:base}as Record<string,typeof base>)[this.variant()]??base;}
 }

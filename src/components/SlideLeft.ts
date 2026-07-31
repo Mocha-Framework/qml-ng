@@ -1,17 +1,5 @@
+// Refined manually. Do not overwrite.
 
-// Auto-generated from design-system/MochaDS/SlideLeft.qml
-// Do not edit manually. Run `pnpm generate` to regenerate.
-
-import { Component, input, output, computed } from '@angular/core';
-
-@Component({
-  selector: 'SlideLeft',
-  standalone: true,
-  template: `<ng-content></ng-content>`,
-})
-export class SlideLeft {
-  duration = input<number>(400);
-  delay = input<number>(0);
-  offset = input<number>(20);
-  trigger = input<boolean>(true);
-}
+import { Component, input } from '@angular/core';
+@Component({selector:'SlideLeft',standalone:true,template:`<div class="motion" [class.is-visible]="trigger()" [style.--duration.ms]="duration()" [style.--delay.ms]="delay()" [style.--offset.px]="offset()"><ng-content /></div>`,styles:[`:host{display:inline-block}.motion{opacity:0;transform:translateX(var(--offset))}.motion.is-visible{animation:slide-left var(--duration) cubic-bezier(.215,.61,.355,1) var(--delay) both}@keyframes slide-left{to{opacity:1;transform:translateX(0)}}`]})
+export class SlideLeft {duration=input(400);delay=input(0);offset=input(20);trigger=input(true)}

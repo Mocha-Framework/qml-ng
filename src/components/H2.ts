@@ -1,15 +1,17 @@
+// Refined manually. Do not overwrite.
 
-// Auto-generated from design-system/MochaDS/H2.qml
-// Do not edit manually. Run `pnpm generate` to regenerate.
-
-import { Component, input, output, computed } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'H2',
   standalone: true,
-  template: `
-    {{ text() }}
-    <ng-content></ng-content>`,
+  template: `<h2 class="title title-h2"><ng-content></ng-content></h2>`,
+  styles: [`
+    :host { display: block; }
+    h2 { all: unset; display: block; }
+    h2:focus-visible { outline: none; }
+  `],
 })
 export class H2 {
+  readonly variant = input<'h2'>('h2');
 }

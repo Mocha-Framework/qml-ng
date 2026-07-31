@@ -2,7 +2,6 @@
 // Do not edit manually. Run `pnpm generate` to regenerate.
 
 import { Component, input, output, computed } from '@angular/core';
-import { TooltipDirective } from '@mocha-ds/angular';
 
 @Component({
   selector: 'Tooltip',
