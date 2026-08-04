@@ -62,10 +62,10 @@ interface AngularComponentFile {
 // Paths
 // ─────────────────────────────────────────────
 
-const ROOT = join(import.meta.dirname, '..', '..', '..');
-const DESIGN_SYSTEM = join(ROOT, 'design-system', 'MochaDS');
-const QML_NG = join(ROOT, 'packages', 'qml-ng');
-const ANGULAR_PKG = join(ROOT, 'packages', 'angular');
+const ROOT = join(import.meta.dirname, '..', '..');
+const DESIGN_SYSTEM = join(ROOT, 'ds-qml', 'qml', 'MochaDS');
+const QML_NG = join(ROOT, 'qml-ng');
+const ANGULAR_PKG = join(ROOT, 'qml-ng');
 const REGISTRY_DIR = join(QML_NG, 'registry');
 const COMPONENTS_DIR = join(QML_NG, 'src', 'components');
 const SHARED_DIR = join(QML_NG, 'src', 'shared');
@@ -112,7 +112,7 @@ const CATEGORY_RULES: CategoryRule[] = [
   { keywords: ['Repeater', 'Loader', 'Image', 'MouseArea', 'Flickable', 'ScrollView', 'Canvas', 'AnimatedImage', 'BorderImage'], category: 'qtquick', subcategory: 'builtin' },
   { keywords: ['SortableList', 'InteractiveListCell', 'Draggable', 'DropZone', 'SelectTree'], category: 'interactive', subcategory: 'drag' },
   { keywords: ['MochaLogo', 'MochaMap', 'LucideIcon'], category: 'misc', subcategory: 'brand' },
-  { keywords: ['MediaQuery', 'CozyColorPicker'], category: 'utility', subcategory: 'helper' },
+  { keywords: ['MediaQuery', 'CozyColorPicker', 'If'], category: 'utility', subcategory: 'helper' },
 ];
 
 function classifyComponent(name: string): { category: string; subcategory: string } {

@@ -1,5 +1,5 @@
 
-// Auto-generated from design-system/MochaDS/ButtonGroupItem.qml
+// Auto-generated from ds-qml/qml/MochaDS/ButtonGroupItem.qml
 // Do not edit manually. Run `pnpm generate` to regenerate.
 
 import { Component, input, output, computed } from '@angular/core';

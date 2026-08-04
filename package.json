@@ -1,7 +1,7 @@
 {
-  "name": "@mocha/qml-ng",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@mocha-framework/qml-ng",
+  "version": "0.2.0-alpha.0",
+  "private": false,
   "description": "MochaDS QML → Angular 1:1 API bridge. Auto-generated from MochaDS QML components.",
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",

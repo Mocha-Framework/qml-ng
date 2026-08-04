@@ -1,5 +1,5 @@
 
-// Auto-generated from design-system/MochaDS/StripedFill.qml
+// Auto-generated from ds-qml/qml/MochaDS/StripedFill.qml
 // Do not edit manually. Run `pnpm generate` to regenerate.
 
 import { Component, input, output, computed } from '@angular/core';

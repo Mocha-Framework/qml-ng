@@ -16,7 +16,7 @@ export * from './components/BarChart';
 export * from './components/Bounce';
 export * from './components/Box';
 export * from './components/Breadcrumb';
-export { Button } from './components/Button';
+export * from './components/Button';
 export * from './components/ButtonGroup';
 export * from './components/ButtonGroupItem';
 export * from './components/Card';
@@ -37,6 +37,7 @@ export * from './components/Drawer';
 export * from './components/DropZone';
 export * from './components/Dropdown';
 export * from './components/DynamicForm';
+export * from './components/EdgeSwipeGesture';
 export * from './components/EmptyState';
 export * from './components/FadeIn';
 export * from './components/FadeOut';
@@ -53,9 +54,11 @@ export * from './components/H4';
 export * from './components/HStack';
 export * from './components/HeroCarousel';
 export * from './components/HoverCard';
+export * from './components/If';
 export * from './components/InteractiveListCell';
 export * from './components/ItemsPerPage';
 export * from './components/LineChart';
+export * from './components/LongPressGesture';
 export * from './components/MediaQuery';
 export * from './components/MochaLogo';
 export * from './components/MochaMap';
@@ -67,8 +70,10 @@ export * from './components/Paginator';
 export * from './components/Particles';
 export * from './components/PieChart';
 export * from './components/PinInput';
+export * from './components/PinchGesture';
 export * from './components/Popover';
 export * from './components/ProgressBar';
+export * from './components/PullToRefreshGesture';
 export * from './components/RadarChart';
 export * from './components/RadioButton';
 export * from './components/RadioGroup';
@@ -100,11 +105,11 @@ export * from './components/Stepper';
 export * from './components/Steps';
 export * from './components/StepsSlider';
 export * from './components/StripedFill';
+export * from './components/SwipeGesture';
 export * from './components/Switch';
 export * from './components/Table';
 export * from './components/Tabs';
 export * from './components/Tag';
-export * from './components/Text';
 export * from './components/TextEditor';
 export * from './components/TextField';
 export * from './components/Tile';
@@ -116,11 +121,11 @@ export * from './components/TreeTable';
 export * from './components/VStack';
 export * from './components/Window';
 export * from './components/ZoomIn';
-
 export * from './components/Icon';
 export { resolveVariant, resolveColor } from './shared/semantic-variants';
 
 // Side-effect import: registers ɵɵngDeclareComponent partials for every
 // component in this package so that signal-based inputs are visible to
-// Angular's JIT compiler.
+// Angular's JIT compiler (which would otherwise only see legacy decorator
+// metadata and report NG0303 on every `[input]="..."` binding).
 import './_partial-decls';

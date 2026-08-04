@@ -1,7 +1,7 @@
 {
-  "generated": "2026-07-27T15:32:13.128Z",
-  "totalComponents": 126,
-  "publicComponents": 114,
+  "generated": "2026-08-01T20:53:14.547Z",
+  "totalComponents": 132,
+  "publicComponents": 120,
   "internalComponents": 12,
   "components": [
     {
@@ -204,7 +204,7 @@
       "isInternal": false,
       "hasAdapter": true,
       "extends": "Item",
-      "propertyCount": 34,
+      "propertyCount": 35,
       "signalCount": 1,
       "functionCount": 0
     },
@@ -348,8 +348,8 @@
       "isInternal": false,
       "hasAdapter": false,
       "extends": "Item",
-      "propertyCount": 19,
-      "signalCount": 2,
+      "propertyCount": 29,
+      "signalCount": 5,
       "functionCount": 0
     },
     {
@@ -384,7 +384,7 @@
       "isInternal": false,
       "hasAdapter": false,
       "extends": "Item",
-      "propertyCount": 25,
+      "propertyCount": 30,
       "signalCount": 2,
       "functionCount": 3
     },
@@ -420,7 +420,7 @@
       "isInternal": false,
       "hasAdapter": false,
       "extends": "Item",
-      "propertyCount": 11,
+      "propertyCount": 12,
       "signalCount": 3,
       "functionCount": 0
     },
@@ -432,7 +432,7 @@
       "isInternal": false,
       "hasAdapter": true,
       "extends": "Item",
-      "propertyCount": 17,
+      "propertyCount": 20,
       "signalCount": 2,
       "functionCount": 2
     },
@@ -471,6 +471,18 @@
       "propertyCount": 4,
       "signalCount": 1,
       "functionCount": 6
+    },
+    {
+      "name": "EdgeSwipeGesture",
+      "selector": "EdgeSwipeGesture",
+      "category": "other",
+      "subcategory": "unknown",
+      "isInternal": false,
+      "hasAdapter": false,
+      "extends": "Item",
+      "propertyCount": 5,
+      "signalCount": 1,
+      "functionCount": 2
     },
     {
       "name": "EmptyState",
@@ -660,7 +672,7 @@
       "isInternal": false,
       "hasAdapter": false,
       "extends": "Item",
-      "propertyCount": 5,
+      "propertyCount": 8,
       "signalCount": 2,
       "functionCount": 0
     },
@@ -675,6 +687,18 @@
       "propertyCount": 4,
       "signalCount": 0,
       "functionCount": 2
+    },
+    {
+      "name": "If",
+      "selector": "If",
+      "category": "other",
+      "subcategory": "unknown",
+      "isInternal": false,
+      "hasAdapter": false,
+      "extends": "Item",
+      "propertyCount": 5,
+      "signalCount": 0,
+      "functionCount": 0
     },
     {
       "name": "InteractiveListCell",
@@ -713,6 +737,18 @@
       "functionCount": 1
     },
     {
+      "name": "LongPressGesture",
+      "selector": "LongPressGesture",
+      "category": "other",
+      "subcategory": "unknown",
+      "isInternal": false,
+      "hasAdapter": false,
+      "extends": "Item",
+      "propertyCount": 4,
+      "signalCount": 3,
+      "functionCount": 0
+    },
+    {
       "name": "LucideIcon",
       "selector": "LucideIcon",
       "category": "misc",
@@ -732,9 +768,9 @@
       "isInternal": false,
       "hasAdapter": false,
       "extends": "Item",
-      "propertyCount": 12,
-      "signalCount": 0,
-      "functionCount": 1
+      "propertyCount": 18,
+      "signalCount": 1,
+      "functionCount": 3
     },
     {
       "name": "MochaI18n",
@@ -780,7 +816,7 @@
       "isInternal": false,
       "hasAdapter": true,
       "extends": "Item",
-      "propertyCount": 17,
+      "propertyCount": 20,
       "signalCount": 4,
       "functionCount": 2
     },
@@ -869,6 +905,18 @@
       "functionCount": 5
     },
     {
+      "name": "PinchGesture",
+      "selector": "PinchGesture",
+      "category": "other",
+      "subcategory": "unknown",
+      "isInternal": false,
+      "hasAdapter": false,
+      "extends": "Item",
+      "propertyCount": 6,
+      "signalCount": 3,
+      "functionCount": 0
+    },
+    {
       "name": "Pipes",
       "selector": "Pipes",
       "category": "other",
@@ -902,6 +950,18 @@
       "extends": "Item",
       "propertyCount": 10,
       "signalCount": 0,
+      "functionCount": 0
+    },
+    {
+      "name": "PullToRefreshGesture",
+      "selector": "PullToRefreshGesture",
+      "category": "other",
+      "subcategory": "unknown",
+      "isInternal": false,
+      "hasAdapter": false,
+      "extends": "Item",
+      "propertyCount": 5,
+      "signalCount": 2,
       "functionCount": 0
     },
     {
@@ -1200,8 +1260,8 @@
       "isInternal": false,
       "hasAdapter": false,
       "extends": "Item",
-      "propertyCount": 17,
-      "signalCount": 2,
+      "propertyCount": 25,
+      "signalCount": 4,
       "functionCount": 0
     },
     {
@@ -1289,6 +1349,18 @@
       "functionCount": 0
     },
     {
+      "name": "SwipeGesture",
+      "selector": "SwipeGesture",
+      "category": "other",
+      "subcategory": "unknown",
+      "isInternal": false,
+      "hasAdapter": false,
+      "extends": "Item",
+      "propertyCount": 9,
+      "signalCount": 3,
+      "functionCount": 1
+    },
+    {
       "name": "Switch",
       "selector": "Switch",
       "category": "input",
@@ -1320,8 +1392,8 @@
       "isInternal": false,
       "hasAdapter": true,
       "extends": "Item",
-      "propertyCount": 32,
-      "signalCount": 6,
+      "propertyCount": 38,
+      "signalCount": 9,
       "functionCount": 6
     },
     {
@@ -1332,7 +1404,7 @@
       "isInternal": false,
       "hasAdapter": true,
       "extends": "Item",
-      "propertyCount": 16,
+      "propertyCount": 22,
       "signalCount": 2,
       "functionCount": 3
     },
@@ -1416,7 +1488,7 @@
       "isInternal": false,
       "hasAdapter": true,
       "extends": "Item",
-      "propertyCount": 8,
+      "propertyCount": 10,
       "signalCount": 1,
       "functionCount": 1
     },

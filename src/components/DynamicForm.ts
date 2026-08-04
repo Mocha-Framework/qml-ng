@@ -1,4 +1,4 @@
-// Auto-generated from design-system/MochaDS/DynamicForm.qml
+// Auto-generated from ds-qml/qml/MochaDS/DynamicForm.qml
 // Do not edit manually. Run `pnpm generate` to regenerate.
 
 import { Component, input, output, computed } from '@angular/core';
